@@ -311,7 +311,7 @@ tg_channel.BorderSizePixel = 0
 tg_channel.Position = UDim2.new(0.130929857, 0, 7.99910355, 0)
 tg_channel.Size = UDim2.new(0, 115, 0, 18)
 tg_channel.Font = Enum.Font.Arial
-tg_channel.Text = "Tg channel"
+tg_channel.Text = "ScriptBlox"
 tg_channel.TextColor3 = Color3.fromRGB(255, 255, 255)
 tg_channel.TextSize = 14.000
 
