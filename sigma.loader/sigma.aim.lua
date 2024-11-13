@@ -50,6 +50,8 @@ local uigradient_2 = Instance.new("UIGradient")
 local uigradient_3 = Instance.new("UIGradient")
 local uigradient_4 = Instance.new("UIGradient")
 
+local TweenService = game:GetService("TweenService")
+
 -- aimbot need this
 local Camera = workspace.CurrentCamera
 local UserInputService = game:GetService('UserInputService')
@@ -169,7 +171,7 @@ misc.Parent = main
 misc.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 misc.BorderColor3 = Color3.fromRGB(0, 0, 0)
 misc.BorderSizePixel = 0
-misc.Position = UDim2.new(0.665882349, 0, 0.157446802, 0)
+misc.Position = UDim2.new(0.675, 0,0.157, 0)
 misc.Size = UDim2.new(0, 125, 0, 177)
 
 uistroke2.Parent = misc
@@ -210,7 +212,7 @@ visuals.Parent = main
 visuals.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 visuals.BorderColor3 = Color3.fromRGB(0, 0, 0)
 visuals.BorderSizePixel = 0
-visuals.Position = UDim2.new(0.352941185, 0, 0.157446802, 0)
+visuals.Position = UDim2.new(0.351, 0,0.157, 0)
 visuals.Size = UDim2.new(0, 125, 0, 177)
 
 uistroke3.Parent = visuals
@@ -328,10 +330,11 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
-v0.0.9
-- added ui ✨
-- added simple undetect)
-- fixed 18 bugs 🎉
+v0.1.0
+- fixed fps boost ✨
+- fixed 2 bugs 🎉
+- fixed ui 💎
+- added hide/show 🎉
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 12.000
@@ -595,6 +598,16 @@ support.MouseButton1Click:Connect(function()
     support.Text = "Support me"
 end)
 
+fps_boost.MouseButton1Click:Connect(function()
+    local l = game.Lighting
+
+    l.GlobalShadows = false
+    local aaaa = game.Lighting:GetChildren()
+    for _, a in ipairs(aaaa) do
+        a:Destroy()
+    end
+end)
+
 script.Parent.Name = name
 title.Name = math.random()
 main.Name = math.random()
@@ -602,17 +615,38 @@ script.Name = math.random()
 
 if main then
     local aaaa = main:GetChildren()
-    print(aaaa)
     for _, a in ipairs(aaaa) do
         a.Name = tostring(math.random())
     end
 end
 
+-- UI other
+local isInterfaceVisible = true
+
+main.Visible = true
+main.BackgroundTransparency = 0
+
+local function toggleInterface()
+    if isInterfaceVisible then
+            main.Visible = false
+    else
+        main.Visible = true
+    end
+    isInterfaceVisible = not isInterfaceVisible
+end
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.Home then
+        toggleInterface()
+    end
+end)
+
 -- LOADED ???
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
-print('|===============SIGMA.AIM===============|')
+sendNotification("Sigma", "Press Home to hide/show", 8)
+print('|=============== SIGMA.AIM ===============|')
 print("BY ANDREYTHEDEV")
-print("=========================================")
-print("Lib: SigmaLib v52 [Only russians can understand this joke :3]")
-print("Loader: unknown (Because sigma.loader is wip :3)")
-print("=========================================")
+print("===========================================")
+print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
+print("Sigma skibibibidi")
+print("===========================================")
