@@ -1,5 +1,15 @@
 -- OPEN SOURCE ??!?!?!?!??!!? --
--- Please dont use this script if you download it not from scriptblox, because official loader only on scriptblox
+
+-- idk,but i made this dialogue hehehe
+
+-- Please dont use this script if you download it not from scriptblox, because official loader only on scriptblox 
+-- shut up, sigma loader is not out now!!!!!
+-- shut up stupid, its out
+-- no
+-- yes
+-- no
+-- 🦅🦅🦅🦅
+
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -393,7 +403,7 @@ local function sendNotification(title, text, duration)
 	})
 end
 
-sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
+
 
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
@@ -599,3 +609,11 @@ if main then
     end
 end
 
+-- LOADED ???
+sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
+print('|===============SIGMA.AIM===============|')
+print("BY ANDREYTHEDEV")
+print("=========================================")
+print("Lib: SigmaLib v52 [Only russians can understand this joke :3]")
+print("Loader: unknown (Because sigma.loader is wip :3)")
+print("=========================================")
