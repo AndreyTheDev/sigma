@@ -302,7 +302,7 @@ support.TextSize = 14.000
 UICorner_8.CornerRadius = UDim.new(0, 2)
 UICorner_8.Parent = support
 
-tg_channel.Name = "tg_channel"
+tg_channel.Name = "ScriptBlox"
 tg_channel.Parent = news_2
 tg_channel.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
 tg_channel.BackgroundTransparency = 0.200
@@ -328,9 +328,10 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
+v0.0.9
 - added ui ✨
-- added 85% undetect 🛡
-- fixed 15 bugs 🎉
+- added simple undetect)
+- fixed 18 bugs 🎉
 
 NEW FEATURES IS COMING!
 ]]
@@ -583,7 +584,7 @@ esp_toggle.MouseButton1Click:Connect(function()
 end)
 
 tg_channel.MouseButton1Click:Connect(function()
-    setclipboard("t.me/podval_andreya2")
+    setclipboard("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
     tg_channel.Text = "Link copied!"
     task.wait(2)
     tg_channel.Text = "Tg Channel"
