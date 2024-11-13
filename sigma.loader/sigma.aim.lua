@@ -623,16 +623,16 @@ end
 -- UI other
 local isInterfaceVisible = true
 
-main.Visible = true
-main.BackgroundTransparency = 0
-
 local function toggleInterface()
     if isInterfaceVisible then
-            main.Visible = false
+    print('ok')
+    main.Visible = true
+    isInterfaceVisible = not isInterfaceVisible    
     else
-        main.Visible = true
+    main.Visible = false
+    isInterfaceVisible = true
     end
-    isInterfaceVisible = not isInterfaceVisible
+
 end
 
 UserInputService.InputBegan:Connect(function(input)
@@ -640,6 +640,55 @@ UserInputService.InputBegan:Connect(function(input)
         toggleInterface()
     end
 end)
+
+local function RotateGradient(gradient)
+    local tweenInfo = TweenInfo.new(
+        6, 
+        Enum.EasingStyle.Linear,
+        Enum.EasingDirection.InOut,
+        -1, 
+        true 
+    )
+
+    local goal = { Rotation = gradient.Rotation + 360 }
+
+    local tween = TweenService:Create(gradient, tweenInfo, goal)
+    tween:Play()
+end
+
+local function animateButton(button, hover)
+    local goal = {}
+    if hover then
+        goal.BackgroundColor3 = Color3.fromRGB(180, 105, 220)
+    else
+        goal.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+    end
+
+    local tween = TweenService:Create(button, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), goal)
+    tween:Play()
+end
+
+local function setupButtonAnimation(button)
+    button.MouseEnter:Connect(function()
+        animateButton(button, true)
+    end)
+
+    button.MouseLeave:Connect(function()
+        animateButton(button, false)
+    end)
+end
+
+setupButtonAnimation(aimbot_toggle)
+setupButtonAnimation(esp_toggle)
+setupButtonAnimation(fps_boost)
+setupButtonAnimation(support)
+setupButtonAnimation(tg_channel)
+
+RotateGradient(uigradient_1)
+RotateGradient(uigradient_2)
+RotateGradient(uigradient_3)
+RotateGradient(uigradient_4)
+
 
 -- LOADED ???
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
