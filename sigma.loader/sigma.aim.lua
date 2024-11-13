@@ -333,7 +333,7 @@ v0.0.9
 - added simple undetect)
 - fixed 18 bugs 🎉
 
-NEW FEATURES IS COMING!
+FPS BOOST DONT WORKING NOW, SORRY
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 12.000
@@ -587,7 +587,7 @@ tg_channel.MouseButton1Click:Connect(function()
     setclipboard("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
     tg_channel.Text = "Link copied!"
     task.wait(2)
-    tg_channel.Text = "Tg Channel"
+    tg_channel.Text = "ScriptBlox"
 end)
 
 support.MouseButton1Click:Connect(function()
