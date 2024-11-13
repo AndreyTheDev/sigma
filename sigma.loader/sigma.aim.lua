@@ -332,8 +332,6 @@ v0.0.9
 - added ui ✨
 - added simple undetect)
 - fixed 18 bugs 🎉
-
-FPS BOOST DONT WORKING NOW, SORRY
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 12.000
