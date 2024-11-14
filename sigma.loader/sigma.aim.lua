@@ -45,10 +45,15 @@ local uistroke1 = Instance.new("UIStroke")
 local uistroke2 = Instance.new("UIStroke")
 local uistroke3 = Instance.new("UIStroke")
 local uistroke4 = Instance.new("UIStroke")
+local uistroke5 = Instance.new("UIStroke")
 local uigradient_1 = Instance.new("UIGradient")
 local uigradient_2 = Instance.new("UIGradient")
 local uigradient_3 = Instance.new("UIGradient")
 local uigradient_4 = Instance.new("UIGradient")
+local uigradient_5 = Instance.new("UIGradient")
+local cattr = Instance.new("TextButton")
+local UICornerr = Instance.new("UICorner")
+local cartr = Instance.new("ImageLabel")
 
 local TweenService = game:GetService("TweenService")
 
@@ -143,15 +148,21 @@ uistroke4.Color = Color3.fromRGB(255, 255, 255)
 uistroke4.Thickness = 0.6
 uistroke4.Transparency = 0
 
+uistroke5.Color = Color3.fromRGB(255, 255, 255)
+uistroke5.Thickness = 0.6
+uistroke5.Transparency = 0
+
 uigradient_1.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
 uigradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
 uigradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
 uigradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
+uigradient_5.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
 
 uigradient_1.Parent = uistroke1
 uigradient_2.Parent = uistroke2
 uigradient_3.Parent = uistroke3
 uigradient_4.Parent = uistroke4
+uigradient_5.Parent = uistroke5
 
 title.Name = "title"
 title.Parent = main
@@ -206,6 +217,22 @@ UICorner_2.CornerRadius = UDim.new(0, 2)
 UICorner_2.Parent = aimbot_toggle
 
 UICorner_3.Parent = misc
+
+cattr.Name = "cattr"
+cattr.Parent = misc.misc
+cattr.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+cattr.BackgroundTransparency = 0.200
+cattr.BorderColor3 = Color3.fromRGB(0, 0, 0)
+cattr.BorderSizePixel = 0
+cattr.Position = UDim2.new(0.118026637, 0, 2.52541947, 0)
+cattr.Size = UDim2.new(0, 115, 0, 18)
+cattr.Font = Enum.Font.Arial
+cattr.Text = "Reload Script"
+cattr.TextColor3 = Color3.fromRGB(255, 255, 255)
+cattr.TextSize = 14.000
+
+UICorner.CornerRadius = UDim.new(0, 2)
+UICorner.Parent = cattr
 
 visuals.Name = "visuals"
 visuals.Parent = main
@@ -330,14 +357,16 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
-v0.1.0
-- fixed fps boost ✨
-- fixed 2 bugs 🎉
-- fixed ui 💎
-- added hide/show 🎉
+v0.1.1
+- small ui update ✨
+- fixed esp bug ✅
+- fixed aimbot bug ✅
+
+
+added script reload
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
-changelog.TextSize = 12.000
+changelog.TextSize = 11.800
 changelog.TextWrapped = true
 changelog.TextXAlignment = Enum.TextXAlignment.Left
 changelog.TextYAlignment = Enum.TextYAlignment.Top
@@ -608,6 +637,14 @@ fps_boost.MouseButton1Click:Connect(function()
     end
 end)
 
+cattr.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim.loader.lua'))()
+    sendNotification("Sigma", "Reloading...", 6)
+    task.wait(2)
+    sendNotification("Sigma", "Reloaded!", 6)
+    sigma:Destroy()
+end)
+
 script.Parent.Name = name
 title.Name = math.random()
 main.Name = math.random()
@@ -683,6 +720,7 @@ setupButtonAnimation(esp_toggle)
 setupButtonAnimation(fps_boost)
 setupButtonAnimation(support)
 setupButtonAnimation(tg_channel)
+setupButtonAnimation(cattr)
 
 RotateGradient(uigradient_1)
 RotateGradient(uigradient_2)
@@ -691,6 +729,7 @@ RotateGradient(uigradient_4)
 
 
 -- LOADED ???
+local plr = game.Players.LocalPlayer
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
 sendNotification("Sigma", "Press Home to hide/show", 8)
 print('|=============== SIGMA.AIM ===============|')
@@ -698,4 +737,6 @@ print("|            BY ANDREYTHEDEV              |")
 print("|=========================================|")
 print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
 print("Sigma skibibibidi")
+print("NAME: ".. plr.Name)
+print("DISPLAY NAME: ".. plr.DisplayName)
 print("|=========================================|")
