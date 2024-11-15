@@ -224,7 +224,7 @@ cattr.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
 cattr.BackgroundTransparency = 0.200
 cattr.BorderColor3 = Color3.fromRGB(0, 0, 0)
 cattr.BorderSizePixel = 0
-cattr.Position = UDim2.new(0.118026637, 0, 2.52541947, 0)
+cattr.Position = UDim2.new(0.124, 0,2.315, 0)
 cattr.Size = UDim2.new(0, 115, 0, 18)
 cattr.Font = Enum.Font.Arial
 cattr.Text = "Reload Script"
@@ -263,7 +263,7 @@ esp_toggle.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
 esp_toggle.BackgroundTransparency = 0.200
 esp_toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 esp_toggle.BorderSizePixel = 0
-esp_toggle.Position = UDim2.new(0.131, 0,0.999, 0)
+esp_toggle.Position = UDim2.new(0.124, 0,0.999, 0)
 esp_toggle.Size = UDim2.new(0, 115, 0, 18)
 esp_toggle.Font = Enum.Font.Arial
 esp_toggle.Text = "ESP [P]"
@@ -279,7 +279,7 @@ fps_boost.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
 fps_boost.BackgroundTransparency = 0.200
 fps_boost.BorderColor3 = Color3.fromRGB(0, 0, 0)
 fps_boost.BorderSizePixel = 0
-fps_boost.Position = UDim2.new(0.124, 0,2.525, 0)
+fps_boost.Position = UDim2.new(0.124, 0,2.315, 0)
 fps_boost.Size = UDim2.new(0, 115, 0, 18)
 fps_boost.Font = Enum.Font.Arial
 fps_boost.Text = "FPS Boost"
@@ -321,7 +321,7 @@ support.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
 support.BackgroundTransparency = 0.200
 support.BorderColor3 = Color3.fromRGB(0, 0, 0)
 support.BorderSizePixel = 0
-support.Position = UDim2.new(0.130929857, 0, 6.47278786, 0)
+support.Position = UDim2.new(0.131, 0,6.7, 0)
 support.Size = UDim2.new(0, 115, 0, 18)
 support.Font = Enum.Font.Arial
 support.Text = "Support me"
@@ -358,12 +358,12 @@ changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
 v0.1.1
-- small ui update ✨
-- fixed esp bug ✅
-- fixed aimbot bug ✅
+- small ui update 💎
+- fixed some bugs
 
 
-added script reload
+
+The big update is coming...
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -594,6 +594,31 @@ end
 
 SmoothDrag(main)
 
+-- <!-- Shutdown --!> --
+local function shutdown()
+    main:Destroy()
+    
+    espEnabled = not espEnabled
+    sendNotification("Sigma", espEnabled and "..." or "ESP disabled 🛑", 5)
+    
+    botEnabled = not botEnabled
+    sendNotification("Sigma", botEnabled and "..." or "Aimbot disabled 🛑", 5)
+    
+    if not espEnabled then
+        for _, esp in pairs(espObjects) do
+            if esp then
+                esp.highlight:Destroy()
+            end
+        end
+        espObjects = {}
+    end
+
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim.loader.lua'))()
+    sendNotification("Sigma", "Reloaded!", 6)     
+    task.wait(0.2)
+    sigma:Destroy()
+end
+
 aimbot_toggle.MouseButton1Click:Connect(function()
     botEnabled = not botEnabled
     sendNotification("Sigma", botEnabled and "Aimbot enabled 💎" or "Aimbot disabled 🛑", 5)
@@ -638,11 +663,10 @@ fps_boost.MouseButton1Click:Connect(function()
 end)
 
 cattr.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim.loader.lua'))()
     sendNotification("Sigma", "Reloading...", 6)
-    task.wait(2)
-    sendNotification("Sigma", "Reloaded!", 6)
-    sigma:Destroy()
+    shutdown()
+    task.wait(1)
+
 end)
 
 script.Parent.Name = name
@@ -730,6 +754,8 @@ RotateGradient(uigradient_4)
 
 -- LOADED ???
 local plr = game.Players.LocalPlayer
+local time = DateTime.now()
+
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
 sendNotification("Sigma", "Press Home to hide/show", 8)
 print('|=============== SIGMA.AIM ===============|')
@@ -739,4 +765,5 @@ print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
 print("Sigma skibibibidi")
 print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
+print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
 print("|=========================================|")
