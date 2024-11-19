@@ -231,8 +231,8 @@ cattr.Text = "Reload Script"
 cattr.TextColor3 = Color3.fromRGB(255, 255, 255)
 cattr.TextSize = 14.000
 
-UICorner.CornerRadius = UDim.new(0, 2)
-UICorner.Parent = cattr
+UICornerr.CornerRadius = UDim.new(0, 2)
+UICornerr.Parent = cattr
 
 visuals.Name = "visuals"
 visuals.Parent = main
@@ -360,10 +360,10 @@ changelog.Text = [[
 v0.1.1
 - small ui update 💎
 - fixed some bugs
+- added 🤫
 
 
-
-The big update is coming...
+Compability update soon!
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -755,6 +755,19 @@ RotateGradient(uigradient_4)
 -- LOADED ???
 local plr = game.Players.LocalPlayer
 local time = DateTime.now()
+local exec = identifyexecutor()
+
+if script then
+    local players = game.Players:GetChildren()
+    for _, player in ipairs(players) do
+        if player.Name == "JustAMoment111222" then
+            sendNotification("Sigma", "🤗 Oh, hey! You are on the same server as the dev! :3", 8)
+            print("hi, dev")
+        else
+            print("ok")
+        end
+    end
+end
 
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
 sendNotification("Sigma", "Press Home to hide/show", 8)
@@ -766,4 +779,6 @@ print("Sigma skibibibidi")
 print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
 print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
+print("Executor: ".. exec)
+print("Erm whata sigma: yes")
 print("|=========================================|")
