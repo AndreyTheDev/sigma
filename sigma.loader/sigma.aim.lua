@@ -845,8 +845,6 @@ lob.MouseButton1Click:Connect(function()
     UICornerd_3:Destroy()
     UICornerr:Destroy()
     UICorner_7:Destroy()
-    
-    be:Destroy()
 end)
 
 pivo.MouseButton1Click:Connect(function()
