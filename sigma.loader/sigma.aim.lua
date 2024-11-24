@@ -46,16 +46,37 @@ local uistroke2 = Instance.new("UIStroke")
 local uistroke3 = Instance.new("UIStroke")
 local uistroke4 = Instance.new("UIStroke")
 local uistroke5 = Instance.new("UIStroke")
+local uistroke6 = Instance.new("UIStroke")
 local uigradient_1 = Instance.new("UIGradient")
 local uigradient_2 = Instance.new("UIGradient")
 local uigradient_3 = Instance.new("UIGradient")
 local uigradient_4 = Instance.new("UIGradient")
 local uigradient_5 = Instance.new("UIGradient")
+local uigradient_6 = Instance.new("UIGradient")
 local cattr = Instance.new("TextButton")
 local UICornerr = Instance.new("UICorner")
 local cartr = Instance.new("ImageLabel")
 
 local TweenService = game:GetService("TweenService")
+
+-- Theme
+local bcolor = Color3.fromRGB(56, 48, 103)
+local gradient_color_main = ColorSequence.new({
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(16, 19, 56))
+})
+
+local gradient_bord = ColorSequence.new({
+    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(124, 120, 255)),
+    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(55, 102, 255))
+})
+
 
 -- aimbot need this
 local Camera = workspace.CurrentCamera
@@ -126,7 +147,7 @@ main.Size = UDim2.new(0, 425, 0, 235)
 UICorner.CornerRadius = UDim.new(0, 5)
 UICorner.Parent = main
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 11, 56))}
+UIGradient.Color = gradient_color_main
 UIGradient.Rotation = -124
 UIGradient.Parent = main
 
@@ -152,17 +173,37 @@ uistroke5.Color = Color3.fromRGB(255, 255, 255)
 uistroke5.Thickness = 0.6
 uistroke5.Transparency = 0
 
-uigradient_1.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
-uigradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
-uigradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
-uigradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
-uigradient_5.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
+uistroke6.Color = Color3.fromRGB(255, 255, 255)
+uistroke6.Thickness = 0.6
+uistroke6.Transparency = 0
+
+print("1")
+
+local uigradients = {
+    uigradient_1,
+    uigradient_2,
+    uigradient_3,
+    uigradient_4,
+    uigradient_5,
+    uigradient_6
+}
+
+for _, uigradient in ipairs(uigradients) do
+    if uigradient then
+        uigradient.Color = gradient_bord
+    else
+        warn("oh fu..")
+    end
+end
+
+print("2")
 
 uigradient_1.Parent = uistroke1
 uigradient_2.Parent = uistroke2
 uigradient_3.Parent = uistroke3
 uigradient_4.Parent = uistroke4
 uigradient_5.Parent = uistroke5
+uigradient_6.Parent = uistroke6
 
 title.Name = "title"
 title.Parent = main
@@ -202,7 +243,7 @@ misc_2.TextSize = 12.000
 
 aimbot_toggle.Name = "aimbot_toggle"
 aimbot_toggle.Parent = misc_2
-aimbot_toggle.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+aimbot_toggle.BackgroundColor3 = bcolor
 aimbot_toggle.BackgroundTransparency = 0.200
 aimbot_toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 aimbot_toggle.BorderSizePixel = 0
@@ -220,7 +261,7 @@ UICorner_3.Parent = misc
 
 cattr.Name = "cattr"
 cattr.Parent = misc.misc
-cattr.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+cattr.BackgroundColor3 = bcolor
 cattr.BackgroundTransparency = 0.200
 cattr.BorderColor3 = Color3.fromRGB(0, 0, 0)
 cattr.BorderSizePixel = 0
@@ -240,7 +281,7 @@ visuals.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 visuals.BorderColor3 = Color3.fromRGB(0, 0, 0)
 visuals.BorderSizePixel = 0
 visuals.Position = UDim2.new(0.351, 0,0.157, 0)
-visuals.Size = UDim2.new(0, 125, 0, 177)
+visuals.Size = UDim2.new(0, 125,0, 100)
 
 uistroke3.Parent = visuals
 
@@ -259,7 +300,7 @@ visuals_2.TextSize = 12.000
 
 esp_toggle.Name = "esp_toggle"
 esp_toggle.Parent = visuals_2
-esp_toggle.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+esp_toggle.BackgroundColor3 = bcolor
 esp_toggle.BackgroundTransparency = 0.200
 esp_toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
 esp_toggle.BorderSizePixel = 0
@@ -275,7 +316,7 @@ UICorner_4.Parent = esp_toggle
 
 fps_boost.Name = "fps_boost"
 fps_boost.Parent = visuals_2
-fps_boost.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+fps_boost.BackgroundColor3 = bcolor
 fps_boost.BackgroundTransparency = 0.200
 fps_boost.BorderColor3 = Color3.fromRGB(0, 0, 0)
 fps_boost.BorderSizePixel = 0
@@ -286,10 +327,109 @@ fps_boost.Text = "FPS Boost"
 fps_boost.TextColor3 = Color3.fromRGB(255, 255, 255)
 fps_boost.TextSize = 14.000
 
+local idk = Instance.new("TextButton")
+local UICorn1er = Instance.new("UICorner")
+
+idk.Name = "idk"
+idk.Parent = visuals.visuals
+idk.BackgroundColor3 = bcolor
+idk.BackgroundTransparency = 0.200
+idk.BorderColor3 = Color3.fromRGB(0, 0, 0)
+idk.BorderSizePixel = 0
+idk.Position = UDim2.new(0.123999998, 0, 3.60500002, 0)
+idk.Size = UDim2.new(0, 115, 0, 18)
+idk.Font = Enum.Font.Arial
+idk.Text = "idk"
+idk.TextColor3 = Color3.fromRGB(255, 255, 255)
+idk.TextSize = 14.000
+
+UICorn1er.CornerRadius = UDim.new(0, 2)
+UICorn1er.Parent = idk
+
 UICorner_5.CornerRadius = UDim.new(0, 2)
 UICorner_5.Parent = fps_boost
 
+local he = Instance.new("TextLabel")
+
+he.Name = "he"
+he.Parent = visuals
+he.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+he.BackgroundTransparency = 1.000
+he.BorderColor3 = Color3.fromRGB(0, 0, 0)
+he.BorderSizePixel = 0
+he.Position = UDim2.new(-0.00329394522, 0, 0.769999981, 0)
+he.Size = UDim2.new(0, 125, 0, 31)
+he.Font = Enum.Font.ArialBold
+he.Text = "If you read this you`re cool, bro"
+he.TextColor3 = Color3.fromRGB(255, 255, 255)
+he.TextSize = 5.000
+he.TextTransparency = 0.800
+
 UICorner_6.Parent = visuals
+
+local fun = Instance.new("Frame")
+local fun_2 = Instance.new("TextLabel")
+local lob = Instance.new("TextButton")
+local UICornerd = Instance.new("UICorner")
+local pivo = Instance.new("TextButton")
+local UICornerd_2 = Instance.new("UICorner")
+local UICornerd_3 = Instance.new("UICorner")
+
+fun.Name = "fun"
+fun.Parent = main
+fun.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+fun.BorderColor3 = Color3.fromRGB(0, 0, 0)
+fun.BorderSizePixel = 0
+fun.Position = UDim2.new(0.350999981, 0, 0.620000064, 0)
+fun.Size = UDim2.new(0, 125, 0, 68)
+
+fun_2.Name = "fun"
+fun_2.Parent = fun
+fun_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fun_2.BackgroundTransparency = 1.000
+fun_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+fun_2.BorderSizePixel = 0
+fun_2.Position = UDim2.new(-0.106930666, 0, -0.00500471052, 0)
+fun_2.Size = UDim2.new(0, 155, 0, 19)
+fun_2.Font = Enum.Font.ArialBold
+fun_2.Text = "UI"
+fun_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+fun_2.TextSize = 12.000
+
+lob.Name = "lob"
+lob.Parent = fun_2
+lob.BackgroundColor3 = bcolor
+lob.BackgroundTransparency = 0.200
+lob.BorderColor3 = Color3.fromRGB(0, 0, 0)
+lob.BorderSizePixel = 0
+lob.Position = UDim2.new(0.123999998, 0, 0.999000013, 0)
+lob.Size = UDim2.new(0, 115, 0, 18)
+lob.Font = Enum.Font.Arial
+lob.Text = "UI Mewing (??)"
+lob.TextColor3 = Color3.fromRGB(255, 255, 255)
+lob.TextSize = 14.000
+
+UICornerd.CornerRadius = UDim.new(0, 2)
+UICornerd.Parent = lob
+
+pivo.Name = "pivo"
+pivo.Parent = fun_2
+pivo.BackgroundColor3 = bcolor
+pivo.BackgroundTransparency = 0.200
+pivo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+pivo.BorderSizePixel = 0
+pivo.Position = UDim2.new(0.123999998, 0, 2.31500006, 0)
+pivo.Size = UDim2.new(0, 115, 0, 18)
+pivo.Font = Enum.Font.Arial
+pivo.Text = "Old Theme"
+pivo.TextColor3 = Color3.fromRGB(255, 255, 255)
+pivo.TextSize = 14.000
+
+UICornerd_2.CornerRadius = UDim.new(0, 2)
+UICornerd_2.Parent = pivo
+
+UICornerd_3.Parent = fun
+uistroke6.Parent = fun
 
 news.Name = "news"
 news.Parent = main
@@ -317,7 +457,7 @@ news_2.TextSize = 12.000
 
 support.Name = "support"
 support.Parent = news_2
-support.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+support.BackgroundColor3 = bcolor
 support.BackgroundTransparency = 0.200
 support.BorderColor3 = Color3.fromRGB(0, 0, 0)
 support.BorderSizePixel = 0
@@ -333,7 +473,7 @@ UICorner_8.Parent = support
 
 tg_channel.Name = "ScriptBlox"
 tg_channel.Parent = news_2
-tg_channel.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+tg_channel.BackgroundColor3 = bcolor
 tg_channel.BackgroundTransparency = 0.200
 tg_channel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 tg_channel.BorderSizePixel = 0
@@ -357,10 +497,11 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
-v0.1.1
-- small ui update 💎
-- fixed some bugs
-- added 🤫
+v0.1.2
+- big ui update ✨
+- new theme!
+- aimbot update! 🤫🧏‍♂️
+
 
 
 Compability update soon!
@@ -426,6 +567,7 @@ local currentTarget = nil
 
 local function sendNotification(title, text, duration)
 	local bindableFunction = Instance.new("BindableFunction")
+
 	game.StarterGui:SetCore("SendNotification", {
 		Title = title,
 		Text = text,
@@ -433,8 +575,6 @@ local function sendNotification(title, text, duration)
 		callback = bindableFunction,
 	})
 end
-
-
 
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
@@ -550,7 +690,7 @@ end)
 
 local script = Instance.new('LocalScript', sigma)
 
-local name = "{1}]_[_}_+{3|\$&/p_11{_"
+local name = "{1}]_[18_}_+{3|\$&/p_311{_".. math.random()
 
 local UserInputService = game:GetService("UserInputService")
 local SmoothDragSpeed = 0.5
@@ -669,6 +809,75 @@ cattr.MouseButton1Click:Connect(function()
 
 end)
 
+lob.MouseButton1Click:Connect(function()
+    sendNotification(Sigma, "Deleted all ui corners (reload to bring back corners)", 12)
+
+    local be = Instance.new("Sound", game.Workspace)
+    be.Name = math.random()
+
+    local aaa = 0
+
+    if aaa > 2 then
+        be.SoundId = "rbxassetid://18331725459"
+    elseif aaa < 2 then
+        be.SoundId = "rbxassetid://6832470734"
+    end
+
+    aaa = aaa + 1
+
+    task.wait(1)
+
+    be.Volume = 0.3
+    be:Play()
+
+    
+    
+    task.wait(1)
+    UICorn1er:Destroy()
+    UICorner:Destroy()
+    UICorner_10:Destroy()
+    UICorner_2:Destroy()
+    UICorner_3:Destroy()
+    UICorner_4:Destroy()
+    UICorner_8:Destroy()
+    UICornerd:Destroy()
+    UICorner_9:Destroy()
+    UICorner_6:Destroy()
+    UICornerd_2:Destroy()
+    UICornerd_3:Destroy()
+    UICornerr:Destroy()
+    UICorner_7:Destroy()
+    
+    be:Destroy()
+end)
+
+pivo.MouseButton1Click:Connect(function()
+gradient_color_main = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 11, 56))}
+gradient_bord = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
+bcolor = Color3.fromRGB(94, 63, 103)
+
+-- im stupid
+UIGradient.Color = gradient_color_main
+local uigradientss = {
+    uigradient_1,
+    uigradient_2,
+    uigradient_3,
+    uigradient_4,
+    uigradient_5,
+    uigradient_6
+}
+
+for _, uigradient in ipairs(uigradientss) do
+    if uigradient then
+        uigradient.Color = gradient_bord
+    else
+        warn("fuu, script broke :(")
+    end
+end
+
+sendNotification(Sigma, "Old Theme applyed, but this bug with buttons animation... ahh now 2 AM (2:00), i need to sleep.. sorry", 10)
+end)
+
 script.Parent.Name = name
 title.Name = math.random()
 main.Name = math.random()
@@ -722,7 +931,7 @@ local function animateButton(button, hover)
     if hover then
         goal.BackgroundColor3 = Color3.fromRGB(180, 105, 220)
     else
-        goal.BackgroundColor3 = Color3.fromRGB(94, 63, 103)
+        goal.BackgroundColor3 = bcolor
     end
 
     local tween = TweenService:Create(button, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), goal)
@@ -745,11 +954,15 @@ setupButtonAnimation(fps_boost)
 setupButtonAnimation(support)
 setupButtonAnimation(tg_channel)
 setupButtonAnimation(cattr)
+setupButtonAnimation(idk)
+setupButtonAnimation(lob)
+setupButtonAnimation(pivo)
 
 RotateGradient(uigradient_1)
 RotateGradient(uigradient_2)
 RotateGradient(uigradient_3)
 RotateGradient(uigradient_4)
+RotateGradient(uigradient_6)
 
 
 -- LOADED ???
@@ -779,5 +992,14 @@ print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
 print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
 print("Executor: ".. identifyexecutor())
+print("math.random():".. math.random())
 print("Erm whata sigma: yes")
+print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
 print("|=========================================|")
+
+
+
+
+
+
+-- Surgua ne shuschestvyet...
