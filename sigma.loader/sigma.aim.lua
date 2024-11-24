@@ -929,7 +929,7 @@ end
 local function animateButton(button, hover)
     local goal = {}
     if hover then
-        goal.BackgroundColor3 = Color3.fromRGB(180, 105, 220)
+        goal.BackgroundColor3 = Color3.new(0.478431, 0.223529, 0.611765)
     else
         goal.BackgroundColor3 = bcolor
     end
