@@ -810,7 +810,7 @@ cattr.MouseButton1Click:Connect(function()
 end)
 
 lob.MouseButton1Click:Connect(function()
-    sendNotification(Sigma, "Deleted all ui corners (reload to bring back corners)", 12)
+    sendNotification("Sigma", "Deleted all ui corners (reload to bring back corners)", 12)
 
     local be = Instance.new("Sound", game.Workspace)
     be.Name = math.random()
@@ -829,8 +829,6 @@ lob.MouseButton1Click:Connect(function()
 
     be.Volume = 0.3
     be:Play()
-
-    
     
     task.wait(1)
     UICorn1er:Destroy()
@@ -856,6 +854,8 @@ gradient_color_main = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.f
 gradient_bord = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
 bcolor = Color3.fromRGB(94, 63, 103)
 
+sendNotification("Sigma", "Old Theme applyed, but this bug with buttons animation... ahh now 2 AM (2:00), i need to sleep.. sorry", 10)
+
 -- im stupid
 UIGradient.Color = gradient_color_main
 local uigradientss = {
@@ -874,8 +874,6 @@ for _, uigradient in ipairs(uigradientss) do
         warn("fuu, script broke :(")
     end
 end
-
-sendNotification(Sigma, "Old Theme applyed, but this bug with buttons animation... ahh now 2 AM (2:00), i need to sleep.. sorry", 10)
 end)
 
 script.Parent.Name = name
@@ -969,12 +967,21 @@ RotateGradient(uigradient_6)
 local plr = game.Players.LocalPlayer
 local time = DateTime.now()
 
+local devs = ({
+    JustAMoment111222,
+    sigma_cdn1,
+    nasral1489
+
+})
+
 if script then
     local players = game.Players:GetChildren()
     for _, player in ipairs(players) do
-        if player.Name == "JustAMoment111222" then
+        if player.Name == devs and plr.Name ~= devs then
             sendNotification("Sigma", "🤗 Oh, hey! You are on the same server as the dev! :3", 8)
             print("hi, dev")
+        elseif plr.Name == devs then
+            sendNotification("Sigma", "Hi dev!!", 2)
         else
             print("ok")
         end
