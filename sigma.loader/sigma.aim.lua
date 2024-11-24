@@ -981,7 +981,7 @@ if script then
             sendNotification("Sigma", "🤗 Oh, hey! You are on the same server as the dev! :3", 8)
             print("hi, dev")
         elseif plr.Name == devs then
-            sendNotification("Sigma", "Hi dev!!", 2)
+            sendNotification("Sigma", "Hi dev!!", 8)
         else
             print("ok")
         end
