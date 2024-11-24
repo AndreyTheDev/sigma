@@ -704,7 +704,7 @@ end)
 
 local function RotateGradient(gradient)
     local tweenInfo = TweenInfo.new(
-        6, 
+        10, 
         Enum.EasingStyle.Linear,
         Enum.EasingDirection.InOut,
         -1, 
@@ -755,7 +755,6 @@ RotateGradient(uigradient_4)
 -- LOADED ???
 local plr = game.Players.LocalPlayer
 local time = DateTime.now()
-local exec = identifyexecutor()
 
 if script then
     local players = game.Players:GetChildren()
@@ -779,6 +778,6 @@ print("Sigma skibibibidi")
 print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
 print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
-print("Executor: ".. exec)
+print("Executor: ".. identifyexecutor())
 print("Erm whata sigma: yes")
 print("|=========================================|")
