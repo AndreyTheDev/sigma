@@ -15,14 +15,15 @@
 local file_sys = false
 
 local success, err = pcall(function()
-    writefile("test.txt", "Testing filesystem")
-    local content = readfile("test.txt")
+    writefile("test.sigma", "Testing filesystem")
+    local content = readfile("test.sigma")
     print("Content:", content)
 end)
 if not success then
     file_sys = false
 else
     file_sys = true
+    delfile("test.sigma")
 end
 
 local sigma = Instance.new("ScreenGui")
