@@ -12,6 +12,19 @@
 -- no
 -- 🦅🦅🦅🦅
 
+local file_sys = false
+
+local success, err = pcall(function()
+    writefile("test.txt", "Testing filesystem")
+    local content = readfile("test.txt")
+    print("Content:", content)
+end)
+if not success then
+    file_sys = false
+else
+    file_sys = true
+end
+
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -267,12 +280,19 @@ cattr.BackgroundColor3 = bcolor
 cattr.BackgroundTransparency = 0.200
 cattr.BorderColor3 = Color3.fromRGB(0, 0, 0)
 cattr.BorderSizePixel = 0
-cattr.Position = UDim2.new(0.124, 0,2.315, 0)
+cattr.Position = UDim2.new(0.118, 0,7.999, 0)
 cattr.Size = UDim2.new(0, 115, 0, 18)
 cattr.Font = Enum.Font.Arial
 cattr.Text = "Reload Script"
 cattr.TextColor3 = Color3.fromRGB(255, 255, 255)
 cattr.TextSize = 14.000
+
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+
 
 UICornerr.CornerRadius = UDim.new(0, 2)
 UICornerr.Parent = cattr
@@ -338,7 +358,7 @@ idk.BackgroundColor3 = bcolor
 idk.BackgroundTransparency = 0.200
 idk.BorderColor3 = Color3.fromRGB(0, 0, 0)
 idk.BorderSizePixel = 0
-idk.Position = UDim2.new(0.123999998, 0, 3.60500002, 0)
+idk.Position = UDim2.new(0.124, 0,3.605, 0)
 idk.Size = UDim2.new(0, 115, 0, 18)
 idk.Font = Enum.Font.Arial
 idk.Text = "idk"
@@ -568,6 +588,61 @@ local espEnabled = true
 local espObjects = {}
 local currentTarget = nil
 
+local function loadSettings()
+    if file_sys == true then
+        if isfile("settings.txt") then
+            local settings = readfile("settings.txt")
+            if settings then
+                botEnabled = settings:match("aimbot=(%w+)")
+                espEnabled = settings:match("esp=(%w+)")
+            end
+        end
+    end
+end
+
+-- Сохранение настроек в settings.txt
+local function saveSettings()
+    if file_sys == true then
+        local settings = string.format("aimbot=%s\nesp=%s", tostring(botEnabled), tostring(espEnabled))
+        writefile("settings.txt", settings)
+    else
+        print("Filysystem not supported")
+    end
+end
+
+-- Чтение сплешей из splash.txt и загрузка их с URL
+local function loadSplash()
+    if file_sys == true then
+        if isfile("splash.txt") then
+            local splashFile = readfile("splash.txt")
+            if splashFile then
+                local splashes = {}
+                for splash in splashFile:gmatch("([^\n]+)") do
+                    table.insert(splashes, splash)
+                end
+                return splashes
+    else
+        print("Filesystem not supported")
+            end
+        end
+    end
+
+    local splashes = {}
+    local url = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.loader/sigma.aim.splash.lua"
+    local success, result = pcall(function()
+        return game:HttpGet(url)
+    end)
+    if success then
+        writefile("splash.txt", result)
+        for splash in result:gmatch("([^\n]+)") do
+            table.insert(splashes, splash)
+        end
+    end
+    return splashes
+end
+
+local splashes = loadSplash()
+
 local function sendNotification(title, text, duration)
 	local bindableFunction = Instance.new("BindableFunction")
 
@@ -737,22 +812,6 @@ end
 
 SmoothDrag(main)
 
-local splashes = {
-    "ScriptBlox in the ❤",
-    "AndreyTheDev or NSkamksmalDve ?",
-    "Don't reupload without credit!",
-    ":3",
-    "2 + 2 = 5",
-    "Ddaadadadasduasjdiasol",
-    "WE BECOME SIGMAS WITH THIS ONE 🗣🗣🗣🔥🔥🔥",
-    "Lipton in the ❤",
-    "Nasral1489 R.I.P (2024-2024)",
-    "E",
-    "%Splash%",
-    "Stupid splash #52",
-    "Your ad can be here :3",
-    "My ip is: 192.52.52.52.52.52"
-}
 
 local function splash()
     while wait(15) do
@@ -789,6 +848,7 @@ end
 aimbot_toggle.MouseButton1Click:Connect(function()
     botEnabled = not botEnabled
     sendNotification("Sigma", botEnabled and "Aimbot enabled 💎" or "Aimbot disabled 🛑", 5)
+    saveSettings()
 end)
 
 esp_toggle.MouseButton1Click:Connect(function()
@@ -803,6 +863,7 @@ esp_toggle.MouseButton1Click:Connect(function()
         end
         espObjects = {}
     end
+    saveSettings()
 end)
 
 tg_channel.MouseButton1Click:Connect(function()
@@ -1012,6 +1073,8 @@ if script then
         end
     end
 end
+
+loadSettings()
 
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 4)
 sendNotification("Sigma", "Press Home to hide/show", 3)
