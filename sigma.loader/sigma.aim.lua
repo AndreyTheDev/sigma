@@ -1,3 +1,5 @@
+-- Hey, if you want to steal script.. do not make this, because spent very many time (+- 2 months)
+
 -- OPEN SOURCE ??!?!?!?!??!!? --
 
 -- idk,but i made this dialogue hehehe
@@ -362,8 +364,9 @@ he.Size = UDim2.new(0, 125, 0, 31)
 he.Font = Enum.Font.ArialBold
 he.Text = "If you read this you`re cool, bro"
 he.TextColor3 = Color3.fromRGB(255, 255, 255)
-he.TextSize = 5.000
-he.TextTransparency = 0.800
+he.TextSize = 7
+he.TextTransparency = 0.860
+he.TextWrapped = true
 
 UICorner_6.Parent = visuals
 
@@ -734,6 +737,30 @@ end
 
 SmoothDrag(main)
 
+local splashes = {
+    "ScriptBlox in the ❤",
+    "AndreyTheDev or NSkamksmalDve ?",
+    "Don't reupload without credit!",
+    ":3",
+    "2 + 2 = 5",
+    "Ddaadadadasduasjdiasol",
+    "WE BECOME SIGMAS WITH THIS ONE 🗣🗣🗣🔥🔥🔥",
+    "Lipton in the ❤",
+    "Nasral1489 R.I.P (2024-2024)",
+    "E",
+    "%Splash%",
+    "Stupid splash #52",
+    "Your ad can be here :3",
+    "My ip is: 192.52.52.52.52.52"
+}
+
+local function splash()
+    while wait(15) do
+        local randSpla = splashes[math.random(1, #splashes)]
+        he.Text = randSpla
+    end
+end
+
 -- <!-- Shutdown --!> --
 local function shutdown()
     main:Destroy()
@@ -986,13 +1013,13 @@ if script then
     end
 end
 
-sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 8)
-sendNotification("Sigma", "Press Home to hide/show", 8)
+sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 4)
+sendNotification("Sigma", "Press Home to hide/show", 3)
 print('|=============== SIGMA.AIM ===============|')
 print("|            BY ANDREYTHEDEV              |")
 print("|=========================================|")
 print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
-print("Sigma skibibibidi")
+print("Dont reupload without credit 😡")
 print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
 print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
@@ -1001,10 +1028,11 @@ print("math.random():".. math.random())
 print("Erm whata sigma: yes")
 print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
 print("|=========================================|")
-
+sendNotification("Sigma", "oh, forgot to say.. I noticed that my script is being reuploaded to other sites, and random guy is being listed as the dev instead of me. Just to clarify: the original dev of the script is AndreyTheDev, and the original script is always only on ScriptBlox!!", 13)
 
 
 
 
 
 -- Surgua ne shuschestvyet...
+splash()
