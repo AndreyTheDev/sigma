@@ -1028,7 +1028,7 @@ print("math.random():".. math.random())
 print("Erm whata sigma: yes")
 print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
 print("|=========================================|")
-sendNotification("Sigma", "oh, forgot to say.. I noticed that my script is being reuploaded to other sites, and random guy is being listed as the dev instead of me. Just to clarify: the original dev of the script is AndreyTheDev, and the original script is always only on ScriptBlox!!", 13)
+sendNotification("Sigma", "oh, forgot to say.. I noticed that my script is being reuploaded to other sites, and random guy is being listed as the dev instead of me...", 13)
 
 
 
