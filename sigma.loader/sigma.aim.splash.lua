@@ -10,4 +10,6 @@
 "%Splash%",
 "Stupid splash #52",
 "Your ad can be here :3",
-"My ip is: 192.52.52.52.52.52"
+"My ip is: 192.52.52.52.52.52",
+"wow, its loaded from github",
+"52x52x52x52x52"
