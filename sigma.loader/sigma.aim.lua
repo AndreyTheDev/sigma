@@ -589,8 +589,8 @@ local currentTarget = nil
 
 local function loadSettings()
     if file_sys == true then
-        if isfile("settings.txt") then
-            local settings = readfile("settings.txt")
+        if isfile("settings.sigma") then
+            local settings = readfile("settings.sigma")
             if settings then
                 botEnabled = settings:match("aimbot=(%w+)")
                 espEnabled = settings:match("esp=(%w+)")
@@ -599,21 +599,19 @@ local function loadSettings()
     end
 end
 
--- Сохранение настроек в settings.txt
 local function saveSettings()
     if file_sys == true then
         local settings = string.format("aimbot=%s\nesp=%s", tostring(botEnabled), tostring(espEnabled))
-        writefile("settings.txt", settings)
+        writefile("settings.sigma", settings)
     else
         print("Filysystem not supported")
     end
 end
 
--- Чтение сплешей из splash.txt и загрузка их с URL
 local function loadSplash()
     if file_sys == true then
-        if isfile("splash.txt") then
-            local splashFile = readfile("splash.txt")
+        if isfile("splash.sigma") then
+            local splashFile = readfile("splash.sigma")
             if splashFile then
                 local splashes = {}
                 for splash in splashFile:gmatch("([^\n]+)") do
@@ -632,7 +630,7 @@ local function loadSplash()
         return game:HttpGet(url)
     end)
     if success then
-        writefile("splash.txt", result)
+        writefile("splash.sigma", result)
         for splash in result:gmatch("([^\n]+)") do
             table.insert(splashes, splash)
         end
