@@ -626,7 +626,7 @@ local function loadSplash()
     end
 
     local splashes = {}
-    local url = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.loader/sigma.aim.splash.lua"
+    local url = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim/splash.txt"
     local success, result = pcall(function()
         return game:HttpGet(url)
     end)
