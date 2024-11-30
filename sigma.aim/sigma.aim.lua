@@ -504,7 +504,7 @@ v0.1.2
 - big ui update ✨
 - new theme!
 - aimbot update! 🤫🧏‍♂️
-- small compability update
+- small compatibility update
 
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
