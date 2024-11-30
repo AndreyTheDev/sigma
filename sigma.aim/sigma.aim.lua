@@ -1047,8 +1047,7 @@ local function checkIfBanned(plrr)
                     end
                     bannn = true
         return                
-        end
-    print("ok")
+   end
 end
 
 local function checkban()
