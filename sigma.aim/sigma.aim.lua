@@ -1030,22 +1030,23 @@ local function checkIfBanned(plrr)
             if currentTime > banTime then
                 print(plrr.Name .. " unbanned.")
             else
-                if bannn == false then
-                    print(plrr.Name .. " banned for reason " .. bannedPlayer.reason .. ". Ban time: " .. bannedPlayer.banTime .. " (0:00 - UTC)")
-                    sendNotification("Sigma", "😥 Sorry, you`ve has been banned for reason: " .. '"' .. bannedPlayer.reason .. '"' ..". Banned before (UTC): " .. bannedPlayer.banTime, 30)
-                    main:Destroy()
-                    espEnabled = not espEnabled
-                    botEnabled = not botEnabled                    
-                    for _, esp in pairs(espObjects) do
-                        if esp then
-                            esp.highlight:Destroy()
-                            updateESP()
-                            end
-                        end
+		if bann == false then
+		    print(plrr.Name .. " banned for reason " .. bannedPlayer.reason .. ". Ban time: " .. bannedPlayer.banTime .. " (0:00 - UTC)")			
+            	    sendNotification("Sigma", "😥 Sorry, you`ve has been banned for reason: " .. '"' .. bannedPlayer.reason .. '"' ..". Banned before (UTC): " .. bannedPlayer.banTime, 30)
+                main:Destroy()
+		end		
+                espEnabled = not espEnabled
+                botEnabled = not botEnabled                    
+                for _, esp in pairs(espObjects) do
+        	    if esp then
+                        esp.highlight:Destroy()
+                        updateESP()
                     end
-                    espObjects = {}
-                    end
-                    bannn = true
+                end
+           end
+                espObjects = {}
+      end
+                bannn = true
         return                
    end
 end
