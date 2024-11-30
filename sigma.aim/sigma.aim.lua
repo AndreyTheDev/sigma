@@ -502,9 +502,9 @@ changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
 v0.1.2
 - big ui update ✨
-- new theme!
-- aimbot update! 🤫🧏‍♂️
-- small compatibility update
+- new theme! 🎇
+- ban system 🔥
+- small compatibility update ✅
 
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -707,7 +707,7 @@ Fire = hookfunction(Client.Bullet.Fire, function(self, ...)
 	return Fire(self, unpack(args))
 end)
 
-local script = Instance.new('LocalScript', sigma)
+local script = Instance.new("LocalScript", sigma)
 
 local name = "{1}]_[18_}L_+{3|\$&/p_311{_".. math.random()
 
@@ -992,6 +992,78 @@ RotateGradient(uigradient_6)
 local plr = game.Players.LocalPlayer
 local time = DateTime.now()
 
+local function loadBannedList()
+    local bannedUrl = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim/banned.txt"
+    local response = game:HttpGet(bannedUrl)
+    
+--    print("[SIGMA], [DEBUG] github response: ", response)
+    
+    local success, bannedData = pcall(loadstring(response))
+
+    if success then
+        if type(bannedData) == "table" then
+            return bannedData
+        else
+            warn("[SIGMA] ohh fu..: " .. type(bannedData))
+            return {} 
+        end
+    else
+        warn("[SIGMA] wtf: " .. bannedData)
+        return {}
+    end
+end
+
+local bannn = false
+
+local function checkIfBanned(plrr)
+    local bannedPlayers = loadBannedList()
+    local currentTime = os.time()
+
+    for _, bannedPlayer in ipairs(bannedPlayers) do
+        if bannedPlayer.playerName == plrr.Name then
+            local banTime = os.time({
+                day = tonumber(string.sub(bannedPlayer.banTime, 1, 2)),
+                month = tonumber(string.sub(bannedPlayer.banTime, 4, 5)),
+                year = tonumber(string.sub(bannedPlayer.banTime, 7, 10))
+            })
+
+            if currentTime > banTime then
+                print(plrr.Name .. " unbanned.")
+            else
+                if bannn == false then
+                    print(plrr.Name .. " banned for reason " .. bannedPlayer.reason .. ". Ban time: " .. bannedPlayer.banTime .. " (0:00 - UTC)")
+                    sendNotification("Sigma", "😥 Sorry, you`ve has been banned for reason: " .. '"' .. bannedPlayer.reason .. '"' ..". Banned before (UTC): " .. bannedPlayer.banTime, 30)
+                    main:Destroy()
+                    espEnabled = not espEnabled
+                    botEnabled = not botEnabled                    
+                    for _, esp in pairs(espObjects) do
+                        if esp then
+                            esp.highlight:Destroy()
+                            updateESP()
+                            end
+                        end
+                    end
+                    espObjects = {}
+                    end
+                    bannn = true
+                    return                
+                else
+                    print("no")
+                break
+            end
+        end
+    print("ok")
+end
+
+local function checkban()
+    while true do
+        local player = game.Players.LocalPlayer  
+        checkIfBanned(player)
+        task.wait(60) 
+    end
+end
+
+
 local devs = ({
     JustAMoment111222,
     sigma_cdn1,
@@ -1030,9 +1102,6 @@ print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
 print("|=========================================|")
 
 
-
-
-
-
 -- Surgua ne shuschestvyet...
-splash()
+spawn(checkban)
+spawn(splash)
