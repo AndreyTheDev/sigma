@@ -1046,11 +1046,7 @@ local function checkIfBanned(plrr)
                     espObjects = {}
                     end
                     bannn = true
-                    return                
-                elseif bannn == true then
-                    print("no")
-	            break
-            end
+        return                
         end
     print("ok")
 end
