@@ -1047,9 +1047,9 @@ local function checkIfBanned(plrr)
                     end
                     bannn = true
                     return                
-                else
+                elseif bannn == true then
                     print("no")
-                break
+	            break
             end
         end
     print("ok")
