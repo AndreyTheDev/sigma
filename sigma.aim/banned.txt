@@ -1,3 +1,3 @@
 return {
-    {playerName = "JustAMoment111222", reason = "ты зачем сигма аим делаешь ааа???", banTime = "01.12.2024"}, 
+    {playerName = "JustAMoment111222", reason = "ты зачем сигма аим делаешь ааа???", banTime = "30.11.2024"}, 
 }
