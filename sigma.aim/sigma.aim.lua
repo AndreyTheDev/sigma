@@ -12,20 +12,6 @@
 -- no
 -- 🦅🦅🦅🦅
 
-local file_sys = false
-
-local success, err = pcall(function()
-    writefile("test.sigma", "Testing filesystem")
-    local content = readfile("test.sigma")
-    print("Content:", content)
-end)
-if not success then
-    file_sys = false
-else
-    file_sys = true
-    delfile("test.sigma")
-end
-
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -288,13 +274,6 @@ cattr.Text = "Reload Script"
 cattr.TextColor3 = Color3.fromRGB(255, 255, 255)
 cattr.TextSize = 14.000
 
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
-
-
 UICornerr.CornerRadius = UDim.new(0, 2)
 UICornerr.Parent = cattr
 
@@ -525,9 +504,8 @@ v0.1.2
 - big ui update ✨
 - new theme!
 - aimbot update! 🤫🧏‍♂️
-- filesystem!
+- small compability update
 
-Compability update soon!
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -588,50 +566,15 @@ local espEnabled = true
 local espObjects = {}
 local currentTarget = nil
 
-local function loadSettings()
-    if file_sys == true then
-        if isfile("settings.sigma") then
-            local settings = readfile("settings.sigma")
-            if settings then
-                botEnabled = settings:match("aimbot=(%w+)")
-                espEnabled = settings:match("esp=(%w+)")
-            end
-        end
-    end
-end
-
-local function saveSettings()
-    if file_sys == true then
-        local settings = string.format("aimbot=%s\nesp=%s", tostring(botEnabled), tostring(espEnabled))
-        writefile("settings.sigma", settings)
-    else
-        print("Filysystem not supported")
-    end
-end
 
 local function loadSplash()
-    if file_sys == true then
-        if isfile("splash.sigma") then
-            local splashFile = readfile("splash.sigma")
-            if splashFile then
-                local splashes = {}
-                for splash in splashFile:gmatch("([^\n]+)") do
-                    table.insert(splashes, splash)
-                end
-                return splashes
-    else
-        print("Filesystem not supported")
-            end
-        end
-    end
-
     local splashes = {}
     local url = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim/splash.txt"
     local success, result = pcall(function()
         return game:HttpGet(url)
     end)
     if success then
-        writefile("splash.sigma", result)
+	print("[SIGMA, DEBUG]: ".. result)
         for splash in result:gmatch("([^\n]+)") do
             table.insert(splashes, splash)
         end
@@ -766,7 +709,7 @@ end)
 
 local script = Instance.new('LocalScript', sigma)
 
-local name = "{1}]_[18_}_+{3|\$&/p_311{_".. math.random()
+local name = "{1}]_[18_}L_+{3|\$&/p_311{_".. math.random()
 
 local UserInputService = game:GetService("UserInputService")
 local SmoothDragSpeed = 0.5
@@ -846,7 +789,6 @@ end
 aimbot_toggle.MouseButton1Click:Connect(function()
     botEnabled = not botEnabled
     sendNotification("Sigma", botEnabled and "Aimbot enabled 💎" or "Aimbot disabled 🛑", 5)
-    saveSettings()
 end)
 
 esp_toggle.MouseButton1Click:Connect(function()
@@ -861,7 +803,6 @@ esp_toggle.MouseButton1Click:Connect(function()
         end
         espObjects = {}
     end
-    saveSettings()
 end)
 
 tg_channel.MouseButton1Click:Connect(function()
@@ -1071,8 +1012,6 @@ if script then
         end
     end
 end
-
-loadSettings()
 
 sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 4)
 sendNotification("Sigma", "Press Home to hide/show", 3)
