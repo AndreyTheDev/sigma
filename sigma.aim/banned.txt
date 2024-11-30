@@ -1,1 +1,3 @@
-JustAMoment111222 zaebal 02.12.2024
+return {
+    {playerName = "JustAMoment111222", reason = "zaebal", banTime = "02.12.2024"},
+}
