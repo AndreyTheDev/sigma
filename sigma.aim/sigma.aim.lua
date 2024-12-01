@@ -709,7 +709,17 @@ end)
 
 local script = Instance.new("LocalScript", sigma)
 
-local name = "{1}]_[18_}L_+{3|\$&/p_311{_".. math.random()
+function genrandstr(length)
+    local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    local result = ""
+    
+    for i = 1, length do
+        local randIndex = math.random(1, #charset)
+        result = result .. charset:sub(randIndex, randIndex)
+    end
+    
+    return result
+end
 
 local UserInputService = game:GetService("UserInputService")
 local SmoothDragSpeed = 0.5
@@ -901,15 +911,22 @@ for _, uigradient in ipairs(uigradientss) do
 end
 end)
 
-script.Parent.Name = name
-title.Name = math.random()
-main.Name = math.random()
-script.Name = math.random()
+script.Parent.Name = genrandstr(20)
+main.Name = genrandstr(20)
+script.Name = genrandstr(20)
+notifi.Name = genrandstr(25)
 
 if main then
     local aaaa = main:GetChildren()
     for _, a in ipairs(aaaa) do
-        a.Name = tostring(math.random())
+        a.Name = tostring(genrandstr(20))
+    end
+end
+
+if notifi then
+    local aaaa = notifi:GetChildren()
+    for _, a in ipairs(aaaa) do
+        a.Name = tostring(genrandstr(20))
     end
 end
 
@@ -1095,6 +1112,9 @@ print("Executor: ".. identifyexecutor())
 print("math.random():".. math.random())
 print("Erm whata sigma: yes")
 print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
+print("|=========================================|")
+print("[SIGMA], [DEBUG] StringForNameGen: " .. genrandstr(10))
+print("[SIGMA], [DEBUG] Secure Mode: false" )
 print("|=========================================|")
 
 
