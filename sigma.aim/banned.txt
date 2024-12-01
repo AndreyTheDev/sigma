@@ -1,3 +1,4 @@
 return {
-    {playerName = "Roblox", reason = "Bro, its literaly roblox 💀💀", banTime = "30.11.2024"}, 
+    {playerName = "Roblox", reason = "Bro, its literaly roblox 💀💀", banTime = "30.11.2029"}, 
+    {playerName = "nassal1488221255", reason = "Idi naxui", banTime = "05.12.2024"},     
 }
