@@ -467,7 +467,7 @@ support.BorderSizePixel = 0
 support.Position = UDim2.new(0.131, 0,6.7, 0)
 support.Size = UDim2.new(0, 115, 0, 18)
 support.Font = Enum.Font.Arial
-support.Text = "Support me"
+support.Text = "Rscripts"
 support.TextColor3 = Color3.fromRGB(255, 255, 255)
 support.TextSize = 14.000
 
@@ -505,6 +505,7 @@ v0.1.2
 - new theme! 🎇
 - ban system 🔥
 - small compatibility update ✅
+- Reuploaded on Rscripts!
 
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -823,10 +824,10 @@ tg_channel.MouseButton1Click:Connect(function()
 end)
 
 support.MouseButton1Click:Connect(function()
-    setclipboard("t.me/send?start=IVHoCWUniUwx")
+    setclipboard("https://rscripts.net/script/sigma-aim-qT6C")
     support.Text = "Link copied!"
     task.wait(2)
-    support.Text = "Support me"
+    support.Text = "Rscripts"
 end)
 
 fps_boost.MouseButton1Click:Connect(function()
