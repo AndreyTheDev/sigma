@@ -1,1 +1,9 @@
-
+ver=0.1.3
+changlog=[[
+v0.1.3
+- big ui update ✨
+- new theme! 🎇
+- ban system 🔥
+- small compatibility update ✅
+- Reuploaded on Rscripts!
+]]
