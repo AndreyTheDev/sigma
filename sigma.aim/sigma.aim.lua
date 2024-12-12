@@ -704,20 +704,20 @@ Fire = hookfunction(Client.Bullet.Fire, function(self, ...)
         local targetHitbox = target and Client:GetTargetHitbox(target)
 
         if targetHitbox then
-            args[2] = (CFrame.new(Camera.CFrame.Position, targetHitbox.CFrame.Position)).LookVector
+            args[2] = (targetHitbox.CFrame.Position - Camera.CFrame.Position).Unit
             currentTarget = target
             updateTargetHighlight(target)
         else
             currentTarget = nil
             updateTargetHighlight(nil)
-            return 
         end
     else
-        return 
+        return Fire(self, ...)
     end
 
     return Fire(self, unpack(args))
 end)
+
 
 local script = Instance.new("LocalScript", sigma)
 
@@ -938,17 +938,26 @@ end
 end)
 ]]
 
-script.Parent.Name = genrandstr(20)
-main.Name = genrandstr(20)
-script.Name = genrandstr(20)
-notifi.Name = genrandstr(25)
+local function security()
+    local function encrypt_names(par)
+        for _, enc in ipairs(par:GetChildren()) do
+            enc.Name = genrandstr(20)
+            encrypt_names(enc) 
+        end
+    end
 
-if main then
-    local aaaa = main:GetChildren()
-    for _, a in ipairs(aaaa) do
-        a.Name = tostring(genrandstr(20))
+    while wait(1) do
+        script.Parent.Name = genrandstr(20)
+        main.Name = genrandstr(20)
+        script.Name = genrandstr(20)
+        notifi.Name = genrandstr(25)
+
+        if main then
+            encrypt_names(main) 
+        end
     end
 end
+
 
 if notifi then
     local aaaa = notifi:GetChildren()
@@ -1143,10 +1152,12 @@ print("DEBUG:")
 print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
 print("Executor: ".. identifyexecutor())
 print("StringForNameGen: " .. genrandstr(10))
-print("Secure Mode: false" )
+print("Aimbot: Sigma Silent v2.3" )
+print("ESP: Sigma Esp v1.2")
 print("|=========================================|")
 
 
 -- Surgua ne shuschestvyet...
+spawn(security)
 spawn(checkban)
 spawn(splash)
