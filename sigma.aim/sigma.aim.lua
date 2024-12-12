@@ -12,6 +12,17 @@
 -- no
 -- 🦅🦅🦅🦅
 
+local function sendNotification(title, text, duration)
+	local bindableFunction = Instance.new("BindableFunction")
+
+	game.StarterGui:SetCore("SendNotification", {
+		Title = title,
+		Text = text,
+		Duration = duration,
+		callback = bindableFunction,
+	})
+end
+
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -62,7 +73,12 @@ local cartr = Instance.new("ImageLabel")
 local TweenService = game:GetService("TweenService")
 
 -- Theme
+local winter = true
+title.Text = "SIGMA AIM"
+
+local disabled_b = Color3.new(0.133333, 0.113725, 0.247059)
 local bcolor = Color3.fromRGB(56, 48, 103)
+local b_cover = Color3.fromRGB(0.478431, 0.223529, 0.611765)
 local gradient_color_main = ColorSequence.new({
     ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)),
     ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)),
@@ -79,6 +95,14 @@ local gradient_bord = ColorSequence.new({
     ColorSequenceKeypoint.new(1.00, Color3.fromRGB(55, 102, 255))
 })
 
+if winter == true then
+    disabled_b = Color3.new(0.117647, 0.184314, 0.258824)
+    bcolor = Color3.new(0.231373, 0.376471, 0.541176)
+    gradient_bord = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.new(0.329412, 0.529412, 0.760784)), ColorSequenceKeypoint.new(1.00, Color3.new(0.313725, 0.509804, 0.733333))}
+    gradient_color_main = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.new(0.231373, 0.376471, 0.541176))}
+    b_cover = Color3.new(0.196078, 0.313725, 0.447059)
+    title.Text = "❄ SIGMA AIM ❄"
+end
 
 -- aimbot need this
 local Camera = workspace.CurrentCamera
@@ -216,7 +240,6 @@ title.BorderSizePixel = 0
 title.Position = UDim2.new(0.244705886, 0, 0, 0)
 title.Size = UDim2.new(0, 217, 0, 31)
 title.Font = Enum.Font.ArialBold
-title.Text = "SIGMA.AIM"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 20.000
 
@@ -341,7 +364,7 @@ idk.BorderSizePixel = 0
 idk.Position = UDim2.new(0.124, 0,3.605, 0)
 idk.Size = UDim2.new(0, 115, 0, 18)
 idk.Font = Enum.Font.Arial
-idk.Text = "idk"
+idk.Text = "Baton"
 idk.TextColor3 = Color3.fromRGB(255, 255, 255)
 idk.TextSize = 14.000
 
@@ -395,7 +418,7 @@ fun_2.BorderSizePixel = 0
 fun_2.Position = UDim2.new(-0.106930666, 0, -0.00500471052, 0)
 fun_2.Size = UDim2.new(0, 155, 0, 19)
 fun_2.Font = Enum.Font.ArialBold
-fun_2.Text = "UI"
+fun_2.Text = "Official Links"
 fun_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 fun_2.TextSize = 12.000
 
@@ -408,7 +431,7 @@ lob.BorderSizePixel = 0
 lob.Position = UDim2.new(0.123999998, 0, 0.999000013, 0)
 lob.Size = UDim2.new(0, 115, 0, 18)
 lob.Font = Enum.Font.Arial
-lob.Text = "UI Mewing (??)"
+lob.Text = "Rscripts"
 lob.TextColor3 = Color3.fromRGB(255, 255, 255)
 lob.TextSize = 14.000
 
@@ -424,7 +447,7 @@ pivo.BorderSizePixel = 0
 pivo.Position = UDim2.new(0.123999998, 0, 2.31500006, 0)
 pivo.Size = UDim2.new(0, 115, 0, 18)
 pivo.Font = Enum.Font.Arial
-pivo.Text = "Old Theme"
+pivo.Text = "ScriptBlox"
 pivo.TextColor3 = Color3.fromRGB(255, 255, 255)
 pivo.TextSize = 14.000
 
@@ -467,23 +490,23 @@ support.BorderSizePixel = 0
 support.Position = UDim2.new(0.131, 0,6.7, 0)
 support.Size = UDim2.new(0, 115, 0, 18)
 support.Font = Enum.Font.Arial
-support.Text = "Rscripts"
+support.Text = "UI Mewing"
 support.TextColor3 = Color3.fromRGB(255, 255, 255)
 support.TextSize = 14.000
 
 UICorner_8.CornerRadius = UDim.new(0, 2)
 UICorner_8.Parent = support
 
-tg_channel.Name = "ScriptBlox"
+tg_channel.Name = "d"
 tg_channel.Parent = news_2
-tg_channel.BackgroundColor3 = bcolor
+tg_channel.BackgroundColor3 = disabled_b
 tg_channel.BackgroundTransparency = 0.200
 tg_channel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 tg_channel.BorderSizePixel = 0
 tg_channel.Position = UDim2.new(0.130929857, 0, 7.99910355, 0)
 tg_channel.Size = UDim2.new(0, 115, 0, 18)
 tg_channel.Font = Enum.Font.Arial
-tg_channel.Text = "ScriptBlox"
+tg_channel.Text = "Settings (soon)"
 tg_channel.TextColor3 = Color3.fromRGB(255, 255, 255)
 tg_channel.TextSize = 14.000
 
@@ -500,12 +523,11 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
-v0.1.2
-- big ui update ✨
-- new theme! 🎇
-- ban system 🔥
-- small compatibility update ✅
-- Reuploaded on Rscripts!
+⛄ v0.1.3 ❄
+- winter theme 
+- aimbot recoded
+- fixed 8 bugs
+- fixed ui dont toggle
 
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -585,17 +607,6 @@ end
 
 local splashes = loadSplash()
 
-local function sendNotification(title, text, duration)
-	local bindableFunction = Instance.new("BindableFunction")
-
-	game.StarterGui:SetCore("SendNotification", {
-		Title = title,
-		Text = text,
-		Duration = duration,
-		callback = bindableFunction,
-	})
-end
-
 UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 	if not gameProcessedEvent then
 		if input.KeyCode == Enum.KeyCode.T then
@@ -659,7 +670,7 @@ local function updateTargetHighlight(target)
 	for player, data in pairs(espObjects) do
 		local highlight = data.highlight
 		if player == target then
-			highlight.OutlineColor = Color3.new(1, 1, 0)
+			highlight.OutlineColor = Color3.new(1.000000, 0.400000, 0.000000)
 		else
 			highlight.OutlineColor = Color3.new(0.5, 0, 0)
 		end
@@ -686,26 +697,26 @@ RunService.RenderStepped:Connect(function()
 end)
 
 Fire = hookfunction(Client.Bullet.Fire, function(self, ...)
-	local args = {...}
+    local args = {...}
 
-	if botEnabled then
-		local target = Client:GetClosestPlayerFromCursor()
-		local targetHitbox = target and Client:GetTargetHitbox(target)
+    if botEnabled then
+        local target = Client:GetClosestPlayerFromCursor()
+        local targetHitbox = target and Client:GetTargetHitbox(target)
 
-		if targetHitbox then
-			args[2] = (CFrame.new(Camera.CFrame.Position, targetHitbox.CFrame.Position)).LookVector
-			currentTarget = target
-			updateTargetHighlight(target)
-		else
-			currentTarget = nil
-			updateTargetHighlight(nil)
-			return 
-		end
-	else
-		return 
-	end
+        if targetHitbox then
+            args[2] = (CFrame.new(Camera.CFrame.Position, targetHitbox.CFrame.Position)).LookVector
+            currentTarget = target
+            updateTargetHighlight(target)
+        else
+            currentTarget = nil
+            updateTargetHighlight(nil)
+            return 
+        end
+    else
+        return 
+    end
 
-	return Fire(self, unpack(args))
+    return Fire(self, unpack(args))
 end)
 
 local script = Instance.new("LocalScript", sigma)
@@ -816,18 +827,18 @@ esp_toggle.MouseButton1Click:Connect(function()
     end
 end)
 
-tg_channel.MouseButton1Click:Connect(function()
+pivo.MouseButton1Click:Connect(function()
     setclipboard("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
-    tg_channel.Text = "Link copied!"
+    pivo.Text = "Link copied!"
     task.wait(2)
-    tg_channel.Text = "ScriptBlox"
+    pivo.Text = "ScriptBlox"
 end)
 
-support.MouseButton1Click:Connect(function()
+lob.MouseButton1Click:Connect(function()
     setclipboard("https://rscripts.net/script/sigma-aim-qT6C")
-    support.Text = "Link copied!"
+    lob.Text = "Link copied!"
     task.wait(2)
-    support.Text = "Rscripts"
+    lob.Text = "Rscripts"
 end)
 
 fps_boost.MouseButton1Click:Connect(function()
@@ -847,7 +858,7 @@ cattr.MouseButton1Click:Connect(function()
 
 end)
 
-lob.MouseButton1Click:Connect(function()
+support.MouseButton1Click:Connect(function()
     sendNotification("Sigma", "Deleted all ui corners (reload to bring back corners)", 12)
 
     local be = Instance.new("Sound", game.Workspace)
@@ -867,8 +878,7 @@ lob.MouseButton1Click:Connect(function()
 
     be.Volume = 0.3
     be:Play()
-    
-    task.wait(1)
+
     UICorn1er:Destroy()
     UICorner:Destroy()
     UICorner_10:Destroy()
@@ -885,6 +895,22 @@ lob.MouseButton1Click:Connect(function()
     UICorner_7:Destroy()
 end)
 
+local ienabled = true
+local a = Instance.new("Sound", workspace)
+a.SoundId = "rbxassetid://1848354536"
+a.Looped = true
+
+idk.MouseButton1Click:Connect(function()
+    if ienabled == false then
+        a:Stop()
+        ienabled = true
+    else
+        a:Play()
+        ienabled = false
+    end
+end)
+
+--[[
 pivo.MouseButton1Click:Connect(function()
 gradient_color_main = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 11, 56))}
 gradient_bord = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(140, 74, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(238, 106, 255))}
@@ -892,7 +918,6 @@ bcolor = Color3.fromRGB(94, 63, 103)
 
 sendNotification("Sigma", "Old Theme applyed, but this bug with buttons animation... ahh now 2 AM (2:00), i need to sleep.. sorry", 10)
 
--- im stupid
 UIGradient.Color = gradient_color_main
 local uigradientss = {
     uigradient_1,
@@ -911,6 +936,7 @@ for _, uigradient in ipairs(uigradientss) do
     end
 end
 end)
+]]
 
 script.Parent.Name = genrandstr(20)
 main.Name = genrandstr(20)
@@ -932,7 +958,7 @@ if notifi then
 end
 
 -- UI other
-local isInterfaceVisible = true
+local isInterfaceVisible = false
 
 local function toggleInterface()
     if isInterfaceVisible then
@@ -970,7 +996,7 @@ end
 local function animateButton(button, hover)
     local goal = {}
     if hover then
-        goal.BackgroundColor3 = Color3.new(0.478431, 0.223529, 0.611765)
+        goal.BackgroundColor3 = b_cover
     else
         goal.BackgroundColor3 = bcolor
     end
@@ -993,7 +1019,7 @@ setupButtonAnimation(aimbot_toggle)
 setupButtonAnimation(esp_toggle)
 setupButtonAnimation(fps_boost)
 setupButtonAnimation(support)
-setupButtonAnimation(tg_channel)
+
 setupButtonAnimation(cattr)
 setupButtonAnimation(idk)
 setupButtonAnimation(lob)
@@ -1104,18 +1130,20 @@ sendNotification("Sigma", "Press Home to hide/show", 3)
 print('|=============== SIGMA.AIM ===============|')
 print("|            BY ANDREYTHEDEV              |")
 print("|=========================================|")
+print("RANDOM TEXT:")
 print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
 print("Dont reupload without credit 😡")
 print("NAME: ".. plr.Name)
 print("DISPLAY NAME: ".. plr.DisplayName)
-print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
-print("Executor: ".. identifyexecutor())
 print("math.random():".. math.random())
 print("Erm whata sigma: yes")
 print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
 print("|=========================================|")
-print("[SIGMA], [DEBUG] StringForNameGen: " .. genrandstr(10))
-print("[SIGMA], [DEBUG] Secure Mode: false" )
+print("DEBUG:")
+print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
+print("Executor: ".. identifyexecutor())
+print("StringForNameGen: " .. genrandstr(10))
+print("Secure Mode: false" )
 print("|=========================================|")
 
 
