@@ -112,15 +112,44 @@ local TweenService = game:GetService('TweenService')
 local RunService = game:GetService('RunService')
 
 local Client = {}
-for _, v in next, getgc(true) do
-	if (type(v) == 'table') then
-		if (rawget(v, 'Fire') and type(rawget(v, 'Fire')) == 'function' and not Client.Bullet) then
-			Client.Bullet = v
-		elseif (rawget(v, 'HiddenUpdate')) then
-			Client.Players = debug.getupvalue(rawget(v, 'new'), 9)
-		end
-	end
+local maxAttempts = 10
+local attemptCount = 0
+local successs = false
+
+while attemptCount < maxAttempts and not successs do
+    attemptCount = attemptCount + 1
+    successs = true
+
+    for _, v in next, getgc(true) do
+        if type(v) == 'table' then
+            if rawget(v, 'Fire') and type(rawget(v, 'Fire')) == 'function' and not Client.Bullet then
+                Client.Bullet = v
+            elseif rawget(v, 'HiddenUpdate') then
+                local players = debug.getupvalue(rawget(v, 'new'), 9)
+                if players then
+                    Client.Players = players
+                else
+                    successs = false
+                    sendNotification("Sigma", "Failed to intercept client, retrying...", 10)
+                end
+            end
+        end
+    end
+
+    if not Client.Bullet or not Client.Players then
+        wait(0.5)
+    end
 end
+
+if not successs then
+    print("[SIGMA], [DEBUG]: Failed to find client after " .. maxAttempts .. " attempts.")
+    sendNotification("Sigma", "Failed to intercept client after " .. maxAttempts .. " attempts, try rejoin game and try again", 8)
+else
+    print("[SIGMA], [DEBUG]: Client successfully found.")
+    sendNotification("Sigma", "The client was successfully intercepted.", 8)
+
+end
+
 
 function Client:GetPlayerHitbox(player, hitbox)
 	for _, player_hitbox in next, player.Hitboxes do
@@ -130,31 +159,49 @@ function Client:GetPlayerHitbox(player, hitbox)
 	end
 end
 
-function Client:GetClosestPlayerFromCursor()
-	local nearest_player, min_magnitude = nil, math.huge
-	for _, player in next, Client.Players do
-		if player.PlayerModel and player.PlayerModel.Model.Head.Transparency ~= 1 then
-			local screen_pos, is_visible = Camera:WorldToViewportPoint(player.Position)
-			if is_visible then
-				local magnitude = (UserInputService:GetMouseLocation() - Vector2.new(screen_pos.X, screen_pos.Y)).Magnitude
-				if magnitude < min_magnitude then
-					min_magnitude = magnitude
-					nearest_player = player
-				end
-			end
-		end
-	end
-	return nearest_player
+function Client:GetClosestPlayerFromScreen()
+    local nearest_player, min_combined_score = nil, math.huge
+    local camera_position = Camera.CFrame.Position -- Кэшируем позицию камеры
+    local cursor_position = UserInputService:GetMouseLocation() -- Позиция курсора
+
+    for _, player in next, Client.Players do
+        local model = player.PlayerModel and player.PlayerModel.Model
+        if model and model.Head.Transparency ~= 1 then
+            local screen_pos, is_visible = Camera:WorldToViewportPoint(player.Position)
+            if is_visible then
+                local distance_to_camera = (player.Position - camera_position).Magnitude
+                local distance_to_cursor = (cursor_position - Vector2.new(screen_pos.X, screen_pos.Y)).Magnitude
+
+                local combined_score = distance_to_camera * 0.7 + distance_to_cursor * 0.3
+
+                if combined_score < min_combined_score then
+                    min_combined_score = combined_score
+                    nearest_player = player
+                end
+            end
+        end
+    end
+
+    return nearest_player
 end
 
+local last_hitbox = nil
+
 function Client:GetTargetHitbox(target)
-	for _, hitbox in next, {"Head", "Torso", "LeftArm", "RightArm", "LeftLeg", "RightLeg"} do
-		local player_hitbox = Client:GetPlayerHitbox(target, hitbox)
-		if player_hitbox then
-			return player_hitbox
-		end
-	end
-	return nil
+    if last_hitbox and last_hitbox.Parent == target.PlayerModel.Model then
+        return last_hitbox
+    end
+
+    for _, hitbox in next, {"Head", "Torso", "LeftArm", "RightArm", "LeftLeg", "RightLeg"} do
+        local player_hitbox = Client:GetPlayerHitbox(target, hitbox)
+        if player_hitbox then
+            last_hitbox = player_hitbox
+            return player_hitbox
+        end
+    end
+
+    last_hitbox = nil
+    return nil
 end
 
 sigma.Name = "sigma"
@@ -526,8 +573,8 @@ changelog.Text = [[
 ⛄ v0.1.3 ❄
 - winter theme 
 - aimbot recoded
-- fixed 8 bugs
 - fixed ui dont toggle
+- fixed aimbot bug (After 3 months...)
 
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -700,16 +747,17 @@ Fire = hookfunction(Client.Bullet.Fire, function(self, ...)
     local args = {...}
 
     if botEnabled then
-        local target = Client:GetClosestPlayerFromCursor()
+        local target = Client:GetClosestPlayerFromScreen()
         local targetHitbox = target and Client:GetTargetHitbox(target)
 
-        if targetHitbox then
+        if targetHitbox and target.Health > 0 then
             args[2] = (targetHitbox.CFrame.Position - Camera.CFrame.Position).Unit
             currentTarget = target
             updateTargetHighlight(target)
         else
             currentTarget = nil
             updateTargetHighlight(nil)
+            return Fire(self, ...)
         end
     else
         return Fire(self, ...)
@@ -718,8 +766,7 @@ Fire = hookfunction(Client.Bullet.Fire, function(self, ...)
     return Fire(self, unpack(args))
 end)
 
-
-local script = Instance.new("LocalScript", sigma)
+local script = Instance.new("LocalScript", sigma) -- idk, just a script. whyyy ??? idk
 
 function genrandstr(length)
     local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -936,7 +983,7 @@ for _, uigradient in ipairs(uigradientss) do
     end
 end
 end)
-]]
+]] -- removed, because very buggy and VERY VERY BUGGY 
 
 local function security()
     local function encrypt_names(par)
@@ -1042,6 +1089,8 @@ RotateGradient(uigradient_6)
 
 
 -- LOADED ???
+spawn(security)
+
 local plr = game.Players.LocalPlayer
 local time = DateTime.now()
 
@@ -1134,30 +1183,33 @@ if script then
     end
 end
 
-sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP.", 4)
-sendNotification("Sigma", "Press Home to hide/show", 3)
-print('|=============== SIGMA.AIM ===============|')
-print("|            BY ANDREYTHEDEV              |")
-print("|=========================================|")
-print("RANDOM TEXT:")
-print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
-print("Dont reupload without credit 😡")
-print("NAME: ".. plr.Name)
-print("DISPLAY NAME: ".. plr.DisplayName)
-print("math.random():".. math.random())
-print("Erm whata sigma: yes")
-print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
-print("|=========================================|")
-print("DEBUG:")
-print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
-print("Executor: ".. identifyexecutor())
-print("StringForNameGen: " .. genrandstr(10))
-print("Aimbot: Sigma Silent v2.3" )
-print("ESP: Sigma Esp v1.2")
-print("|=========================================|")
+if successs == true then
+    sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
+    print('|=============== SIGMA.AIM ===============|')
+    print("|            BY ANDREYTHEDEV              |")
+    print("|=========================================|")
+    print("RANDOM TEXT:")
+    print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
+    print("Dont reupload without credit 😡")
+    print("NAME: ".. plr.Name)
+    print("DISPLAY NAME: ".. plr.DisplayName)
+    print("math.random():".. math.random())
+    print("Erm whata sigma: yes")
+    print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
+    print("|=========================================|")
+    print("DEBUG:")
+    print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
+    print("Executor: ".. identifyexecutor())
+    print("StringForNameGen: " .. genrandstr(10))
+    print("Aimbot: Sigma Silent v3 [BY ANDREYTHEDEV]" )
+    print("ESP: Sigma Esp v1.2 [BY ANDREYTHEDEV]")
+    print("broo, what mean getxui???")
+    print("|=========================================|")
 
-
--- Surgua ne shuschestvyet...
-spawn(security)
-spawn(checkban)
-spawn(splash)
+    spawn(checkban)
+    spawn(splash)
+else
+    sendNotification("Sigma", "🔴 Script has got an error: ".. "CLIENT INTERCEPT FAILED (Aimbot just dont workkk), but loaded", 20)
+    spawn(checkban)
+    spawn(splash)
+end
