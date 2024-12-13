@@ -125,12 +125,14 @@ while attemptCount < maxAttempts and not successs do
             if rawget(v, 'Fire') and type(rawget(v, 'Fire')) == 'function' and not Client.Bullet then
                 Client.Bullet = v
             elseif rawget(v, 'HiddenUpdate') then
-                local players = debug.getupvalue(rawget(v, 'new'), 9)
-                if players then
+                local successUpvalue, players = pcall(function()
+                    return debug.getupvalue(rawget(v, 'new'), 9)
+                end)
+
+                if successUpvalue and players then
                     Client.Players = players
                 else
-                    successs = false
-                    sendNotification("Sigma", "Failed to intercept client, retrying...", 10)
+                    successs = false 
                 end
             end
         end
@@ -1004,7 +1006,6 @@ local function security()
         end
     end
 end
-
 
 if notifi then
     local aaaa = notifi:GetChildren()
