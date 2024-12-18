@@ -890,15 +890,73 @@ lob.MouseButton1Click:Connect(function()
     lob.Text = "Rscripts"
 end)
 
+local lbackup = {}
+
 fps_boost.MouseButton1Click:Connect(function()
     local l = game.Lighting
 
-    l.GlobalShadows = false
-    local aaaa = game.Lighting:GetChildren()
-    for _, a in ipairs(aaaa) do
-        a:Destroy()
+    if lbackup.Ambient then
+        l.GlobalShadows = lbackup.GlobalShadows
+        l.Ambient = lbackup.Ambient
+        l.Brightness = lbackup.Brightness
+        l.OutdoorAmbient = lbackup.OutdoorAmbient
+        l.Technology = lbackup.Technology
+
+        for _, a in ipairs(lbackup.disabledObjects) do
+            if a then
+                a.Enabled = true
+            end
+        end
+
+        for _, a in ipairs(lbackup.disabledTextures) do
+            if a then
+                a.Enabled = true
+            end
+        end
+
+        lbackup = {}
+    else
+        lbackup.GlobalShadows = l.GlobalShadows
+        lbackup.Ambient = l.Ambient
+        lbackup.Brightness = l.Brightness
+        lbackup.OutdoorAmbient = l.OutdoorAmbient
+        lbackup.Technology = l.Technology
+
+        l.GlobalShadows = false
+        l.Ambient = Color3.fromRGB(255, 255, 255)
+        l.Brightness = 1 
+        l.OutdoorAmbient = Color3.fromRGB(180, 180, 180) 
+        l.Technology = Enum.Technology.Voxel
+
+        lbackup.disabledObjects = {}
+        lbackup.disabledTextures = {}
+        local aaaa = game.Lighting:GetChildren()
+        for _, a in ipairs(aaaa) do
+            if a:IsA("ParticleEmitter") or a:IsA("SpotLight") or a:IsA("PointLight") then
+                table.insert(lbackup.disabledObjects, a)
+                a.Enabled = false
+            end
+        end
+
+        local function disableTextures(parent)
+            for _, child in ipairs(parent:GetChildren()) do
+                if child:IsA("Decal") or child:IsA("Texture") then
+                    table.insert(lbackup.disabledTextures, child)
+                    child.Enabled = false
+                elseif child:IsA("Model") then
+                    disableTextures(child)
+                end
+            end
+        end
+
+        disableTextures(game.Workspace)
+
+        l.Bloom.Enabled = false
+        l.DepthOfField.Enabled = false
+        l.SunRays.Enabled = false
     end
 end)
+
 
 cattr.MouseButton1Click:Connect(function()
     sendNotification("Sigma", "Reloading...", 6)
@@ -1162,21 +1220,45 @@ local function checkban()
     end
 end
 
+-- idk why i did it but eyay
+local devs = {
+    "SnVzdEFNb21lbnQxMTExMjIy", 
+    "c2lnbWFfY2RuMQ==", 
+    "bmFzcmFsMTQ4OQ==", 
+    "c2lnbWFfc2lnbWExNDg4NTI1Mg==" 
+}
 
-local devs = ({
-    JustAMoment111222,
-    sigma_cdn1,
-    nasral1489
+local dec_devs = {
 
-})
+}
+
+local function decBase64(data)
+    local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
+    data = string.gsub(data, '[^'..b..'=]', '')
+    return (data:gsub('.', function(x)
+        if x == '=' then return '' end
+        local r, f = '', (b:find(x) - 1)
+        for i = 6, 1, -1 do r = r..(f % 2^i - f % 2^(i-1) > 0 and '1' or '0') end
+        return r
+    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
+        if #x ~= 8 then return '' end
+        local c = 0
+        for i = 1, 8 do c = c + (x:sub(i,i) == '1' and 2^(8-i) or 0) end
+        return string.char(c)
+    end))
+end
+
+for _, dev in ipairs(devs) do
+    dec_devs = decBase64(dev)
+end
 
 if script then
     local players = game.Players:GetChildren()
     for _, player in ipairs(players) do
-        if player.Name == devs and plr.Name ~= devs then
+        if player.Name == dec_devs and plr.Name ~= dec_devs then
             sendNotification("Sigma", "🤗 Oh, hey! You are on the same server as the dev! :3", 8)
             print("hi, dev")
-        elseif plr.Name == devs then
+        elseif plr.Name == dec_devs then
             sendNotification("Sigma", "Hi dev!!", 8)
         else
             print("ok")
@@ -1185,6 +1267,9 @@ if script then
 end
 
 if successs == true then
+    spawn(checkban)
+    spawn(splash)
+
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
@@ -1207,8 +1292,6 @@ if successs == true then
     print("broo, what mean getxui???")
     print("|=========================================|")
 
-    spawn(checkban)
-    spawn(splash)
 else
     sendNotification("Sigma", "🔴 Script has got an error: ".. "CLIENT INTERCEPT FAILED (Aimbot just dont workkk), but loaded", 20)
     spawn(checkban)
