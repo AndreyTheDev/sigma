@@ -13,3 +13,5 @@ Your ad can be here :3
 "My ip is: 192.52.52.52.52.52"
 wow, its loaded from github
 52x52x52x52x52
+"hmm, what if i made it paid?" -- (c) not sigma dev
+"Hmm, i made it`s free" - (c) AndreyTheDev
