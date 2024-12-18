@@ -1,4 +1,4 @@
 return {
     {playerName = "Roblox", reason = "Bro, its literaly roblox 💀💀", banTime = "30.11.2088"}, 
-    {playerName = "SoUnGuOke", reason = "Bro, yo using sigma aim??? (I will unban you after 1 min)", banTime = "19.12.2024"}, 
+    {playerName = "SoUnGuOke", reason = "Bro, yo using sigma aim??? (I will unban you after 1 min, because its test ban)", banTime = "19.12.2024"}, 
 }
