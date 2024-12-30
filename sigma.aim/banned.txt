@@ -1,3 +1,4 @@
 return {
     {playerName = "Roblox", reason = "Bro, its literaly roblox 💀💀", banTime = "30.11.2088"}, 
+    {playerName = "sigma_movment", reason = "FUCK YOU", banTime = "30.11.21488"}, 
 }
