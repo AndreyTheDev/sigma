@@ -163,8 +163,8 @@ end
 
 function Client:GetClosestPlayerFromScreen()
     local nearest_player, min_combined_score = nil, math.huge
-    local camera_position = Camera.CFrame.Position -- Кэшируем позицию камеры
-    local cursor_position = UserInputService:GetMouseLocation() -- Позиция курсора
+    local camera_position = Camera.CFrame.Position
+    local cursor_position = UserInputService:GetMouseLocation()
 
     for _, player in next, Client.Players do
         local model = player.PlayerModel and player.PlayerModel.Model
