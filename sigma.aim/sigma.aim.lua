@@ -573,11 +573,11 @@ changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
 ⛄ v0.1.3 ❄
+JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim
 - winter theme 
 - aimbot recoded
 - fixed ui dont toggle
 - fixed aimbot bug (After 3 months...)
-
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -1271,6 +1271,7 @@ if successs == true then
     spawn(splash)
 
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
+    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 10)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
     print("|=========================================|")
@@ -1287,9 +1288,7 @@ if successs == true then
     print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
     print("Executor: ".. identifyexecutor())
     print("StringForNameGen: " .. genrandstr(10))
-    print("Aimbot: Sigma Silent v3 [BY ANDREYTHEDEV]" )
-    print("ESP: Sigma Esp v1.2 [BY ANDREYTHEDEV]")
-    print("broo, what mean getxui???")
+    print("JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim")
     print("|=========================================|")
 
 else
