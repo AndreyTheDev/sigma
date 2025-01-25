@@ -1,16 +1,5 @@
--- Hey, if you want to steal script.. do not make this, because spent very many time (+- 2 months)
-
 -- OPEN SOURCE ??!?!?!?!??!!? --
-
--- idk,but i made this dialogue hehehe
-
--- Please dont use this script if you download it not from scriptblox, because official loader only on scriptblox 
--- shut up, sigma loader is not out now!!!!!
--- shut up stupid, its out
--- no
--- yes
--- no
--- 🦅🦅🦅🦅
+-- guyyyyyssss ban api bypass soon!!!!
 
 local function sendNotification(title, text, duration)
 	local bindableFunction = Instance.new("BindableFunction")
