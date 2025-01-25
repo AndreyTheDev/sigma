@@ -62,8 +62,8 @@ local cartr = Instance.new("ImageLabel")
 local TweenService = game:GetService("TweenService")
 
 -- Theme
-local winter = true
-title.Text = "SIGMA AIM"
+local winter = false
+title.Text = "Sigma.Aim"
 
 local disabled_b = Color3.new(0.133333, 0.113725, 0.247059)
 local bcolor = Color3.fromRGB(56, 48, 103)
