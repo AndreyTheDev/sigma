@@ -133,11 +133,11 @@ while attemptCount < maxAttempts and not successs do
 end
 
 if not successs then
-    print("[SIGMA], [DEBUG]: Failed to find client after " .. maxAttempts .. " attempts.")
-    sendNotification("Sigma", "Failed to intercept client after " .. maxAttempts .. " attempts, try rejoin game and try again", 8)
+    print("[SIGMA], [DEBUG]: Failed to attach client after " .. maxAttempts .. " attempts.")
+    sendNotification("Sigma", "Failed to attach client after " .. maxAttempts .. " attempts, try rejoin game and try again", 8)
 else
-    print("[SIGMA], [DEBUG]: Client successfully found.")
-    sendNotification("Sigma", "The client was successfully intercepted.", 8)
+    print("[SIGMA], [DEBUG]: Client successfully attached")
+    sendNotification("Sigma", "Client was successfully attached", 8)
 
 end
 
