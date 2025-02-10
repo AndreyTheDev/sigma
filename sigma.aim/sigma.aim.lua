@@ -1281,7 +1281,7 @@ if successs == true then
     print("|=========================================|")
 
 else
-    sendNotification("Sigma", "🔴 Script has got an error: ".. "CLIENT INTERCEPT FAILED (Aimbot just dont workkk), but loaded", 20)
+    sendNotification("Sigma", "🔴 Failed to attach to client... why", 20)
     spawn(checkban)
     spawn(splash)
 end
