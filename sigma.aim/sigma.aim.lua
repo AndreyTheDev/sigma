@@ -1,5 +1,6 @@
 -- OPEN SOURCE ??!?!?!?!??!!? --
 -- guyyyyyssss ban api bypass soon!!!!
+-- sorry for my veryy shit code :/
 
 local function sendNotification(title, text, duration)
 	local bindableFunction = Instance.new("BindableFunction")
