@@ -2,6 +2,8 @@
 -- guyyyyyssss ban api bypass soon!!!!
 -- sorry for my veryy shit code :/
 
+print("Sigma aim init...")
+
 local function sendNotification(title, text, duration)
 	local bindableFunction = Instance.new("BindableFunction")
 
@@ -12,6 +14,8 @@ local function sendNotification(title, text, duration)
 		callback = bindableFunction,
 	})
 end
+
+sendNotification("Sigma", "Init...", 2)
 
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
@@ -59,31 +63,64 @@ local uigradient_6 = Instance.new("UIGradient")
 local cattr = Instance.new("TextButton")
 local UICornerr = Instance.new("UICorner")
 local cartr = Instance.new("ImageLabel")
+local da = Instance.new("TextLabel")
+local UIGdradient = Instance.new("UIGradient")
+local podskazka = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+
+podskazka.Name = "podskazka"
+podskazka.Parent = sigma
+podskazka.BackgroundColor3 = Color3.fromRGB(4, 4, 4)
+podskazka.BackgroundTransparency = 0.150
+podskazka.BorderColor3 = Color3.fromRGB(0, 0, 0)
+podskazka.BorderSizePixel = 0
+podskazka.Position = UDim2.new(1.04470587, 0, 0.165957451, 0)
+podskazka.Size = UDim2.new(0, 158, 0, 16)
+podskazka.ZIndex = 52
+
+TextLabel.Parent = podskazka
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Size = UDim2.new(0, 158, 0, 15)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = "label (no)"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 14.000
+
+da.Name = "da"
+da.Parent = main
+da.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+da.BackgroundTransparency = 1.000
+da.BorderColor3 = Color3.fromRGB(0, 0, 0)
+da.BorderSizePixel = 0
+da.Position = UDim2.new(0.633008659, 0, 0.0280000083, 0)
+da.Size = UDim2.new(0, 62, 0, 18)
+da.Font = Enum.Font.Montserrat
+da.Text = "beta"
+da.TextColor3 = Color3.fromRGB(255, 255, 255)
+da.TextSize = 15.000
+da.TextWrapped = true
+da.TextXAlignment = Enum.TextXAlignment.Left
+da.TextYAlignment = Enum.TextYAlignment.Bottom
+
+UIGdradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(172, 179, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(108, 104, 216))}
+UIGdradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.10), NumberSequenceKeypoint.new(1.00, 0.10)}
+UIGdradient.Parent = da
 
 local TweenService = game:GetService("TweenService")
 
 -- Theme
 local winter = false
-title.Text = "Sigma.Aim"
+title.Text = "SIGMA.AIM"
 
-local disabled_b = Color3.new(0.133333, 0.113725, 0.247059)
-local bcolor = Color3.fromRGB(56, 48, 103)
-local b_cover = Color3.fromRGB(0.478431, 0.223529, 0.611765)
-local gradient_color_main = ColorSequence.new({
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(16, 19, 56))
-})
+local disabled_b = Color3.new(0.117647, 0.101961, 0.219608)
+local bcolor = Color3.fromRGB(115, 100, 203)
+local b_cover = Color3.fromRGB(76, 67, 136)
+local gradient_color_main = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.77, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.92, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.95, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.98, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.99, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(60, 40, 126))}
 
-local gradient_bord = ColorSequence.new({
-    ColorSequenceKeypoint.new(0.00, Color3.fromRGB(124, 120, 255)),
-    ColorSequenceKeypoint.new(1.00, Color3.fromRGB(55, 102, 255))
-})
+local gradient_bord = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(102, 83, 165)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(145, 125, 255))}
 
 if winter == true then
     disabled_b = Color3.new(0.117647, 0.184314, 0.258824)
@@ -301,7 +338,7 @@ misc_2.BorderSizePixel = 0
 misc_2.Position = UDim2.new(-0.106930666, 0, -0.00500471052, 0)
 misc_2.Size = UDim2.new(0, 155, 0, 19)
 misc_2.Font = Enum.Font.ArialBold
-misc_2.Text = "Misc"
+misc_2.Text = "★ Misc ★"
 misc_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 misc_2.TextSize = 12.000
 
@@ -339,6 +376,25 @@ cattr.TextSize = 14.000
 UICornerr.CornerRadius = UDim.new(0, 2)
 UICornerr.Parent = cattr
 
+local idk = Instance.new("TextButton")
+local UICor12ner = Instance.new("UICorner")
+
+idk.Name = "idk"
+idk.Parent = misc.misc
+idk.BackgroundColor3 = Color3.fromRGB(115, 100, 203)
+idk.BackgroundTransparency = 0.200
+idk.BorderColor3 = Color3.fromRGB(0, 0, 0)
+idk.BorderSizePixel = 0
+idk.Position = UDim2.new(0.123999812, 0, 3.57815862, 0)
+idk.Size = UDim2.new(0, 115, 0, 18)
+idk.Font = Enum.Font.Arial
+idk.Text = "Relax Music"
+idk.TextColor3 = Color3.fromRGB(255, 255, 255)
+idk.TextSize = 14.000
+
+UICor12ner.CornerRadius = UDim.new(0, 2)
+UICor12ner.Parent = idk
+
 visuals.Name = "visuals"
 visuals.Parent = main
 visuals.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
@@ -358,7 +414,7 @@ visuals_2.BorderSizePixel = 0
 visuals_2.Position = UDim2.new(-0.106930666, 0, -0.00500471052, 0)
 visuals_2.Size = UDim2.new(0, 155, 0, 19)
 visuals_2.Font = Enum.Font.ArialBold
-visuals_2.Text = "Visuals"
+visuals_2.Text = "★ Visuals ★"
 visuals_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 visuals_2.TextSize = 12.000
 
@@ -391,24 +447,24 @@ fps_boost.Text = "FPS Boost"
 fps_boost.TextColor3 = Color3.fromRGB(255, 255, 255)
 fps_boost.TextSize = 14.000
 
-local idk = Instance.new("TextButton")
+local idkk = Instance.new("TextButton")
 local UICorn1er = Instance.new("UICorner")
 
-idk.Name = "idk"
-idk.Parent = visuals.visuals
-idk.BackgroundColor3 = bcolor
-idk.BackgroundTransparency = 0.200
-idk.BorderColor3 = Color3.fromRGB(0, 0, 0)
-idk.BorderSizePixel = 0
-idk.Position = UDim2.new(0.124, 0,3.605, 0)
-idk.Size = UDim2.new(0, 115, 0, 18)
-idk.Font = Enum.Font.Arial
-idk.Text = "Baton"
-idk.TextColor3 = Color3.fromRGB(255, 255, 255)
-idk.TextSize = 14.000
+idkk.Name = "idk"
+idkk.Parent = visuals.visuals
+idkk.BackgroundColor3 = bcolor
+idkk.BackgroundTransparency = 0.200
+idkk.BorderColor3 = Color3.fromRGB(0, 0, 0)
+idkk.BorderSizePixel = 0
+idkk.Position = UDim2.new(0.124, 0,3.605, 0)
+idkk.Size = UDim2.new(0, 115, 0, 18)
+idkk.Font = Enum.Font.Arial
+idkk.Text = "Xray"
+idkk.TextColor3 = Color3.fromRGB(255, 255, 255)
+idkk.TextSize = 14.000
 
 UICorn1er.CornerRadius = UDim.new(0, 2)
-UICorn1er.Parent = idk
+UICorn1er.Parent = idkk
 
 UICorner_5.CornerRadius = UDim.new(0, 2)
 UICorner_5.Parent = fps_boost
@@ -421,12 +477,12 @@ he.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 he.BackgroundTransparency = 1.000
 he.BorderColor3 = Color3.fromRGB(0, 0, 0)
 he.BorderSizePixel = 0
-he.Position = UDim2.new(-0.00329394522, 0, 0.769999981, 0)
-he.Size = UDim2.new(0, 125, 0, 31)
+he.Position = UDim2.new(-0.003, 0,0.855, 0)
+he.Size = UDim2.new(0, 125,0, 14)
 he.Font = Enum.Font.ArialBold
 he.Text = "If you read this you`re cool, bro"
 he.TextColor3 = Color3.fromRGB(255, 255, 255)
-he.TextSize = 7
+he.TextSize = 6
 he.TextTransparency = 0.860
 he.TextWrapped = true
 
@@ -457,7 +513,7 @@ fun_2.BorderSizePixel = 0
 fun_2.Position = UDim2.new(-0.106930666, 0, -0.00500471052, 0)
 fun_2.Size = UDim2.new(0, 155, 0, 19)
 fun_2.Font = Enum.Font.ArialBold
-fun_2.Text = "Official Links"
+fun_2.Text = "★ Official Links ★"
 fun_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 fun_2.TextSize = 12.000
 
@@ -516,7 +572,7 @@ news_2.BorderSizePixel = 0
 news_2.Position = UDim2.new(-0.124706052, 0, -0.000745353056, 0)
 news_2.Size = UDim2.new(0, 155, 0, 19)
 news_2.Font = Enum.Font.ArialBold
-news_2.Text = "News"
+news_2.Text = "★ News ★"
 news_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 news_2.TextSize = 12.000
 
@@ -529,7 +585,7 @@ support.BorderSizePixel = 0
 support.Position = UDim2.new(0.131, 0,6.7, 0)
 support.Size = UDim2.new(0, 115, 0, 18)
 support.Font = Enum.Font.Arial
-support.Text = "UI Mewing"
+support.Text = "Tg channel"
 support.TextColor3 = Color3.fromRGB(255, 255, 255)
 support.TextSize = 14.000
 
@@ -562,12 +618,11 @@ changelog.Position = UDim2.new(0.130929857, 0, 1.47278798, 0)
 changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
-⛄ v0.1.3 ❄
-JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim
-- winter theme 
-- aimbot recoded
-- fixed ui dont toggle
-- fixed aimbot bug (After 3 months...)
+✨ v0.1.4 🔥
+- big ui update
+
+- You can see fully changelog in our tg channel
+t.me/sigma_aim
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -773,7 +828,7 @@ function genrandstr(length)
 end
 
 local UserInputService = game:GetService("UserInputService")
-local SmoothDragSpeed = 0.5
+local SmoothDragSpeed = 0.55
 
 local SmoothDragToggle
 local SmoothDragInput
@@ -947,6 +1002,23 @@ fps_boost.MouseButton1Click:Connect(function()
     end
 end)
 
+local dda = false
+
+idkk.MouseButton1Click:Connect(function()
+    local model = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("mesh") and workspace.Map.mesh:FindFirstChild("Model")
+
+    if model then
+        for _, obj in ipairs(model:GetDescendants()) do
+            if obj:IsA("BasePart") then
+                obj.Transparency = dda and 0 or 0.6
+            end
+        end
+        dda = not dda
+    else
+        print("failed")
+    end
+end)
+
 
 cattr.MouseButton1Click:Connect(function()
     sendNotification("Sigma", "Reloading...", 6)
@@ -956,40 +1028,10 @@ cattr.MouseButton1Click:Connect(function()
 end)
 
 support.MouseButton1Click:Connect(function()
-    sendNotification("Sigma", "Deleted all ui corners (reload to bring back corners)", 12)
-
-    local be = Instance.new("Sound", game.Workspace)
-    be.Name = math.random()
-
-    local aaa = 0
-
-    if aaa > 2 then
-        be.SoundId = "rbxassetid://18331725459"
-    elseif aaa < 2 then
-        be.SoundId = "rbxassetid://6832470734"
-    end
-
-    aaa = aaa + 1
-
-    task.wait(1)
-
-    be.Volume = 0.3
-    be:Play()
-
-    UICorn1er:Destroy()
-    UICorner:Destroy()
-    UICorner_10:Destroy()
-    UICorner_2:Destroy()
-    UICorner_3:Destroy()
-    UICorner_4:Destroy()
-    UICorner_8:Destroy()
-    UICornerd:Destroy()
-    UICorner_9:Destroy()
-    UICorner_6:Destroy()
-    UICornerd_2:Destroy()
-    UICornerd_3:Destroy()
-    UICornerr:Destroy()
-    UICorner_7:Destroy()
+    setclipboard("https://t.me/sigma_aim")
+    support.Text = "Link copied!"
+    task.wait(2)
+    support.Text = "Tg channel"
 end)
 
 local ienabled = true
@@ -1062,6 +1104,85 @@ if notifi then
     end
 end
 
+local mousee = game.Players.LocalPlayer:GetMouse()
+
+local isHovering = false
+local moveConnection
+
+local function showTooltip(button, text)
+    if isHovering then return end
+    isHovering = true
+
+    TextLabel.Text = text
+    podskazka.Visible = true
+
+    local fadeIn = TweenService:Create(podskazka, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.15})
+    local textFadeIn = TweenService:Create(TextLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 0})
+
+    fadeIn:Play()
+    textFadeIn:Play()
+
+    local function updatePosition(input)
+        if isHovering then
+            podskazka.Position = UDim2.new(0, mousee.X + 10, 0, mousee.Y + 15)
+        end
+    end
+
+    moveConnection = UserInputService.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement then
+            updatePosition(input)
+        end
+    end)
+end
+
+local function hideTooltip()
+    if not isHovering then return end
+    isHovering = false
+
+    local fadeOut = TweenService:Create(podskazka, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1})
+    local textFadeOut = TweenService:Create(TextLabel, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {TextTransparency = 1})
+
+    fadeOut:Play()
+    textFadeOut:Play()
+
+    fadeOut.Completed:Connect(function()
+        if not isHovering then
+            podskazka.Visible = false
+            TextLabel.Text = ""
+        end
+    end)
+
+    if moveConnection then
+        moveConnection:Disconnect()
+        moveConnection = nil
+    end
+end
+
+local buttns = {
+    {aimbot_toggle, "Toggle auto aim"},
+    {esp_toggle, "Toggle players highlight"},
+    {idk, "Very relax music"},
+    {cattr, "Just reload script"},
+    {fps_boost, "Lower graphics to more fps"},
+    {lob, "Rscripts ❤"},
+    {pivo, "ScriptBlox ❤"},
+    {support, "Our tg channel with news"},
+    {tg_channel, "Settings (in my dreams 😥)"},
+    {idkk, "Xray (use with fps boost)"},
+    {changelog, "t.me/sigma_aim"},
+    {da, "its open beta now"}
+}
+
+for _, btnData in pairs(buttns) do
+    local button, tooltipText = unpack(btnData)
+    
+    button.MouseEnter:Connect(function()
+        showTooltip(button, tooltipText)
+    end)
+
+    button.MouseLeave:Connect(hideTooltip)
+end
+
 -- UI other
 local isInterfaceVisible = false
 
@@ -1130,6 +1251,8 @@ setupButtonAnimation(idk)
 setupButtonAnimation(lob)
 setupButtonAnimation(pivo)
 
+setupButtonAnimation(idkk)
+
 RotateGradient(uigradient_1)
 RotateGradient(uigradient_2)
 RotateGradient(uigradient_3)
@@ -1137,7 +1260,7 @@ RotateGradient(uigradient_4)
 RotateGradient(uigradient_6)
 
 
--- LOADED ???
+-- loaded ???
 spawn(security)
 
 local plr = game.Players.LocalPlayer
@@ -1147,7 +1270,7 @@ local function loadBannedList()
     local bannedUrl = "https://raw.githubusercontent.com/AndreyTheDev/sigma/refs/heads/main/sigma.aim/banned.txt"
     local response = game:HttpGet(bannedUrl)
     
---    print("[SIGMA], [DEBUG] github response: ", response)
+--    print("[SIGMA], [DEBUG] github response: ", response) -- debuuuggg
     
     local success, bannedData = pcall(loadstring(response))
 
@@ -1212,43 +1335,18 @@ end
 
 -- idk why i did it but eyay
 local devs = {
-    "SnVzdEFNb21lbnQxMTExMjIy", 
-    "c2lnbWFfY2RuMQ==", 
-    "bmFzcmFsMTQ4OQ==", 
-    "c2lnbWFfc2lnbWExNDg4NTI1Mg==" 
+    "SkibidiSigma52sigma", 
+    "Sigma_cdn1", 
+    "nasral1489", 
 }
-
-local dec_devs = {
-
-}
-
-local function decBase64(data)
-    local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-    data = string.gsub(data, '[^'..b..'=]', '')
-    return (data:gsub('.', function(x)
-        if x == '=' then return '' end
-        local r, f = '', (b:find(x) - 1)
-        for i = 6, 1, -1 do r = r..(f % 2^i - f % 2^(i-1) > 0 and '1' or '0') end
-        return r
-    end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x)
-        if #x ~= 8 then return '' end
-        local c = 0
-        for i = 1, 8 do c = c + (x:sub(i,i) == '1' and 2^(8-i) or 0) end
-        return string.char(c)
-    end))
-end
-
-for _, dev in ipairs(devs) do
-    dec_devs = decBase64(dev)
-end
 
 if script then
     local players = game.Players:GetChildren()
     for _, player in ipairs(players) do
-        if player.Name == dec_devs and plr.Name ~= dec_devs then
+        if player.Name == devs and plr.Name ~= devs then
             sendNotification("Sigma", "🤗 Oh, hey! You are on the same server as the dev! :3", 8)
             print("hi, dev")
-        elseif plr.Name == dec_devs then
+        elseif plr.Name == devs then
             sendNotification("Sigma", "Hi dev!!", 8)
         else
             print("ok")
@@ -1261,23 +1359,19 @@ if successs == true then
     spawn(splash)
 
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
-    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 10)
+    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 15)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
     print("|=========================================|")
-    print("RANDOM TEXT:")
-    print("https://scriptblox.com/script/Games-Unite-Testing-Place-Sigma-Aim-22213")
-    print("Dont reupload without credit 😡")
     print("NAME: ".. plr.Name)
     print("DISPLAY NAME: ".. plr.DisplayName)
-    print("math.random():".. math.random())
     print("Erm whata sigma: yes")
     print("The real sigma is ".. plr.Name .. " or just a ".. plr.DisplayName)
     print("|=========================================|")
     print("DEBUG:")
     print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
     print("Executor: ".. identifyexecutor())
-    print("StringForNameGen: " .. genrandstr(10))
+    print("StringForNameGen (antidetect func test): " .. genrandstr(10))
     print("JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim")
     print("|=========================================|")
 
