@@ -4,8 +4,6 @@
 
 -- config
 debug_mode = true
-kresysem_modi = "keysystem?? what is this"
-
 print("Sigma aim init...")
 
 if debug_mode == true then
@@ -1397,7 +1395,7 @@ if successs == true then
 
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
     sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 15)
-    sendNotification("Sigma", "🚨 THIS IS TEST VERSION, THERE IS VERY VERY MANY BUGS", 25)
+    sendNotification("[WARNING] Sigma", "🚨 THIS IS TEST VERSION, THERE IS VERY VERY MANY BUGS", 25)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
     print("|=========================================|")
