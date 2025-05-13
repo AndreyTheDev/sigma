@@ -5,6 +5,7 @@
 
 ![Logo](https://github.com/AndreyTheDev/sigma/blob/main/ignore%20this/logo-white.png?raw=true)
 # Project **Segma**
+https://t.me/SegmaAim
 
 stupid robleax scripts
 
