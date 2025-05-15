@@ -9,7 +9,7 @@ https://t.me/SegmaAim
 
 stupid robleax scripts
 
-fully **free**, **keyless**, **open source** and high-quality scripts 🏏
+fully **free**, **keyless**, **open source** and high-quality scripts 🏏 
 
 ## why **free & keyless**? 
 **i hate keysystems**
