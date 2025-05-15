@@ -1,6 +1,6 @@
 > [!CAUTION]
 > use exploits **ONLY ON YOUR RISK** because you can be **BANNED** for exploits  
- 
+  
 ##
  
 ![Logo](https://github.com/AndreyTheDev/sigma/blob/main/ignore%20this/logo-white.png?raw=true) 
