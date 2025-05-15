@@ -1,5 +1,5 @@
 > [!CAUTION]
-> use exploits **ONLY ON YOUR RISK** because you can be **BANNED** for exploits
+> use exploits **ONLY ON YOUR RISK** because you can be **BANNED** for exploits 
  
 ##
 
