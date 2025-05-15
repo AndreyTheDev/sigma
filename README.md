@@ -7,7 +7,7 @@
 # Project **Segma**
 https://t.me/SegmaAim
 
-stupid robleax scripts
+stupid robleax scripts 
 
 fully **free**, **keyless**, **open source** and high-quality scripts 🏏 
 
