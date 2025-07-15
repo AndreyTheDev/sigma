@@ -619,10 +619,10 @@ changelog.Size = UDim2.new(0, 114, 0, 95)
 changelog.Font = Enum.Font.JosefinSans
 changelog.Text = [[
 ✨ v0.1.4 🔥
-- big ui update
+STOP UPDATING THIS VERSION OF SIGMA AIM????
 
-- You can see fully changelog in our tg channel
-t.me/sigma_aim
+VOTE IN OUR TG CHANNEL
+NOW ->> t.me/segmaaim
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
