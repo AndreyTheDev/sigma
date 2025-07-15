@@ -1,5 +1,3 @@
--- OPEN SOURCE ??!?!?!?!??!!? --
--- guyyyyyssss ban api bypass soon!!!!
 -- sorry for my veryy shit code :/
 
 print("Sigma aim init...")
