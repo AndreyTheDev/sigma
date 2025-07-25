@@ -1,5 +1,4 @@
 -- OPEN SOURCE ??!?!?!?!??!!? --
--- guyyyyyssss ban api bypass soon!!!!
 -- sorry for my veryy shit code :/
 
 -- config
@@ -649,7 +648,7 @@ changelog.Text = [[
 - changelog too long
 
 - You can see fully changelog in our tg channel
-t.me/sigma_aim
+t.me/SegmaNews
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -1057,7 +1056,7 @@ cattr.MouseButton1Click:Connect(function()
 end)
 
 support.MouseButton1Click:Connect(function()
-    setclipboard("https://t.me/sigma_aim")
+    setclipboard("https://t.me/SegmaNews")
     support.Text = "Link copied!"
     task.wait(2)
     support.Text = "Tg channel"
@@ -1394,7 +1393,7 @@ if successs == true then
     spawn(splash)
 
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
-    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 15)
+    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/SegmaNews", 15)
     sendNotification("[WARNING] Sigma", "🚨 THIS IS TEST VERSION, THERE IS VERY VERY MANY BUGS", 25)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
@@ -1408,7 +1407,7 @@ if successs == true then
     print("Executed on: ".. time:FormatLocalTime("LTS", "en-us"))
     print("Executor: ".. identifyexecutor())
     print("StringForNameGen (antidetect func test): " .. genrandstr(10))
-    print("JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim")
+    print("JOIN OUR TG CHANNEL NOW!!!!: t.me/SegmaNews")
     print("|=========================================|")
 
 else
