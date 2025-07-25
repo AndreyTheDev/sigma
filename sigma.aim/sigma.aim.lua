@@ -620,7 +620,7 @@ changelog.Text = [[
 STOP UPDATING THIS VERSION OF SIGMA AIM????
 
 VOTE IN OUR TG CHANNEL
-NOW ->> t.me/segmaaim
+NOW ->> t.me/SegmaNews
 ]]
 changelog.TextColor3 = Color3.fromRGB(255, 255, 255)
 changelog.TextSize = 11.800
@@ -1026,7 +1026,7 @@ cattr.MouseButton1Click:Connect(function()
 end)
 
 support.MouseButton1Click:Connect(function()
-    setclipboard("https://t.me/sigma_aim")
+    setclipboard("https://t.me/segmanews")
     support.Text = "Link copied!"
     task.wait(2)
     support.Text = "Tg channel"
@@ -1357,7 +1357,7 @@ if successs == true then
     spawn(splash)
 
     sendNotification("Sigma", "🎉 Sigma loaded! Press T to toggle aimbot, P to toggle ESP, Home to toggle UI", 4)
-    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/sigma_aim", 15)
+    sendNotification("Sigma", "✨ JOIN OUR TG CHANNEL NOW!!!!: t.me/SegmaNews", 15)
     print('|=============== SIGMA.AIM ===============|')
     print("|            BY ANDREYTHEDEV              |")
     print("|=========================================|")
