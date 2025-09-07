@@ -1074,6 +1074,38 @@ murder.MouseButton1Click:Connect(function()
     end
 end)
 
+local killzonesremover = {Enabled = false}
+
+function killzonesremover:Toggle(state)
+    self.Enabled = state
+    print("killzonesremover: " .. (state and "ON" or "OFF"))
+    if state then self:Clean() end
+end
+
+function killzonesremover:Clean()
+    if not self.Enabled then return end
+    
+    local count = 0
+    for _, obj in pairs(workspace:GetDescendants()) do
+        if obj:IsA("BasePart") and obj.Name == "KillBoundary" then
+            obj:Destroy()
+            count = count + 1
+        end
+    end
+    print("deleted killzones: " .. count)
+end
+
+klzones = 0
+killzones.MouseButton1Click:Connect(function()
+    if klzones == 0 then
+        killzonesremover:Toggle(true)
+        klzones = 1
+    elseif klzones == 1 then
+        killzonesremover:Toggle(false)
+        klzones = 0
+    end
+end)
+
 -- yea
 print("*********************************************")
 print("*            SIGMA.RUNHIDEFIGHT             *")
