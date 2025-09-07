@@ -1078,8 +1078,11 @@ local killzonesremover = {Enabled = false}
 
 function killzonesremover:Toggle(state)
     self.Enabled = state
-    print("killzonesremover: " .. (state and "ON" or "OFF"))
-    if state then self:Clean() end
+    spawn(function()
+        while task.wait(1) do
+            if state then self:Clean() end
+        end
+    end)
 end
 
 function killzonesremover:Clean()
@@ -1092,7 +1095,6 @@ function killzonesremover:Clean()
             count = count + 1
         end
     end
-    print("deleted killzones: " .. count)
 end
 
 klzones = 0
@@ -1100,9 +1102,11 @@ killzones.MouseButton1Click:Connect(function()
     if klzones == 0 then
         killzonesremover:Toggle(true)
         klzones = 1
+        notif("Sigma", "ok, killzones now doesnt exist :D", 5)
     elseif klzones == 1 then
         killzonesremover:Toggle(false)
         klzones = 0
+        notif("Sigma", "ok, killzones now exist :I", 5)
     end
 end)
 
