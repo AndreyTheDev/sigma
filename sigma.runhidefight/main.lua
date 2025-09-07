@@ -94,7 +94,7 @@ title.Text = "Sigma.RunHideFight"
 title.TextColor3 = Color3.fromRGB(255, 255, 255)
 title.TextSize = 16.000
 title.TextXAlignment = Enum.TextXAlignment.Left
- 
+
 close.Name = "close"
 close.Parent = title
 close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
