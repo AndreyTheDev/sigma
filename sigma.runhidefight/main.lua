@@ -1078,11 +1078,23 @@ local killzonesremover = {Enabled = false}
 
 function killzonesremover:Toggle(state)
     self.Enabled = state
-    spawn(function()
-        while task.wait(1) do
-            if state then self:Clean() end
+    
+    if state then
+        self:Clean()
+
+        if not self.connection then
+            self.connection = workspace.DescendantAdded:Connect(function(obj)
+                if self.Enabled and obj:IsA("BasePart") and obj.Name == "KillBoundary" then
+                    obj:Destroy()
+                end
+            end)
         end
-    end)
+    else
+        if self.connection then
+            self.connection:Disconnect()
+            self.connection = nil
+        end
+    end
 end
 
 function killzonesremover:Clean()
