@@ -51,6 +51,10 @@ local title_7 = Instance.new("TextLabel")
 local TextButton = Instance.new("TextButton")
 local TextButton_2 = Instance.new("TextButton")
 local TextButton_3 = Instance.new("TextButton")
+local rpgtool = Instance.new("TextButton")
+local flytool = Instance.new("TextButton")
+local knifetool = Instance.new("TextButton")
+local killzones = Instance.new("TextButton")
 
 local plr = game.Players.LocalPlayer
 local function notif(title, text, duration)
@@ -412,6 +416,62 @@ resetspd_3.Font = Enum.Font.RobotoMono
 resetspd_3.Text = "TP TO GAME"
 resetspd_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 resetspd_3.TextSize = 14.000
+
+rpgtool.Name = "rpgtool"
+rpgtool.Parent = maintab
+rpgtool.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+rpgtool.BackgroundTransparency = 0.700
+rpgtool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+rpgtool.BorderSizePixel = 0
+rpgtool.Position = UDim2.new(0.0188585129, 0, 0.812713146, 0)
+rpgtool.Size = UDim2.new(0, 433, 0, 17)
+rpgtool.Font = Enum.Font.RobotoMono
+rpgtool.Text = "Give RPG (ONLY VISUAL!!!)"
+rpgtool.TextColor3 = Color3.fromRGB(255, 255, 255)
+rpgtool.TextSize = 14.000
+rpgtool.TextWrapped = true
+
+flytool.Name = "flytool"
+flytool.Parent = maintab
+flytool.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+flytool.BackgroundTransparency = 0.700
+flytool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+flytool.BorderSizePixel = 0
+flytool.Position = UDim2.new(0.0188585129, 0, 0.905736387, 0)
+flytool.Size = UDim2.new(0, 433, 0, 17)
+flytool.Font = Enum.Font.RobotoMono
+flytool.Text = "Give Fly Tool"
+flytool.TextColor3 = Color3.fromRGB(255, 255, 255)
+flytool.TextSize = 14.000
+flytool.TextWrapped = true
+
+knifetool.Name = "knifetool"
+knifetool.Parent = maintab
+knifetool.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+knifetool.BackgroundTransparency = 0.700
+knifetool.BorderColor3 = Color3.fromRGB(0, 0, 0)
+knifetool.BorderSizePixel = 0
+knifetool.Position = UDim2.new(0.0188585129, 0, 0.719689906, 0)
+knifetool.Size = UDim2.new(0, 433, 0, 17)
+knifetool.Font = Enum.Font.RobotoMono
+knifetool.Text = "Give Knife (ONLY VISUAL!!!)"
+knifetool.TextColor3 = Color3.fromRGB(255, 255, 255)
+knifetool.TextSize = 14.000
+knifetool.TextWrapped = true
+
+killzones.Name = "killzones"
+killzones.Parent = maintab
+killzones.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+killzones.BackgroundTransparency = 0.700
+killzones.BorderColor3 = Color3.fromRGB(0, 0, 0)
+killzones.BorderSizePixel = 0
+killzones.Position = UDim2.new(0.0188585129, 0, 0.615038753, 0)
+killzones.Size = UDim2.new(0, 433, 0, 17)
+killzones.Font = Enum.Font.RobotoMono
+killzones.Text = "Toggle Delete All Killzones"
+killzones.TextColor3 = Color3.fromRGB(255, 255, 255)
+killzones.TextSize = 14.000
+killzones.TextWrapped = true
 
 visualstab.Name = "visualstab"
 visualstab.Parent = tabs
@@ -994,11 +1054,11 @@ survivals.MouseButton1Click:Connect(function()
     if plresp == 0 then
         playersESP:Toggle(true)
         plresp = 1
-        notif("Sigma", "Players esp enabled :D", 5)
+        notif("Sigma", "Players esp enabled :D")
     elseif plresp == 1 then
         playersESP:Toggle(false)
         plresp = 0
-        notif("Sigma", "Players esp disabled :P", 5)
+        notif("Sigma", "Players esp disabled :P")
     end
 end)
 
@@ -1006,11 +1066,11 @@ murder.MouseButton1Click:Connect(function()
     if mrdresp == 0 then
         murderESP:Toggle(true)
         mrdresp = 1
-        notif("Sigma", "Murder esp enabled :P", 5)
+        notif("Sigma", "Murder esp enabled :P")
     elseif mrdresp == 1 then
         murderESP:Toggle(false)
         mrdresp = 0
-        notif("Sigma", "Murder esp disabled :I", 5)
+        notif("Sigma", "Murder esp disabled :I")
     end
 end)
 
@@ -1020,6 +1080,4 @@ print("*            SIGMA.RUNHIDEFIGHT             *")
 print("*********************************************")
 print("developed by andreythedevv, yeah!")
 print("t.me/SegmaNews!!!")
-notif("Sigma", "Loaded! :D", 10)
-
-notif("Sigma", "THIS IS TEST VERSION!!! ONLY FOR TEST WITH MY FRIEND!!!", 20)
+notif("Sigma", "Loaded! :D")
