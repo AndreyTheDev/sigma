@@ -290,7 +290,7 @@ newsyeah.BorderSizePixel = 0
 newsyeah.Position = UDim2.new(0.0227617826, 0, 0.15363799, 0)
 newsyeah.Size = UDim2.new(0, 427, 0, 140)
 newsyeah.Font = Enum.Font.RobotoMono
-newsyeah.Text = "0.1.0 alpha!\n- Sigma.RunHideFight alpha released\n- Added some cool functions \n\nReport all bugs that u found in our telegram channel :3\n\nOur Telegram Channel: @SegmaNews \nOur Github Repo: github.com/AndreyTheDev/sigma \n(press RShift (right shift) to hide/unhide ui :3)"
+newsyeah.Text = "0.1.0 BUGGY alpha!\n- Sigma.RunHideFight BUGGY alpha released\n- Added some cool functions \n\nReport all bugs that u found in our telegram channel :3\n\nOur Telegram Channel: @SegmaNews \nOur Github Repo: github.com/AndreyTheDev/sigma \n(press RShift (right shift) to hide/unhide ui :3)"
 newsyeah.TextColor3 = Color3.fromRGB(255, 255, 255)
 newsyeah.TextWrapped = true
 newsyeah.TextSize = 14.000
@@ -927,8 +927,12 @@ function murderESP:Start()
                     self:HighlightCharacter(player.Character)
                 end
             else
-                if player.Character and player.Character:FindFirstChild("MurderESP") then
-                    player.Character.MurderESP:Destroy()
+                if player.Character then
+                    for _, child in ipairs(player.Character:GetChildren()) do
+                        if child:IsA("Highlight") then
+                            child:Destroy()
+                        end
+                    end
                 end
             end
         end)
@@ -944,7 +948,7 @@ function murderESP:UpdateHighlightColor(highlight, humanoid)
     if not humanoid then return end
     local hp = humanoid.Health / humanoid.MaxHealth
     local r = 255
-    local g = math.clamp(100 * (1 - hp), 0, 100) 
+    local g = math.clamp(255 * (1 - hp), 0, 255)
     highlight.FillColor = Color3.fromRGB(r, g, 0)
     highlight.OutlineColor = Color3.fromRGB(r, g, 0)
 end
@@ -952,8 +956,9 @@ end
 function murderESP:HighlightCharacter(character)
     if not self.Enabled then return end
     
-    local highlight = character:FindFirstChild("MurderESP") or Instance.new("Highlight")
-    highlight.Name = "MurderESP"
+    local espName = genrandstr(15)
+    local highlight = Instance.new("Highlight")
+    highlight.Name = espName
     highlight.Adornee = character
     highlight.Parent = character
     
@@ -968,8 +973,12 @@ end
 
 function murderESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
-        if player.Character and player.Character:FindFirstChild("MurderESP") then
-            player.Character.MurderESP:Destroy()
+        if player.Character then
+            for _, child in ipairs(player.Character:GetChildren()) do
+                if child:IsA("Highlight") then
+                    child:Destroy()
+                end
+            end
         end
     end
 end
@@ -995,12 +1004,12 @@ function playersESP:UpdateHighlightColor(highlight, humanoid, isMurder)
     local hp = humanoid.Health / humanoid.MaxHealth
     if isMurder then
         local r = 255
-        local g = math.clamp(100 * (1 - hp), 0, 100) 
+        local g = math.clamp(255 * (1 - hp), 0, 100)
         highlight.FillColor = Color3.fromRGB(r, g, 0)
         highlight.OutlineColor = Color3.fromRGB(r, g, 0)
     else
         local g = 255 * hp
-        local r = math.clamp(100 * (1 - hp), 0, 100) 
+        local r = math.clamp(255 * (1 - hp), 0, 100)
         highlight.FillColor = Color3.fromRGB(r, g, 0)
         highlight.OutlineColor = Color3.fromRGB(r, g, 0)
     end
@@ -1014,8 +1023,9 @@ function playersESP:Start()
         if player == localPlayer then return end
         
         local function setupCharacter(char)
-            local highlight = char:FindFirstChild("PlayersESP") or Instance.new("Highlight")
-            highlight.Name = "PlayersESP"
+            local espName = genrandstr(15)
+            local highlight = Instance.new("Highlight")
+            highlight.Name = espName
             highlight.Adornee = char
             highlight.Parent = char
 
@@ -1031,13 +1041,13 @@ function playersESP:Start()
         end
 
         player:GetAttributeChangedSignal("IsShooter"):Connect(function()
-            if player.Character and player.Character:FindFirstChild("PlayersESP") then
-                local highlight = player.Character.PlayersESP
-                local humanoid = player.Character:FindFirstChild("Humanoid")
-                local isMurder = player:GetAttribute("IsShooter")
-                if humanoid then
-                    self:UpdateHighlightColor(highlight, humanoid, isMurder)
+            if player.Character then
+                for _, child in ipairs(player.Character:GetChildren()) do
+                    if child:IsA("Highlight") then
+                        child:Destroy()
+                    end
                 end
+                setupCharacter(player.Character)
             end
         end)
         
@@ -1055,8 +1065,12 @@ end
 
 function playersESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
-        if player.Character and player.Character:FindFirstChild("PlayersESP") then
-            player.Character.PlayersESP:Destroy()
+        if player.Character then
+            for _, child in ipairs(player.Character:GetChildren()) do
+                if child:IsA("Highlight") then
+                    child:Destroy()
+                end
+            end
         end
     end
 end
@@ -1253,6 +1267,54 @@ end)
 flytool.MouseButton1Click:Connect(function()
     if game:GetService("ReplicatedStorage"):FindFirstChild("Items") then local fly = game:GetService("ReplicatedStorage").Items:FindFirstChild("Fly") if fly then fly:Clone().Parent = game.Players.LocalPlayer:WaitForChild("Backpack") end end
 end)
+local xrayy = {
+    Enabled = false
+}
+
+function xrayy:Toggle(state)
+    self.Enabled = state
+    if state then
+        self:Start()
+    else
+        self:Stop()
+    end
+end
+
+function xrayy:Start()
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Transparency < 0.5 then
+            part.LocalTransparencyModifier = 0.5
+        end
+    end
+    
+    workspace.DescendantAdded:Connect(function(part)
+        if part:IsA("BasePart") and part.Transparency < 0.5 then
+            task.wait(0.05)
+            part.LocalTransparencyModifier = 0.5
+        end
+    end)
+end
+
+function xrayy:Stop()
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.LocalTransparencyModifier = 0
+        end
+    end
+end
+
+xrayresp = 0
+xray.MouseButton1Click:Connect(function()
+    if xrayresp == 0 then
+        xrayy:Toggle(true)
+        xrayresp = 1
+        notif("Sigma", "xray enabled :D")
+    else
+        xrayy:Toggle(false)
+        xrayresp = 0
+        notif("Sigma", "xray disabled :P")
+    end
+end)
 
 UserInputService.InputBegan:Connect(onKeyPress)
 -- yea
@@ -1261,4 +1323,5 @@ print("*            SIGMA.RUNHIDEFIGHT             *")
 print("*********************************************")
 print("developed by andreythedevv, yeah!")
 print("t.me/SegmaNews!!!")
-notif("Sigma", "Loaded! :D")
+notif("Sigma", "Loaded! :D", 5)
+notif("Sigma", "THIS IS ALPHA VERSION WITH LOT OF BUGS, PLEASE WAIT FOR BUG FIX 🙏", 10)
