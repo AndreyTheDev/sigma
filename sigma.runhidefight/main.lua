@@ -625,7 +625,7 @@ blind.BorderSizePixel = 0
 blind.Position = UDim2.new(0.0188585129, 0, 0.235193774, 0)
 blind.Size = UDim2.new(0, 435, 0, 17)
 blind.Font = Enum.Font.RobotoMono
-blind.Text = ""
+blind.Text = "Axe Hub"
 blind.TextColor3 = Color3.fromRGB(255, 255, 255)
 blind.TextSize = 14.000
 
@@ -1308,6 +1308,9 @@ xray.MouseButton1Click:Connect(function()
 end)
 rtx.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
+blind.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroidxx/axe-hub/refs/heads/main/axehub%20nds.txt"))()
 end)
 
 UserInputService.InputBegan:Connect(onKeyPress)
