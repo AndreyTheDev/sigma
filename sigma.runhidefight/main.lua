@@ -1,5 +1,5 @@
 -- andreythedevv
--- sorry for my shitcode 😔
+-- sorry for my shitcode 😔 (i will recode all this code)
 
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
@@ -179,7 +179,7 @@ fun.BorderSizePixel = 0
 fun.Position = UDim2.new(0.0673076957, 0, 0.302325577, 0)
 fun.Size = UDim2.new(0, 90, 0, 17)
 fun.Font = Enum.Font.RobotoMono
-fun.Text = "Fun"
+fun.Text = "Scripts" -- no more fun guys 😭😭
 fun.TextColor3 = Color3.fromRGB(255, 255, 255)
 fun.TextSize = 13.000
 
@@ -599,7 +599,7 @@ title_5.BorderSizePixel = 0
 title_5.Position = UDim2.new(0.0199115053, 0, 0.0271317828, 0)
 title_5.Size = UDim2.new(0, 435, 0, 23)
 title_5.Font = Enum.Font.RobotoMono
-title_5.Text = "Fun yeah!"
+title_5.Text = "Scripts!"
 title_5.TextColor3 = Color3.fromRGB(255, 255, 255)
 title_5.TextSize = 14.000
 
@@ -612,7 +612,7 @@ rtx.BorderSizePixel = 0
 rtx.Position = UDim2.new(0.0188585129, 0, 0.142170519, 0)
 rtx.Size = UDim2.new(0, 435, 0, 17)
 rtx.Font = Enum.Font.RobotoMono
-rtx.Text = "rELLy RTx mOED!!!11!"
+rtx.Text = "Infinity Yield"
 rtx.TextColor3 = Color3.fromRGB(255, 255, 255)
 rtx.TextSize = 14.000
 
@@ -625,7 +625,7 @@ blind.BorderSizePixel = 0
 blind.Position = UDim2.new(0.0188585129, 0, 0.235193774, 0)
 blind.Size = UDim2.new(0, 435, 0, 17)
 blind.Font = Enum.Font.RobotoMono
-blind.Text = "totally not blind!!!11!1!1"
+blind.Text = ""
 blind.TextColor3 = Color3.fromRGB(255, 255, 255)
 blind.TextSize = 14.000
 
@@ -894,12 +894,12 @@ resetspd_2.MouseButton1Click:Connect(function() -- nah im stupid
 end)
 
 -- SHOOTER NOT MURDER STUPID ANDREYKO FROM 06TH SEPTEMBER ESP (writed by deepseek, im too lazy & its literally 3:44)
-local murderESP = {
+local shooterESP = {
     Enabled = false,
     HighlightColor = Color3.fromRGB(255, 0, 0)
 }
 
-function murderESP:Toggle(state)
+function shooterESP:Toggle(state)
     self.Enabled = state
     if state then
         self:Start()
@@ -908,7 +908,7 @@ function murderESP:Toggle(state)
     end
 end
 
-function murderESP:Start()
+function shooterESP:Start()
     local players = game:GetService("Players")
     
     local function checkPlayer(player)
@@ -944,7 +944,7 @@ function murderESP:Start()
     players.PlayerAdded:Connect(checkPlayer)
 end
 
-function murderESP:UpdateHighlightColor(highlight, humanoid)
+function shooterESP:UpdateHighlightColor(highlight, humanoid)
     if not humanoid then return end
     local hp = humanoid.Health / humanoid.MaxHealth
     local r = 255
@@ -953,12 +953,11 @@ function murderESP:UpdateHighlightColor(highlight, humanoid)
     highlight.OutlineColor = Color3.fromRGB(r, g, 0)
 end
 
-function murderESP:HighlightCharacter(character)
+function shooterESP:HighlightCharacter(character)
     if not self.Enabled then return end
     
-    local espName = genrandstr(15)
     local highlight = Instance.new("Highlight")
-    highlight.Name = espName
+    highlight.Name = "ShooterESP"
     highlight.Adornee = character
     highlight.Parent = character
     
@@ -971,11 +970,11 @@ function murderESP:HighlightCharacter(character)
     end
 end
 
-function murderESP:Stop()
+function shooterESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         if player.Character then
             for _, child in ipairs(player.Character:GetChildren()) do
-                if child:IsA("Highlight") then
+                if child:IsA("Highlight") and child.Name == "ShooterESP" then
                     child:Destroy()
                 end
             end
@@ -984,13 +983,12 @@ function murderESP:Stop()
 end
 
 -- Players ESP (writed by deepseek, im too lazy & its literally 3:44)
-local playersESP = {
+local playerESP = {
     Enabled = false,
-    MurderColor = Color3.fromRGB(255, 0, 0),
-    InnocentColor = Color3.fromRGB(0, 255, 0)
+    SurvivorColor = Color3.fromRGB(0, 255, 0)
 }
 
-function playersESP:Toggle(state)
+function playerESP:Toggle(state)
     self.Enabled = state
     if state then
         self:Start()
@@ -999,43 +997,34 @@ function playersESP:Toggle(state)
     end
 end
 
-function playersESP:UpdateHighlightColor(highlight, humanoid, isMurder)
+function playerESP:UpdateHighlightColor(highlight, humanoid)
     if not humanoid then return end
     local hp = humanoid.Health / humanoid.MaxHealth
-    if isMurder then
-        local r = 255
-        local g = math.clamp(255 * (1 - hp), 0, 100)
-        highlight.FillColor = Color3.fromRGB(r, g, 0)
-        highlight.OutlineColor = Color3.fromRGB(r, g, 0)
-    else
-        local g = 255 * hp
-        local r = math.clamp(255 * (1 - hp), 0, 100)
-        highlight.FillColor = Color3.fromRGB(r, g, 0)
-        highlight.OutlineColor = Color3.fromRGB(r, g, 0)
-    end
+    local g = 255 * hp
+    local r = math.clamp(255 * (1 - hp), 0, 100)
+    highlight.FillColor = Color3.fromRGB(r, g, 0)
+    highlight.OutlineColor = Color3.fromRGB(r, g, 0)
 end
 
-function playersESP:Start()
+function playerESP:Start()
     local players = game:GetService("Players")
     local localPlayer = players.LocalPlayer
     
     local function updatePlayer(player)
-        if player == localPlayer then return end
+        if player == localPlayer or player:GetAttribute("IsShooter") then return end
         
         local function setupCharacter(char)
-            local espName = genrandstr(15)
             local highlight = Instance.new("Highlight")
-            highlight.Name = espName
+            highlight.Name = "PlayerESP"
             highlight.Adornee = char
             highlight.Parent = char
 
             local humanoid = char:FindFirstChild("Humanoid")
-            local isMurder = player:GetAttribute("IsShooter")
             
             if humanoid then
-                self:UpdateHighlightColor(highlight, humanoid, isMurder)
+                self:UpdateHighlightColor(highlight, humanoid)
                 humanoid.HealthChanged:Connect(function()
-                    self:UpdateHighlightColor(highlight, humanoid, isMurder)
+                    self:UpdateHighlightColor(highlight, humanoid)
                 end)
             end
         end
@@ -1043,11 +1032,13 @@ function playersESP:Start()
         player:GetAttributeChangedSignal("IsShooter"):Connect(function()
             if player.Character then
                 for _, child in ipairs(player.Character:GetChildren()) do
-                    if child:IsA("Highlight") then
+                    if child:IsA("Highlight") and child.Name == "PlayerESP" then
                         child:Destroy()
                     end
                 end
-                setupCharacter(player.Character)
+                if not player:GetAttribute("IsShooter") then
+                    setupCharacter(player.Character)
+                end
             end
         end)
         
@@ -1063,11 +1054,11 @@ function playersESP:Start()
     players.PlayerAdded:Connect(updatePlayer)
 end
 
-function playersESP:Stop()
+function playerESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         if player.Character then
             for _, child in ipairs(player.Character:GetChildren()) do
-                if child:IsA("Highlight") then
+                if child:IsA("Highlight") and child.Name == "PlayerESP" then
                     child:Destroy()
                 end
             end
@@ -1080,11 +1071,11 @@ mrdresp = 0
 
 survivals.MouseButton1Click:Connect(function()
     if plresp == 0 then
-        playersESP:Toggle(true)
+        playerESP:Toggle(true)
         plresp = 1
         notif("Sigma", "Players esp enabled :D")
     elseif plresp == 1 then
-        playersESP:Toggle(false)
+        playerESP:Toggle(false)
         plresp = 0
         notif("Sigma", "Players esp disabled :P")
     end
@@ -1092,11 +1083,11 @@ end)
 
 murder.MouseButton1Click:Connect(function()
     if mrdresp == 0 then
-        murderESP:Toggle(true)
+        shooterESP:Toggle(true)
         mrdresp = 1
         notif("Sigma", "Shooter esp enabled :P")
     elseif mrdresp == 1 then
-        murderESP:Toggle(false)
+        shooterESP:Toggle(false)
         mrdresp = 0
         notif("Sigma", "Shooter esp disabled :I")
     end
@@ -1315,6 +1306,9 @@ xray.MouseButton1Click:Connect(function()
         notif("Sigma", "xray disabled :P")
     end
 end)
+rtx.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+end)
 
 UserInputService.InputBegan:Connect(onKeyPress)
 -- yea
@@ -1324,4 +1318,4 @@ print("*********************************************")
 print("developed by andreythedevv, yeah!")
 print("t.me/SegmaNews!!!")
 notif("Sigma", "Loaded! :D", 5)
-notif("Sigma", "THIS IS ALPHA VERSION WITH LOT OF BUGS, PLEASE WAIT FOR BUG FIX 🙏", 10)
+notif("Sigma", "THIS IS ALPHA VERSION WITH LOT OF BUGS, PLEASE WAIT FOR MAJOR BUG FIX 🙏", 10)
