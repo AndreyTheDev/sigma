@@ -415,6 +415,21 @@ resetspd_2.Text = "TP TO SPAWN"
 resetspd_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 resetspd_2.TextSize = 14.000
 
+-- this IS NOT EASTER EGG!!
+local totallynoteastereggheh = Instance.new("TextButton")
+totallynoteastereggheh.Name = genrandstr(20)
+totallynoteastereggheh.Parent = hometab
+totallynoteastereggheh.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+totallynoteastereggheh.BackgroundTransparency = 1.000
+totallynoteastereggheh.BorderColor3 = Color3.fromRGB(0, 0, 0)
+totallynoteastereggheh.BorderSizePixel = 0
+totallynoteastereggheh.Position = UDim2.new(0.017699115, 0, 0.0271317828, 0)
+totallynoteastereggheh.Size = UDim2.new(0, 71, 0, 71)
+totallynoteastereggheh.Font = Enum.Font.SourceSans
+totallynoteastereggheh.Text = ""
+totallynoteastereggheh.TextColor3 = Color3.fromRGB(0, 0, 0)
+totallynoteastereggheh.TextSize = 14.000
+
 resetspd_3.Name = genrandstr(20)
 resetspd_3.Parent = maintab
 resetspd_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -465,7 +480,7 @@ knifetool.BorderSizePixel = 0
 knifetool.Position = UDim2.new(0.019, 0,0.813, 0)
 knifetool.Size = UDim2.new(0, 433, 0, 17)
 knifetool.Font = Enum.Font.RobotoMono
-knifetool.Text = "Toggle Sprint (Hold Shift to run fast yeah)"
+knifetool.Text = "Toggle Aimbot [Bind: V]"
 knifetool.TextColor3 = Color3.fromRGB(255, 255, 255)
 knifetool.TextSize = 14.000
 knifetool.TextWrapped = true
@@ -684,7 +699,7 @@ title_7.BorderSizePixel = 0
 title_7.Position = UDim2.new(0.0199115053, 0, 0.0271317828, 0)
 title_7.Size = UDim2.new(0, 435, 0, 23)
 title_7.Font = Enum.Font.RobotoMono
-title_7.Text = "OTHER HELL YEAH! (this is only for dev)"
+title_7.Text = "Other!"
 title_7.TextColor3 = Color3.fromRGB(255, 255, 255)
 title_7.TextSize = 14.000
 
@@ -697,7 +712,7 @@ TextButton.BorderSizePixel = 0
 TextButton.Position = UDim2.new(0.0199115053, 0, 0.143410847, 0)
 TextButton.Size = UDim2.new(0, 435, 0, 17)
 TextButton.Font = Enum.Font.RobotoMono
-TextButton.Text = "copy cframe"
+TextButton.Text = "Toggle Remove Jump Cooldown"
 TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.TextSize = 14.000
 
@@ -710,20 +725,20 @@ TextButton_2.BorderSizePixel = 0
 TextButton_2.Position = UDim2.new(0.0199115053, 0, 0.236434102, 0)
 TextButton_2.Size = UDim2.new(0, 435, 0, 17)
 TextButton_2.Font = Enum.Font.RobotoMono
-TextButton_2.Text = "theme....?"
+TextButton_2.Text = "Toggle Sprint (Hold Shift to run fast yeah)"
 TextButton_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_2.TextSize = 14.000
 
 TextButton_3.Name = genrandstr(20)
 TextButton_3.Parent = othertab
 TextButton_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_3.BackgroundTransparency = 0.700
+TextButton_3.BackgroundTransparency = 1
 TextButton_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextButton_3.BorderSizePixel = 0
 TextButton_3.Position = UDim2.new(0.017699115, 0, 0.329457372, 0)
 TextButton_3.Size = UDim2.new(0, 435, 0, 17)
 TextButton_3.Font = Enum.Font.RobotoMono
-TextButton_3.Text = "DEBUG HELL YEAH!"
+TextButton_3.Text = ""
 TextButton_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_3.TextSize = 14.000
 
@@ -892,6 +907,28 @@ resetspd_2.MouseButton1Click:Connect(function() -- nah im stupid
         plr.Character.HumanoidRootPart.CFrame = game.Workspace.Baseplate.CFrame * CFrame.new(0, 10, 0)
     end)
 end)
+asak = 0
+totallynoteastereggheh.MouseButton1Click:Connect(function()
+    if asak == 15 then
+        --imgplr.Image = "rbxassetid://10664762623"
+        local totallynottheme = Instance.new("ImageLabel")
+        totallynottheme.Name = "totallynottheme"
+        totallynottheme.Parent = tabsmenu
+        totallynottheme.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        totallynottheme.BackgroundTransparency = 0.700
+        totallynottheme.BorderColor3 = Color3.fromRGB(0, 0, 0)
+        totallynottheme.BorderSizePixel = 0
+        totallynottheme.Position = UDim2.new(-0.000645266613, 0, -0.00142800855, 0)
+        totallynottheme.Size = UDim2.new(0, 576, 0, 285)
+        totallynottheme.ZIndex = 0
+        totallynottheme.Image = "rbxassetid://10663635180"
+        totallynottheme.ImageTransparency = 0.500
+        title.Text = "Sigma.KITTYCATCATCAT!!!"
+        notif("Sigma", "CAT MODE ACTIVATED!!! :D", 10)
+    else
+        asak = asak + 1
+    end
+end)
 
 -- SHOOTER NOT MURDER STUPID ANDREYKO FROM 06TH SEPTEMBER ESP (writed by deepseek, im too lazy & its literally 3:44)
 local shooterESP = {
@@ -957,7 +994,7 @@ function shooterESP:HighlightCharacter(character)
     if not self.Enabled then return end
     
     local highlight = Instance.new("Highlight")
-    highlight.Name = "ShooterESP"
+    highlight.Name = genrandstr(20)
     highlight.Adornee = character
     highlight.Parent = character
     
@@ -1213,7 +1250,7 @@ resetspd_3.MouseButton1Click:Connect(function()
     end
 end)
 local sprnt = 0
-knifetool.MouseButton1Click:Connect(function() -- again by deepseek, because im very tired now, i`ill recode all this shit
+TextButton_2.MouseButton1Click:Connect(function() -- again by deepseek, because im very tired now, i`ill recode all this shit
     if sprnt == 0 then
         sprnt = 1
         spawn(function()
@@ -1312,8 +1349,83 @@ end)
 blind.MouseButton1Click:Connect(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroidxx/axe-hub/refs/heads/main/axehub%20nds.txt"))()
 end)
-
 UserInputService.InputBegan:Connect(onKeyPress)
+jmpcold = 0
+TextButton.MouseButton1Click:Connect(function()
+    if jmpcold == 0 then
+        plr.PlayerGui.JumpCooldown.Enabled = false
+        notif("Sigma", "JumpCooldown disabled :D", 5)
+        jmpcold = 1
+    elseif jmpcold == 1 then
+        plr.PlayerGui.JumpCooldown.Enabled = true
+        notif("Sigma", "JumpCooldown enabled :P", 5)
+        jmpcold = 0
+    end
+end)
+-- aimbot deepseek help me write this yeah 
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Camera = workspace.CurrentCamera
+
+local player = Players.LocalPlayer
+local aimbot = { Enabled = false }
+
+function aimbot:Toggle(state)
+    self.Enabled = state ~= nil and state or not self.Enabled
+    return self.Enabled
+end
+
+knifetool.MouseButton1Click:Connect(function()
+    aimbot:Toggle()
+end)
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.V then
+        aimbot:Toggle()
+    end
+end)
+
+RunService.RenderStepped:Connect(function(deltaTime)
+    if not aimbot.Enabled or not player.Character then return end
+    
+    local closestTarget = nil
+    local closestDistance = math.huge
+    local cameraPos = Camera.CFrame.Position
+    
+    for _, target in ipairs(Players:GetPlayers()) do
+        if target ~= player and target.Character then
+            local humanoid = target.Character:FindFirstChild("Humanoid")
+            local head = target.Character:FindFirstChild("Head")
+            
+            if humanoid and humanoid.Health > 0 and head then
+                local headPos, onScreen = Camera:WorldToViewportPoint(head.Position)
+                
+                if onScreen then
+                    local distance = (head.Position - cameraPos).Magnitude
+                    
+                    if distance < closestDistance then
+                        closestDistance = distance
+                        closestTarget = target
+                    end
+                end
+            end
+        end
+    end
+    
+    if closestTarget and closestTarget.Character then
+        local targetHead = closestTarget.Character:FindFirstChild("Head")
+        if targetHead then
+            local headPosition = targetHead.Position
+            local headSize = targetHead.Size.Y / 2
+            local aimPosition = Vector3.new(headPosition.X, headPosition.Y + headSize, headPosition.Z)
+            
+            local direction = (aimPosition - cameraPos).Unit
+            local targetCFrame = CFrame.lookAt(cameraPos, cameraPos + direction)
+            Camera.CFrame = Camera.CFrame:Lerp(targetCFrame, deltaTime * 12)
+        end
+    end
+end)
 -- yea
 print("*********************************************")
 print("*            SIGMA.RUNHIDEFIGHT             *")
