@@ -55,6 +55,7 @@ local rpgtool = Instance.new("TextButton")
 local flytool = Instance.new("TextButton")
 local knifetool = Instance.new("TextButton")
 local killzones = Instance.new("TextButton")
+local objct = Instance.new("TextButton")
 
 local plr = game.Players.LocalPlayer
 local function notif(title, text, duration)
@@ -290,7 +291,7 @@ newsyeah.BorderSizePixel = 0
 newsyeah.Position = UDim2.new(0.0227617826, 0, 0.15363799, 0)
 newsyeah.Size = UDim2.new(0, 427, 0, 140)
 newsyeah.Font = Enum.Font.RobotoMono
-newsyeah.Text = "0.1.1 BUGGY alpha!\n- Fixed bugs\n- Added some cool functions \n\nReport all bugs that u found in our telegram channel :3\n\nOur Telegram Channel: @SegmaNews \nOur Github Repo: github.com/AndreyTheDev/sigma \n(press RShift (right shift) to hide/unhide ui :3)"
+newsyeah.Text = "0.1.1 BUGGY alpha [PART 2]!\n- Fixed bugs (u can see what fixed in our tg channel)\n- Added some cool functions \n\nReport all bugs that u found in our telegram channel :3\n\nOur Telegram Channel: @SegmaNews \nOur Github Repo: github.com/AndreyTheDev/sigma \n(press RShift (right shift) to hide/unhide ui :3)"
 newsyeah.TextColor3 = Color3.fromRGB(255, 255, 255)
 newsyeah.TextWrapped = true
 newsyeah.TextSize = 14.000
@@ -555,7 +556,7 @@ esp.BackgroundTransparency = 0.700
 esp.BorderColor3 = Color3.fromRGB(0, 0, 0)
 esp.BorderSizePixel = 0
 esp.Position = UDim2.new(0.017699115, 0, 0.139534891, 0)
-esp.Size = UDim2.new(0, 436, 0, 66)
+esp.Size = UDim2.new(0, 436,0, 90)
 
 murder.Name = genrandstr(20)
 murder.Parent = esp
@@ -563,7 +564,7 @@ murder.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 murder.BackgroundTransparency = 0.700
 murder.BorderColor3 = Color3.fromRGB(0, 0, 0)
 murder.BorderSizePixel = 0
-murder.Position = UDim2.new(0.0140000088, 0, 0.300000042, 0)
+murder.Position = UDim2.new(0.016, 0,0.216, 0)
 murder.Size = UDim2.new(0, 421, 0, 17)
 murder.Font = Enum.Font.RobotoMono
 murder.Text = "Toggle SHOOTER ESP"
@@ -588,12 +589,25 @@ survivals.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 survivals.BackgroundTransparency = 0.700
 survivals.BorderColor3 = Color3.fromRGB(0, 0, 0)
 survivals.BorderSizePixel = 0
-survivals.Position = UDim2.new(0.0140000088, 0, 0.630000055, 0)
+survivals.Position = UDim2.new(0.016, 0,0.464, 0)
 survivals.Size = UDim2.new(0, 421, 0, 17)
 survivals.Font = Enum.Font.RobotoMono
 survivals.Text = "Toggle PLAYERS ESP"
 survivals.TextColor3 = Color3.fromRGB(255, 255, 255)
 survivals.TextSize = 14.000
+
+objct.Name = genrandstr(20)
+objct.Parent = esp
+objct.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+objct.BackgroundTransparency = 0.700
+objct.BorderColor3 = Color3.fromRGB(0, 0, 0)
+objct.BorderSizePixel = 0
+objct.Position = UDim2.new(0.0162935872, 0, 0.731070936, 0)
+objct.Size = UDim2.new(0, 421, 0, 17)
+objct.Font = Enum.Font.RobotoMono
+objct.Text = "Toggle OBJECTIVE ESP"
+objct.TextColor3 = Color3.fromRGB(255, 255, 255)
+objct.TextSize = 14.000
 
 funtab.Name = genrandstr(20)
 funtab.Parent = tabs
@@ -732,13 +746,13 @@ TextButton_2.TextSize = 14.000
 TextButton_3.Name = genrandstr(20)
 TextButton_3.Parent = othertab
 TextButton_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TextButton_3.BackgroundTransparency = 1
+TextButton_3.BackgroundTransparency = 0.700
 TextButton_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextButton_3.BorderSizePixel = 0
 TextButton_3.Position = UDim2.new(0.017699115, 0, 0.329457372, 0)
 TextButton_3.Size = UDim2.new(0, 435, 0, 17)
 TextButton_3.Font = Enum.Font.RobotoMono
-TextButton_3.Text = ""
+TextButton_3.Text = "Toggle Spawn In The Game"
 TextButton_3.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_3.TextSize = 14.000
 
@@ -994,7 +1008,7 @@ function shooterESP:HighlightCharacter(character)
     if not self.Enabled then return end
     
     local highlight = Instance.new("Highlight")
-    highlight.Name = genrandstr(20)
+    highlight.Name = "sho".. genrandstr(20)
     highlight.Adornee = character
     highlight.Parent = character
     
@@ -1011,7 +1025,7 @@ function shooterESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         if player.Character then
             for _, child in ipairs(player.Character:GetChildren()) do
-                if child:IsA("Highlight") and child.Name == "ShooterESP" then
+                if child:IsA("Highlight") and string.sub(child.Name, 1, 3) == "sho" then
                     child:Destroy()
                 end
             end
@@ -1052,7 +1066,7 @@ function playerESP:Start()
         
         local function setupCharacter(char)
             local highlight = Instance.new("Highlight")
-            highlight.Name = "PlayerESP"
+            highlight.Name = "plr".. genrandstr(20)
             highlight.Adornee = char
             highlight.Parent = char
 
@@ -1069,7 +1083,7 @@ function playerESP:Start()
         player:GetAttributeChangedSignal("IsShooter"):Connect(function()
             if player.Character then
                 for _, child in ipairs(player.Character:GetChildren()) do
-                    if child:IsA("Highlight") and child.Name == "PlayerESP" then
+                    if child:IsA("Highlight") then
                         child:Destroy()
                     end
                 end
@@ -1095,16 +1109,151 @@ function playerESP:Stop()
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         if player.Character then
             for _, child in ipairs(player.Character:GetChildren()) do
-                if child:IsA("Highlight") and child.Name == "PlayerESP" then
+                if child:IsA("Highlight") and string.sub(child.Name, 1, 3) == "plr" then
                     child:Destroy()
                 end
             end
         end
     end
 end
+-- OBJECTIVE ESP
+local objectiveESP = {
+    Enabled = false,
+    HighlightColor = Color3.fromRGB(77, 154, 255)
+}
 
+function objectiveESP:Toggle(state)
+    self.Enabled = state
+    if state then
+        objectiveESP:Start()
+    else
+        objectiveESP:Stop()
+    end
+end
+
+function objectiveESP:Start()
+    if not self.Enabled then return end
+    
+    local players = game:GetService("Players")
+    local localPlayer = players.LocalPlayer
+    local objectiveHighlights = {} 
+
+    local function getObjectiveText()
+        local gui = localPlayer.PlayerGui:FindFirstChild("MainGui")
+        if not gui then return nil end
+        
+        local objectiveFrame = gui:FindFirstChild("ObjectiveFrame")
+        if not objectiveFrame then return nil end
+        
+        local objectiveLabel = objectiveFrame:FindFirstChild("ObjectiveLabel")
+        if not objectiveLabel or not objectiveLabel:IsA("TextLabel") then return nil end
+        
+        local text = objectiveLabel.Text
+        local colonPos = string.find(text, ":")
+        if colonPos then
+            return string.sub(text, colonPos + 2)
+        end
+        return text
+    end
+
+    local function findObjectivesFolder()
+        for _, obj in ipairs(workspace:GetDescendants()) do
+            if obj.Name == "Objectives" and obj:IsA("Folder") then
+                return obj
+            end
+        end
+        return nil
+    end
+
+    local function highlightMatchingDesks()
+        objectiveESP:Stop()
+        
+        local objectiveText = getObjectiveText()
+        if not objectiveText or objectiveText == "" then return end
+        
+        local objectivesFolder = findObjectivesFolder()
+        if not objectivesFolder then
+            warn("Objectives folder not found in workspace")
+            return
+        end
+        
+        for _, obj in ipairs(objectivesFolder:GetDescendants()) do
+            if obj:IsA("Part") then
+                if obj.Transparency > 0 then
+                    obj.Transparency = 0
+                end
+                
+                local objectiveTextObj = obj:FindFirstChild("ObjectiveText")
+                if objectiveTextObj and objectiveTextObj:IsA("StringValue") then
+                    if objectiveTextObj.Value == objectiveText then
+                        objectiveESP:HighlightPart(obj)
+                    end
+                end
+            end
+        end
+    end
+
+    function objectiveESP:HighlightPart(part)
+        local highlightName = "tas".. genrandstr(20)
+        local highlight = Instance.new("Highlight")
+        highlight.Name = highlightName
+        highlight.Adornee = part
+        highlight.FillColor = self.HighlightColor
+        highlight.OutlineColor = self.HighlightColor
+        highlight.Parent = part
+        objectiveHighlights[highlightName] = highlight
+    end
+
+    local function setupObjectiveTracking()
+        local success, gui = pcall(function()
+            return localPlayer.PlayerGui:WaitForChild("MainGui", 5)
+        end)
+        
+        if not success or not gui then
+            warn("MainGui not found")
+            return
+        end
+        
+        local objectiveFrame = gui:FindFirstChild("ObjectiveFrame")
+        local objectiveLabel = objectiveFrame and objectiveFrame:FindFirstChild("ObjectiveLabel")
+        
+        if objectiveLabel and objectiveLabel:IsA("TextLabel") then
+            highlightMatchingDesks()
+
+            objectiveLabel:GetPropertyChangedSignal("Text"):Connect(function()
+                highlightMatchingDesks()
+            end)
+        else
+            warn("ObjectiveLabel not found")
+        end
+    end
+
+    setupObjectiveTracking()
+    while self.Enabled do
+        local objectivesFolder = findObjectivesFolder()
+        if objectivesFolder then
+            objectivesFolder.DescendantAdded:Connect(function(descendant)
+                if descendant:IsA("Part") then
+                    task.wait(0.1)
+                    highlightMatchingDesks()
+                end
+            end)
+            break
+        end
+        task.wait(1)
+    end
+end
+
+function objectiveESP:Stop()
+    for _, obj in ipairs(workspace:GetDescendants()) do
+        if obj:IsA("Highlight") and string.sub(obj.Name, 1, 3) == "tas" then
+            obj:Destroy()
+        end
+    end
+end
 plresp = 0
 mrdresp = 0
+objesp = 0
 
 survivals.MouseButton1Click:Connect(function()
     if plresp == 0 then
@@ -1127,6 +1276,17 @@ murder.MouseButton1Click:Connect(function()
         shooterESP:Toggle(false)
         mrdresp = 0
         notif("Sigma", "Shooter esp disabled :I")
+    end
+end)
+objct.MouseButton1Click:Connect(function()
+    if objesp == 0 then
+        objectiveESP:Toggle(true)
+        objesp = 1
+        notif("Sigma", "Objective esp enabled :D")
+    elseif objesp == 1 then
+        objectiveESP:Toggle(false)
+        objesp = 0
+        notif("Sigma", "Objective esp disabled :P")
     end
 end)
 
@@ -1296,11 +1456,15 @@ flytool.MouseButton1Click:Connect(function()
     if game:GetService("ReplicatedStorage"):FindFirstChild("Items") then local fly = game:GetService("ReplicatedStorage").Items:FindFirstChild("Fly") if fly then fly:Clone().Parent = game.Players.LocalPlayer:WaitForChild("Backpack") end end
 end)
 local xrayy = {
-    Enabled = false
+    Enabled = false,
+    Backup = {},
+    Connection = nil
 }
 
 function xrayy:Toggle(state)
+    if self.Enabled == state then return end
     self.Enabled = state
+    
     if state then
         self:Start()
     else
@@ -1309,37 +1473,70 @@ function xrayy:Toggle(state)
 end
 
 function xrayy:Start()
-    for _, part in ipairs(workspace:GetDescendants()) do
-        if part:IsA("BasePart") and part.Transparency < 0.5 then
-            part.LocalTransparencyModifier = 0.5
-        end
+    -- Сохраняем соединение для новых объектов
+    if self.Connection then
+        self.Connection:Disconnect()
     end
     
-    workspace.DescendantAdded:Connect(function(part)
+    self.Connection = workspace.DescendantAdded:Connect(function(part)
         if part:IsA("BasePart") and part.Transparency < 0.5 then
-            task.wait(0.05)
+            self.Backup[part] = part.LocalTransparencyModifier
             part.LocalTransparencyModifier = 0.5
         end
     end)
+    
+    -- Обрабатываем существующие объекты
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") and part.Transparency < 0.5 then
+            self.Backup[part] = part.LocalTransparencyModifier
+            part.LocalTransparencyModifier = 0.5
+        end
+    end
 end
 
 function xrayy:Stop()
+    -- Отключаем обработку новых объектов
+    if self.Connection then
+        self.Connection:Disconnect()
+        self.Connection = nil
+    end
+    
+    -- Восстанавливаем оригинальные значения
+    for part, transparency in pairs(self.Backup) do
+        if part and part.Parent ~= nil then
+            part.LocalTransparencyModifier = transparency
+        end
+    end
+    
+    -- Очищаем бэкап
+    table.clear(self.Backup)
+end
+
+-- Альтернативный вариант без бэкапа (просто сбрасываем в 0)
+function xrayy:StopSimple()
+    if self.Connection then
+        self.Connection:Disconnect()
+        self.Connection = nil
+    end
+    
+    -- Просто сбрасываем все в 0
     for _, part in ipairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") then
             part.LocalTransparencyModifier = 0
         end
     end
+    
+    table.clear(self.Backup)
 end
 
-xrayresp = 0
+xrayresp = false
 xray.MouseButton1Click:Connect(function()
-    if xrayresp == 0 then
-        xrayy:Toggle(true)
-        xrayresp = 1
+    xrayresp = not xrayresp
+    xrayy:Toggle(xrayresp)
+    
+    if xrayresp then
         notif("Sigma", "xray enabled :D")
     else
-        xrayy:Toggle(false)
-        xrayresp = 0
         notif("Sigma", "xray disabled :P")
     end
 end)
@@ -1362,28 +1559,90 @@ TextButton.MouseButton1Click:Connect(function()
         jmpcold = 0
     end
 end)
--- aimbot deepseek help me write this yeah 
+-- aimbot deepseek help me write n fix this yeah 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local Camera = workspace.CurrentCamera
 
 local player = Players.LocalPlayer
-local aimbot = { Enabled = false }
+local aimbot = { 
+    Enabled = false,
+    Settings = {
+        AimSpeed = 25,
+        MaxDistance = 100,
+        TargetChangeDelay = 0.5,
+        WallCheck = true
+    }
+}
+local currentTarget = nil
+local lastTargetChange = 0
+
+player.CharacterAdded:Connect(function(character)
+    character:WaitForChild("Humanoid").Died:Connect(function()
+        if aimbot.Enabled then
+            aimbot:Toggle(false)
+        end
+    end)
+end)
+if player.Character then
+    local humanoid = player.Character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.Died:Connect(function()
+            if aimbot.Enabled then
+                aimbot:Toggle(false)
+            end
+        end)
+    end
+end
 
 function aimbot:Toggle(state)
-    self.Enabled = state ~= nil and state or not self.Enabled
+    local newState = state ~= nil and state or not self.Enabled
+    self.Enabled = newState
+    
+    if self.Enabled then
+        notif("Sigma", "Aimbot enabled :D", 5)
+    else
+        currentTarget = nil
+        notif("Sigma", "Aimbot disabled :P", 5)
+    end
+    
     return self.Enabled
 end
 
-knifetool.MouseButton1Click:Connect(function()
-    aimbot:Toggle()
-end)
+function isVisible(targetPart)
+    if not aimbot.Settings.WallCheck then return true end
+    
+    local cameraPos = Camera.CFrame.Position
+    local targetPos = targetPart.Position
+    local direction = (targetPos - cameraPos).Unit
+    local distance = (targetPos - cameraPos).Magnitude
+    
+    local raycastParams = RaycastParams.new()
+    raycastParams.FilterType = Enum.RaycastFilterType.Exclude
+    raycastParams.FilterDescendantsInstances = {player.Character, targetPart.Parent}
+    raycastParams.IgnoreWater = true
+    
+    local raycastResult = workspace:Raycast(cameraPos, direction * distance, raycastParams)
+    
+    if not raycastResult then
+        return true
+    end
+    
+    if raycastResult.Instance:IsDescendantOf(targetPart.Parent) then
+        return true
+    end
+    
+    return false
+end
 
 UserInputService.InputBegan:Connect(function(input)
     if input.KeyCode == Enum.KeyCode.V then
         aimbot:Toggle()
     end
+end)
+knifetool.MouseButton1Click:Connect(function()
+    aimbot:Toggle()
 end)
 
 RunService.RenderStepped:Connect(function(deltaTime)
@@ -1392,38 +1651,86 @@ RunService.RenderStepped:Connect(function(deltaTime)
     local closestTarget = nil
     local closestDistance = math.huge
     local cameraPos = Camera.CFrame.Position
-    
-    for _, target in ipairs(Players:GetPlayers()) do
-        if target ~= player and target.Character then
-            local humanoid = target.Character:FindFirstChild("Humanoid")
-            local head = target.Character:FindFirstChild("Head")
+    local currentTime = tick()
+
+    if currentTarget and currentTarget.Character then
+        local humanoid = currentTarget.Character:FindFirstChild("Humanoid")
+        local head = currentTarget.Character:FindFirstChild("Head")
+        
+        if humanoid and humanoid.Health > 0 and head then
+            local headPos, onScreen = Camera:WorldToViewportPoint(head.Position)
+            local distance = (head.Position - cameraPos).Magnitude
+            local visible = isVisible(head)
             
-            if humanoid and humanoid.Health > 0 and head then
-                local headPos, onScreen = Camera:WorldToViewportPoint(head.Position)
+            if onScreen and distance < aimbot.Settings.MaxDistance and visible then
+                closestTarget = currentTarget
+                closestDistance = distance
+            end
+        end
+    end
+
+    if not closestTarget or currentTime - lastTargetChange > aimbot.Settings.TargetChangeDelay then
+        closestTarget = nil
+        closestDistance = math.huge
+        
+        for _, target in ipairs(Players:GetPlayers()) do
+            if target ~= player and target.Character then
+                local humanoid = target.Character:FindFirstChild("Humanoid")
+                local head = target.Character:FindFirstChild("Head")
                 
-                if onScreen then
+                if humanoid and humanoid.Health > 0 and head then
+                    local headPos, onScreen = Camera:WorldToViewportPoint(head.Position)
                     local distance = (head.Position - cameraPos).Magnitude
-                    
-                    if distance < closestDistance then
+                    local visible = isVisible(head)
+
+                    if onScreen and distance < aimbot.Settings.MaxDistance and distance < closestDistance and visible then
                         closestDistance = distance
                         closestTarget = target
                     end
                 end
             end
         end
+
+        if closestTarget and closestTarget ~= currentTarget then
+            currentTarget = closestTarget
+            lastTargetChange = currentTime
+        end
     end
-    
-    if closestTarget and closestTarget.Character then
-        local targetHead = closestTarget.Character:FindFirstChild("Head")
-        if targetHead then
-            local headPosition = targetHead.Position
-            local headSize = targetHead.Size.Y / 2
-            local aimPosition = Vector3.new(headPosition.X, headPosition.Y + headSize, headPosition.Z)
-            
+    if currentTarget and currentTarget.Character then
+        local targetHead = currentTarget.Character:FindFirstChild("Head")
+        if targetHead and isVisible(targetHead) then
+            local aimPosition = targetHead.Position + Vector3.new(0, targetHead.Size.Y/2, 0)
             local direction = (aimPosition - cameraPos).Unit
             local targetCFrame = CFrame.lookAt(cameraPos, cameraPos + direction)
-            Camera.CFrame = Camera.CFrame:Lerp(targetCFrame, deltaTime * 12)
+            Camera.CFrame = Camera.CFrame:Lerp(targetCFrame, deltaTime * aimbot.Settings.AimSpeed)
+        else
+            currentTarget = nil
         end
+    end
+end)
+ya = 0
+cone = nil
+TextButton_3.MouseButton1Click:Connect(function()
+    if ya == 0 then
+        ya = 1
+        cone = plr.CharacterAdded:Connect(function(character)
+            for _, obj in ipairs(workspace:GetDescendants()) do
+                if obj:IsA("Model") and obj:FindFirstChild("Spawns") then
+                    local spawns = obj.Spawns:GetChildren()
+                    if #spawns > 0 then
+                        local rnd = spawns[math.random(1, #spawns)]
+                        if rnd:IsA("BasePart") then
+                            plr.Character:WaitForChild("HumanoidRootPart").CFrame = rnd.CFrame
+                            break
+                        end
+                    end
+                end
+            end
+        end)
+    elseif ya == 1 then
+        ya = 0
+        cone:Disconnect()
+        cone = nil
     end
 end)
 -- yea
