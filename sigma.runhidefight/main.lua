@@ -56,6 +56,12 @@ local flytool = Instance.new("TextButton")
 local knifetool = Instance.new("TextButton")
 local killzones = Instance.new("TextButton")
 local objct = Instance.new("TextButton")
+local mobiletoggle = Instance.new("Frame")
+local img = Instance.new("ImageLabel")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+local btn = Instance.new("TextButton")
+local veryepiclabel = Instance.new("TextLabel")
 
 local plr = game.Players.LocalPlayer
 local function notif(title, text, duration)
@@ -78,6 +84,68 @@ function genrandstr(length)
     end
     
     return result
+end
+mobiletoggle.Name = genrandstr(20)
+mobiletoggle.Parent = sigma
+mobiletoggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+mobiletoggle.BackgroundTransparency = 0.700
+mobiletoggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+mobiletoggle.BorderSizePixel = 0
+mobiletoggle.Position = UDim2.new(0.0895765424, 0, 0.0712795556, 0)
+mobiletoggle.Size = UDim2.new(0, 63, 0, 63)
+
+img.Name = genrandstr(20)
+img.Parent = mobiletoggle
+img.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+img.BorderColor3 = Color3.fromRGB(0, 0, 0)
+img.BorderSizePixel = 0
+img.Position = UDim2.new(0.095238097, 0, 0.095238097, 0)
+img.Size = UDim2.new(0, 51, 0, 51)
+img.Image = "rbxassetid://10663635180"
+
+UICorner.Name = genrandstr(20)
+UICorner.CornerRadius = UDim.new(0, 40)
+UICorner.Parent = img
+
+UICorner_2.Name = genrandstr(20)
+UICorner_2.CornerRadius = UDim.new(0, 40)
+UICorner_2.Parent = mobiletoggle
+
+btn.Name = genrandstr(20)
+btn.Parent = mobiletoggle
+btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+btn.BackgroundTransparency = 1.000
+btn.BorderColor3 = Color3.fromRGB(0, 0, 0)
+btn.BorderSizePixel = 0
+btn.Position = UDim2.new(0.206349209, 0, 0.206349209, 0)
+btn.Size = UDim2.new(0, 20, 0, 20)
+btn.Font = Enum.Font.SourceSans
+btn.Text = ""
+btn.TextColor3 = Color3.fromRGB(0, 0, 0)
+btn.TextSize = 14.000
+
+veryepiclabel.Name = genrandstr(20)
+veryepiclabel.Parent = mobiletoggle
+veryepiclabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+veryepiclabel.BackgroundTransparency = 1.000
+veryepiclabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+veryepiclabel.BorderSizePixel = 0
+veryepiclabel.Position = UDim2.new(1, 0, 0.095238097, 0)
+veryepiclabel.Size = UDim2.new(0, 200, 0, 50)
+veryepiclabel.Visible = false
+veryepiclabel.Font = Enum.Font.SourceSans
+veryepiclabel.Text = "YOOOOO ITS JUUST TEXTLABEL!!!!11!1!!"
+veryepiclabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+veryepiclabel.TextSize = 14.000
+function detectdeviceyeah()
+    local UserInputService = game:GetService("UserInputService")
+    if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled then
+        print("[debug] mobile detected")
+        return "mobile"
+    elseif not UserInputService.TouchEnabled and UserInputService.KeyboardEnabled and UserInputService.MouseEnabled then
+        print("[debug] pc detected")
+        return "pc"
+    end
 end
 
 sigma.Name = genrandstr(20)
@@ -798,6 +866,7 @@ function SmoothDrag(Frame)
 end
 
 SmoothDrag(main)
+SmoothDrag(mobiletoggle)
 
 -- # taaabs :<
 home.MouseButton1Click:Connect(function()
@@ -854,14 +923,14 @@ local function txtglitch()
         if not title then return end
         
         while true do
-            wait(math.random(2, 3))
+            wait(math.random(1, 2.5))
             local orig = title.Text
             local chars = {"@","#","$","%","&","*","?","!"}
             for i = 1, math.random(2, 5) do
                 local pos = math.random(1, #orig)
                 title.Text = orig:sub(1, pos-1) .. chars[math.random(1, #chars)] .. orig:sub(pos+1)
             end
-            wait(0.2)
+            wait(0.1)
             title.Text = orig
         end
     end)
@@ -918,7 +987,7 @@ end)
 -- ok other buttons
 resetspd_2.MouseButton1Click:Connect(function() -- nah im stupid
     pcall(function()
-        plr.Character.HumanoidRootPart.CFrame = game.Workspace.Baseplate.CFrame * CFrame.new(0, 10, 0)
+        plr.Character.HumanoidRootPart.CFrame = workspace.Lobby.Spawnpoints:GetChildren()[math.random(#workspace.Lobby.Spawnpoints:GetChildren())].CFrame * CFrame.new(0, 1, 0)
     end)
 end)
 asak = 0
@@ -947,7 +1016,8 @@ end)
 -- SHOOTER NOT MURDER STUPID ANDREYKO FROM 06TH SEPTEMBER ESP (writed by deepseek, im too lazy & its literally 3:44)
 local shooterESP = {
     Enabled = false,
-    HighlightColor = Color3.fromRGB(255, 0, 0)
+    HighlightColor = Color3.fromRGB(255, 0, 0),
+    ActiveHighlights = {}
 }
 
 function shooterESP:Toggle(state)
@@ -962,37 +1032,66 @@ end
 function shooterESP:Start()
     local players = game:GetService("Players")
     
-    local function checkPlayer(player)
-        if player:GetAttribute("IsShooter") then
-            if player.Character then
-                self:HighlightCharacter(player.Character)
+    local function periodicCheck()
+        while self.Enabled do
+            wait(1)
+            for _, player in ipairs(players:GetPlayers()) do
+                if player:GetAttribute("IsShooter") then
+                    if player.Character and not self.ActiveHighlights[player] then
+                        self:HighlightCharacter(player.Character)
+                        self.ActiveHighlights[player] = true
+                    end
+                else
+                    if player.Character and self.ActiveHighlights[player] then
+                        for _, child in ipairs(player.Character:GetChildren()) do
+                            if child:IsA("Highlight") and string.sub(child.Name, 1, 3) == "sho" then
+                                child:Destroy()
+                            end
+                        end
+                        self.ActiveHighlights[player] = nil
+                    end
+                end
             end
-            player.CharacterAdded:Connect(function(char)
-                self:HighlightCharacter(char)
-            end)
         end
-
+    end
+    
+    coroutine.wrap(periodicCheck)()
+    
+    local function checkPlayer(player)
         player:GetAttributeChangedSignal("IsShooter"):Connect(function()
             if player:GetAttribute("IsShooter") then
                 if player.Character then
                     self:HighlightCharacter(player.Character)
+                    self.ActiveHighlights[player] = true
                 end
             else
                 if player.Character then
                     for _, child in ipairs(player.Character:GetChildren()) do
-                        if child:IsA("Highlight") then
+                        if child:IsA("Highlight") and string.sub(child.Name, 1, 3) == "sho" then
                             child:Destroy()
                         end
                     end
+                    self.ActiveHighlights[player] = nil
                 end
             end
         end)
+        
+        if player:GetAttribute("IsShooter") and player.Character then
+            self:HighlightCharacter(player.Character)
+            self.ActiveHighlights[player] = true
+        end
     end
     
     for _, player in ipairs(players:GetPlayers()) do
         checkPlayer(player)
     end
-    players.PlayerAdded:Connect(checkPlayer)
+    
+    players.PlayerAdded:Connect(function(player)
+        wait(2)
+        if player and player.Parent then
+            checkPlayer(player)
+        end
+    end)
 end
 
 function shooterESP:UpdateHighlightColor(highlight, humanoid)
@@ -1006,6 +1105,12 @@ end
 
 function shooterESP:HighlightCharacter(character)
     if not self.Enabled then return end
+    
+    for _, child in ipairs(character:GetChildren()) do
+        if child:IsA("Highlight") and string.sub(child.Name, 1, 3) == "sho" then
+            child:Destroy()
+        end
+    end
     
     local highlight = Instance.new("Highlight")
     highlight.Name = "sho".. genrandstr(20)
@@ -1031,6 +1136,7 @@ function shooterESP:Stop()
             end
         end
     end
+    self.ActiveHighlights = {}
 end
 
 -- Players ESP (writed by deepseek, im too lazy & its literally 3:44)
@@ -1103,6 +1209,33 @@ function playerESP:Start()
         updatePlayer(player)
     end
     players.PlayerAdded:Connect(updatePlayer)
+end
+
+
+function shooterESP:UpdateHighlightColor(highlight, humanoid)
+    if not humanoid then return end
+    local hp = humanoid.Health / humanoid.MaxHealth
+    local r = 255
+    local g = math.clamp(255 * (1 - hp), 0, 255)
+    highlight.FillColor = Color3.fromRGB(r, g, 0)
+    highlight.OutlineColor = Color3.fromRGB(r, g, 0)
+end
+
+function shooterESP:HighlightCharacter(character)
+    if not self.Enabled then return end
+    
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "sho".. genrandstr(20)
+    highlight.Adornee = character
+    highlight.Parent = character
+    
+    local humanoid = character:FindFirstChild("Humanoid")
+    if humanoid then
+        self:UpdateHighlightColor(highlight, humanoid)
+        humanoid.HealthChanged:Connect(function()
+            self:UpdateHighlightColor(highlight, humanoid)
+        end)
+    end
 end
 
 function playerESP:Stop()
@@ -1376,12 +1509,14 @@ rpgtool.MouseButton1Click:Connect(function()
     end
 end)
 
-
 isuihidden = false
 close.MouseButton1Click:Connect(function()
 	notif("Sigma", "UI hidden, press RShift (right shift) to show it :D", 5)
 	main.Visible = false
 	isuihidden = true
+    if detectdeviceyeah() == "mobile" then
+        mobiletoggle.Visible = true
+    end
 end)
 local function onKeyPress(input)
 	if input.KeyCode == Enum.KeyCode.RightShift then
@@ -1473,7 +1608,6 @@ function xrayy:Toggle(state)
 end
 
 function xrayy:Start()
-    -- Сохраняем соединение для новых объектов
     if self.Connection then
         self.Connection:Disconnect()
     end
@@ -1484,8 +1618,7 @@ function xrayy:Start()
             part.LocalTransparencyModifier = 0.5
         end
     end)
-    
-    -- Обрабатываем существующие объекты
+
     for _, part in ipairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") and part.Transparency < 0.5 then
             self.Backup[part] = part.LocalTransparencyModifier
@@ -1495,31 +1628,26 @@ function xrayy:Start()
 end
 
 function xrayy:Stop()
-    -- Отключаем обработку новых объектов
     if self.Connection then
         self.Connection:Disconnect()
         self.Connection = nil
     end
-    
-    -- Восстанавливаем оригинальные значения
+
     for part, transparency in pairs(self.Backup) do
         if part and part.Parent ~= nil then
             part.LocalTransparencyModifier = transparency
         end
     end
-    
-    -- Очищаем бэкап
+
     table.clear(self.Backup)
 end
 
--- Альтернативный вариант без бэкапа (просто сбрасываем в 0)
 function xrayy:StopSimple()
     if self.Connection then
         self.Connection:Disconnect()
         self.Connection = nil
     end
-    
-    -- Просто сбрасываем все в 0
+
     for _, part in ipairs(workspace:GetDescendants()) do
         if part:IsA("BasePart") then
             part.LocalTransparencyModifier = 0
@@ -1733,11 +1861,25 @@ TextButton_3.MouseButton1Click:Connect(function()
         cone = nil
     end
 end)
+btn.MouseButton1Click:Connect(function()
+	notif("Sigma", "UI unhidden, press toggle button to hide it :D", 5)
+	main.Visible = true
+	isuihidden = false
+    if detectdeviceyeah() == "mobile" then
+        mobiletoggle.Visible = false
+    end
+end)
+if detectdeviceyeah() == "mobile" then
+    mobiletoggle.Visible = true
+else
+    mobiletoggle.Visible = false
+end
 -- yea
 print("*********************************************")
 print("*            SIGMA.RUNHIDEFIGHT             *")
 print("*********************************************")
 print("developed by andreythedevv, yeah!")
 print("t.me/SegmaNews!!!")
+print("device: ".. detectdeviceyeah())
 notif("Sigma", "Loaded! :D", 5)
 notif("Sigma", "THIS IS ALPHA VERSION WITH LOT OF BUGS, PLEASE WAIT FOR MAJOR BUG FIX 🙏", 10)
