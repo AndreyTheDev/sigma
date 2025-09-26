@@ -563,7 +563,7 @@ killzones.BorderSizePixel = 0
 killzones.Position = UDim2.new(0.0188585129, 0, 0.719689906, 0)
 killzones.Size = UDim2.new(0, 433, 0, 17)
 killzones.Font = Enum.Font.RobotoMono
-killzones.Text = "Toggle Delete All Killzones [PATCHED]"
+killzones.Text = "Toggle Delete All Killzones"
 killzones.TextColor3 = Color3.fromRGB(255, 255, 255)
 killzones.TextSize = 14.000
 killzones.TextWrapped = true
@@ -1139,7 +1139,6 @@ function shooterESP:Stop()
     self.ActiveHighlights = {}
 end
 
--- Players ESP (writed by deepseek, im too lazy & its literally 3:44)
 local playerESP = {
     Enabled = false,
     SurvivorColor = Color3.fromRGB(0, 255, 0)
@@ -1168,7 +1167,7 @@ function playerESP:Start()
     local localPlayer = players.LocalPlayer
     
     local function updatePlayer(player)
-        if player == localPlayer or player:GetAttribute("IsShooter") then return end
+        if player == localPlayer then return end
         
         local function setupCharacter(char)
             local highlight = Instance.new("Highlight")
@@ -1189,7 +1188,7 @@ function playerESP:Start()
         player:GetAttributeChangedSignal("IsShooter"):Connect(function()
             if player.Character then
                 for _, child in ipairs(player.Character:GetChildren()) do
-                    if child:IsA("Highlight") then
+                    if child:IsA("Highlight") and string.sub(child.Name, 1, 4) == "plr" then
                         child:Destroy()
                     end
                 end
@@ -1199,43 +1198,20 @@ function playerESP:Start()
             end
         end)
         
-        if player.Character then
+        if player.Character and not player:GetAttribute("IsShooter") then
             setupCharacter(player.Character)
         end
-        player.CharacterAdded:Connect(setupCharacter)
+        player.CharacterAdded:Connect(function(char)
+            if not player:GetAttribute("IsShooter") then
+                setupCharacter(char)
+            end
+        end)
     end
     
     for _, player in ipairs(players:GetPlayers()) do
         updatePlayer(player)
     end
     players.PlayerAdded:Connect(updatePlayer)
-end
-
-
-function shooterESP:UpdateHighlightColor(highlight, humanoid)
-    if not humanoid then return end
-    local hp = humanoid.Health / humanoid.MaxHealth
-    local r = 255
-    local g = math.clamp(255 * (1 - hp), 0, 255)
-    highlight.FillColor = Color3.fromRGB(r, g, 0)
-    highlight.OutlineColor = Color3.fromRGB(r, g, 0)
-end
-
-function shooterESP:HighlightCharacter(character)
-    if not self.Enabled then return end
-    
-    local highlight = Instance.new("Highlight")
-    highlight.Name = "sho".. genrandstr(20)
-    highlight.Adornee = character
-    highlight.Parent = character
-    
-    local humanoid = character:FindFirstChild("Humanoid")
-    if humanoid then
-        self:UpdateHighlightColor(highlight, humanoid)
-        humanoid.HealthChanged:Connect(function()
-            self:UpdateHighlightColor(highlight, humanoid)
-        end)
-    end
 end
 
 function playerESP:Stop()
@@ -1433,7 +1409,7 @@ function killzonesremover:Toggle(state)
 
         if not self.connection then
             self.connection = workspace.DescendantAdded:Connect(function(obj)
-                if self.Enabled and obj:IsA("BasePart") and obj.Name == "KillBoundary" then
+                if self.Enabled and obj.Name == "KillBoundary" then
                     obj:Destroy()
                 end
             end)
@@ -1451,7 +1427,7 @@ function killzonesremover:Clean()
     
     local count = 0
     for _, obj in pairs(workspace:GetDescendants()) do
-        if obj:IsA("BasePart") and obj.Name == "KillBoundary" then
+        if obj.Name == "KillBoundary" then
             obj:Destroy()
             count = count + 1
         end
@@ -1613,14 +1589,14 @@ function xrayy:Start()
     end
     
     self.Connection = workspace.DescendantAdded:Connect(function(part)
-        if part:IsA("BasePart") and part.Transparency < 0.5 then
+        if part:IsA("BasePart") and part.Transparency < 0.2 then
             self.Backup[part] = part.LocalTransparencyModifier
             part.LocalTransparencyModifier = 0.5
         end
     end)
 
     for _, part in ipairs(workspace:GetDescendants()) do
-        if part:IsA("BasePart") and part.Transparency < 0.5 then
+        if part:IsA("BasePart") and part.Transparency < 0.2 then
             self.Backup[part] = part.LocalTransparencyModifier
             part.LocalTransparencyModifier = 0.5
         end
