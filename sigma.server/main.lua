@@ -396,9 +396,8 @@ end)
 
 oioioi = 0
 join.MouseButton1Click:Connect(function()
-	notify("Sigma", "Please wait...", 5)
     local plcid = tonumber(placeidd.Text) or game.PlaceId
-    local accessCode
+    local accessCode = acscode.Text
     
     if acscode.Text and acscode.Text ~= "" then
         accessCode = acscode.Text
@@ -434,20 +433,8 @@ join.MouseButton1Click:Connect(function()
 		notify("Sigma", "This function currectly is too buggy, press again if u really want", 10)
 		oioioi = oioioi + 1
 		if oioioi > 1 then
-			if queue_on_teleport then
-			queueontp = true
-			local orig = game.PlaceId 
-				
-				local queue = string.format([[
-					repeat wait() until game:IsLoaded()
-					wait(2)
-
-					game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", %q)
-
-				]], accessCode)
-				queue_on_teleport(queue)
 				game:GetService("TeleportService"):Teleport(plcid)
-			end
+				game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", accessCode)
 		end
 	end
 
