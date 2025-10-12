@@ -1,4 +1,5 @@
--- help me its 5:00
+-- if u known how to fix inf teleport u can dm me (messages in @SegmaNews, telegram)
+-- im just stupid
 local sigma = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local eshed = Instance.new("Frame")
@@ -180,6 +181,7 @@ end
 
 SmoothDrag(main)
 
+-- im forgor who made this, but thank you!!!
 do
 	do
     local T = {
@@ -343,7 +345,7 @@ do
 	end
 end
 
-local function GenerateReservedServerCode(placeId)
+local function GenReservedCode(placeId)
 	local uuid = {}
 	for i = 1, 16 do
 		uuid[i] = math.random(0, 255)
@@ -369,10 +371,10 @@ local function GenerateReservedServerCode(placeId)
 
 	local content = firstBytes .. placeIdBytes
 
-	local SUPERDUPERSECRETROBLOXKEYTHATTHEYDIDNTCHANGEEVERSINCEFOREVER = "e4Yn8ckbCJtw2sv7qmbg" -- legacy leaked key from ages ago that still works due to roblox being roblox.
-	local signature = hmac.new(SUPERDUPERSECRETROBLOXKEYTHATTHEYDIDNTCHANGEEVERSINCEFOREVER, content, md5.sum)
+	local stupidblox = "e4Yn8ckbCJtw2sv7qmbg" -- leaked key from ages ago that still works due roblox stupid :P
+	local sign = hmac.new(stupidblox, content, md5.sum)
 
-	local accessCodeBytes = signature .. content
+	local accessCodeBytes = sign .. content
 
 	local accessCode = base64.encode(accessCodeBytes)
 	accessCode = accessCode:gsub("+", "-"):gsub("/", "_")
@@ -395,7 +397,7 @@ join.MouseButton1Click:Connect(function()
     if acscode.Text and acscode.Text ~= "" then
         accessCode = acscode.Text
     else
-        accessCode = GenerateReservedServerCode(plcid)
+        accessCode = GenReservedCode(plcid)
     end
 	if plcid == game.PlaceId then
 		if queue_on_teleport then
@@ -422,20 +424,25 @@ join.MouseButton1Click:Connect(function()
 		end
 			
 		game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(plcid, "", accessCode)
-	else
-		if queue_on_teleport then
-	       queueontp = true
-           local orig = game.PlaceId 
-            
-            local queue = string.format([[
-                repeat wait() until game:IsLoaded()
-				wait(5)
+	else -- GUYS WHO KNOWN HOW FIX THIS SHIT IM CRYING NWO
+		oioioi = 0
+		oioioi = oioioi + 1
+		notify("Sigma", "This function currectly is too buggy, press button again if you want join this place!", 10)
+		if oioioi > 1 then
+			if queue_on_teleport then
+			queueontp = true
+			local orig = game.PlaceId 
+				
+				local queue = string.format([[
+					repeat wait() until game:IsLoaded()
+					wait(2)
 
-                game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", %q)
+					game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(game.PlaceId, "", %q)
 
-            ]], accessCode)
-			queue_on_teleport(queue)
-			game:GetService("TeleportService"):Teleport(plcid)
+				]], accessCode)
+				queue_on_teleport(queue)
+				game:GetService("TeleportService"):Teleport(plcid)
+			end
 		end
 	end
 
@@ -445,7 +452,7 @@ join.MouseButton1Click:Connect(function()
 	--notify("Sigma", "Teleported! Your server code: ".. accessCode, 30)
 end)
 
-notify("Sigma", "GUYS ITS BUGGY SCRIPT, IF THIS DIDNT WORK JUST REJOIN, SORRY GUYSS!!(", 5)
+notify("Sigma", "Yooo welcome! This version is very buggy, bc im stupid, but yeah", 5)
 
 game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(state)
     if queueontp and state == Enum.TeleportState.Started then
