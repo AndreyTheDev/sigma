@@ -390,7 +390,13 @@ local function GenReservedCode(placeId)
 	return accessCode, gameCode
 end
 
+close.MouseButton1Click:Connect(function()
+	sigma:Destroy()
+end)
+
+oioioi = 0
 join.MouseButton1Click:Connect(function()
+	notify("Sigma", "Please wait...", 5)
     local plcid = tonumber(placeidd.Text) or game.PlaceId
     local accessCode
     
@@ -425,9 +431,8 @@ join.MouseButton1Click:Connect(function()
 			
 		game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(plcid, "", accessCode)
 	else -- GUYS WHO KNOWN HOW FIX THIS SHIT IM CRYING NWO
-		oioioi = 0
 		oioioi = oioioi + 1
-		notify("Sigma", "This function currectly is too buggy, press button again if you want join this place!", 10)
+		notify("Sigma", "This function currectly is too buggy, press again if u really want", 10)
 		if oioioi > 1 then
 			if queue_on_teleport then
 			queueontp = true
