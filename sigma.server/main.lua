@@ -431,8 +431,8 @@ join.MouseButton1Click:Connect(function()
 			
 		game.RobloxReplicatedStorage.ContactListIrisInviteTeleport:FireServer(plcid, "", accessCode)
 	else -- GUYS WHO KNOWN HOW FIX THIS SHIT IM CRYING NWO
-		oioioi = oioioi + 1
 		notify("Sigma", "This function currectly is too buggy, press again if u really want", 10)
+		oioioi = oioioi + 1
 		if oioioi > 1 then
 			if queue_on_teleport then
 			queueontp = true
@@ -458,6 +458,7 @@ join.MouseButton1Click:Connect(function()
 end)
 
 notify("Sigma", "Yooo welcome! This version is very buggy, bc im stupid, but yeah", 5)
+notify("Sigma", "And join my tg channel, btw :3 --> @SegmaNews", 10)
 
 game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(state)
     if queueontp and state == Enum.TeleportState.Started then
