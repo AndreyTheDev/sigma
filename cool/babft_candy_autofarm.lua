@@ -1,5 +1,5 @@
--- Instances:
-
+-- its very old script, like 1 or 2 years old, developed with .. idk, chatgpt
+-- im fixed bugs now
 local co = Instance.new("ScreenGui")
 local main = Instance.new("Frame")
 local title = Instance.new("TextLabel")
@@ -9,8 +9,6 @@ local UICorner = Instance.new("UICorner")
 local ee = Instance.new("Frame")
 local UICorner_2 = Instance.new("UICorner")
 local closeBtn = Instance.new("TextButton") 
-
--- Properties:
 
 co.Name = "co"
 co.Parent = game:GetService("CoreGui")
@@ -90,22 +88,11 @@ closeBtn.TextSize = 20.000
 closeBtn.TextWrapped = true
 closeBtn.TextScaled = true
 
-
--- Scripts:
-
-local function WGCZKS_fake_script() -- co.main.lua 
-	local script = Instance.new('LocalScript', co)
-
+local function WGCZKS_fake_script()
 	local tween = game:GetService("TweenService")
 	local players = game:GetService("Players")
 	local runService = game:GetService("RunService")
 	local userInput = game:GetService("UserInputService")
-	
-	local main = script.Parent.main
-	local btn = main.btn
-	local tit = main.title
-	local text = main.yes
-	local closeBtn = main.closeBtn
 	
 	local player = players.LocalPlayer
 	local miningState = 0
@@ -113,8 +100,8 @@ local function WGCZKS_fake_script() -- co.main.lua
 	
 	local NotificationBindable = Instance.new("BindableFunction")
 	game.StarterGui:SetCore("SendNotification", {
-		Title = "✨ Babft candy autofarm",
-		Text = "Press HOME to hide/show the UI",
+		Title = ":3",
+		Text = "press HOME to hide/show the UI",
 		Duration = 10,
 		Callback = NotificationBindable;
 	})
@@ -122,7 +109,7 @@ local function WGCZKS_fake_script() -- co.main.lua
     local NotificationBindable1 = Instance.new("BindableFunction")
 	game.StarterGui:SetCore("SendNotification", {
 		Title = ":3",
-		Text = "Script made by AndreyTheDev! ✨",
+		Text = "script made by andreythedevv! ✨ \nsub to @SegmaNews (telegram), btw",
 		Duration = 15,
 		Callback = NotificationBindable1;
 	})
@@ -137,7 +124,7 @@ local function WGCZKS_fake_script() -- co.main.lua
                 humanoidRootPart.CFrame = doorInnerTorch.CFrame  
                 house.Name = "TrickOrVisitedHouse" 
             else
-                warn("DoorInnerTouch is not a valid part or doesn't exist!")
+                --warn("fck chatgpt")
             end
         else
             warn("Door not found!")
@@ -169,8 +156,8 @@ local function WGCZKS_fake_script() -- co.main.lua
 	function mininggg()
         local NotificationBindableStart = Instance.new("BindableFunction")
 		game.StarterGui:SetCore("SendNotification", {
-			Title = "✨ Babft candy autofarm",
-			Text = "Mining started! 💎",
+			Title = ":3",
+			Text = "farm started",
 			Duration = 3,
 			Callback = NotificationBindableStart;
 		})
@@ -190,8 +177,8 @@ local function WGCZKS_fake_script() -- co.main.lua
 			btn.Text = "Start"
             local NotificationBindableStop = Instance.new("BindableFunction")
 			game.StarterGui:SetCore("SendNotification", {
-				Title = "✨ Babft candy autofarm",
-				Text = "Mining stopped! 🛑",
+				Title = ":3",
+				Text = "farm stopped",
 				Duration = 3,
 				Callback = NotificationBindableStop;
 			})
@@ -281,20 +268,19 @@ local function WGCZKS_fake_script() -- co.main.lua
 		end
 		
 		game.StarterGui:SetCore("SendNotification", {
-			Title = "✨ Babft candy autofarm",
-			Text = "Are you sure?",
+			Title = ":3",
+			Text = "are you sure?",
 			Duration = 10,
 			Callback = NotificationBindable2,
-			Button1 = "Yes",
-			Button2 = "No"
+			Button1 = "yea",
+			Button2 = "no"
 		})
 	end)
-	
-	task.wait(2)
-    print("✨ BABFT CANDY AUTOFARM BY ANDREYTHEDEV [v0.1.4]")
-	tit.Text = "skbidi babft candy autofarm [v0.1.4]"
-	text.Text = "🎉 Script loaded! Now you can press start to start mining candys !!! "
-	btn.Text = "Start"
+
+    print("✨ babft cande autofarm developed by andreythedevv :3")
+	title.Text = "skbidi babft candy autofarm :3"
+	yes.Text = "script loaded! now you can press start to start farm candys !!! "
+	btn.Text = "start"
 	
 	btn.MouseButton1Click:Connect(mining)
 end
