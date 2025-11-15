@@ -6,7 +6,6 @@
 ![Logo](https://github.com/AndreyTheDev/sigma/blob/main/ignore%20this/logo-white.png?raw=true) 
 # Project **Segma**
 https://t.me/SegmaNews - tg
-https://rvlt.gg/288tPa3D - revolt
 
 stupid robleax scripts 
 
