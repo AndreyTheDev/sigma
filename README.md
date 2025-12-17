@@ -16,8 +16,3 @@ fully **free**, **keyless**, **open source** and high-quality scripts 🏏
 
 # **credits**
 ෴ **sigma aim aimbot** based on **silent aim** by **Cope#7122**
-
-෴ ui for **sigma aim** developed by **andreythedevv**
-
-෴ antilag for **sigma aim** developed by **andreythedevv**
-
